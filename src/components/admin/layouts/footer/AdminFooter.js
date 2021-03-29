@@ -1,13 +1,9 @@
-function AdFooter() {
+import "./adminFooter.css"
+
+export default function AdFooter() {
   return (
     <footer
       className="footer-admin"
-      style={{
-        padding: "20px",
-        marginTop: "20px",
-        backgroundColor: "pink",
-        position: "relative",
-      }}
     >
       <div style={{ textAlign: "center" }}>
         <p>
@@ -20,5 +16,3 @@ function AdFooter() {
     </footer>
   );
 }
-
-export default AdFooter;

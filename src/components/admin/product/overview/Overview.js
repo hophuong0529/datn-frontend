@@ -61,8 +61,8 @@ function Overview() {
               <th style={{ textAlign: "center", width: "20%" }}>Image</th>
               <th style={{ textAlign: "center", width: "15%" }}>Name</th>
               <th style={{ textAlign: "center", width: "15%" }}>Price</th>
-              <th style={{ textAlign: "center", width: "5%" }}>Color</th>
-              <th style={{ textAlign: "center", width: "10%" }}>Discount</th>
+              <th style={{ textAlign: "center", width: "10%" }}>Color</th>
+              <th style={{ textAlign: "center", width: "5%" }}>Discount</th>
               <th style={{ textAlign: "center", width: "10%" }}>
                 Sub Category
               </th>
@@ -97,9 +97,15 @@ function Overview() {
                 </td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
-                <td> </td>
-                <td>{product.discount}</td>
-                <td>{product.category.name}</td>
+                <td>
+                  <ul style={{ paddingLeft: 0 }}>
+                    {product.colors.map((color) => (
+                      <li key={color.id}>{color.name}</li>
+                    ))}
+                  </ul>
+                </td>
+                <td>{product.discount}%</td>
+                <td>{product.sub.name}</td>
                 <td style={{ textAlign: "right" }}>
                   <Link
                     to={"/admin/product/edit/" + product.id}

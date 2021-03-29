@@ -1,0 +1,100 @@
+footer {
+  background: #fff;
+}
+
+.f-start {
+  padding: 30px 0 15px;
+}
+
+footer ul {
+  padding-left: 25px;
+}
+
+footer .logo {
+  margin: 15px;
+  text-align: center;
+}
+
+.f-contact span {
+  margin-left: 29%;
+  font-weight: bold;
+  font-size: 18px;
+  color: #193f61;
+}
+
+.f-title {
+  font-size: 18px;
+  color: #762143;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.wrapper-home-service {
+  margin-top: 50px;
+  padding: 30px 0 10px;
+  background: #ecbba6;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+
+.service-box {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.service-box .icon {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 15px;
+  width: 55px;
+  height: 55px;
+  font-size: 0;
+  line-height: 55px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.f-end {
+  background-color: #ecbba6;
+  padding: 5px;
+  text-align: center;
+  border-top: white thin solid;
+}
+
+.f-end span {
+  color: #fff;
+  font-size: 14px;
+}
+
+.service-box .icon img {
+  position: relative;
+  z-index: 9;
+  width: 30px;
+}
+
+.service-box h3 {
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.service-box p {
+  color: #000;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.service-box .icon:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  margin-top: -50%;
+  margin-left: -50%;
+  border-radius: 100px;
+  background-color: #1f2027;
+  transition: all 0.4s;
+}

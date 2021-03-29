@@ -1,0 +1,39 @@
+.prdTitle.bg {
+  margin-bottom: 25px;
+}
+.prdTitle {
+  text-align: center;
+  padding: 30px 0;
+  position: relative;
+}
+.prdTitle h2 {
+  color: #d78d6e;
+  font-size: 28px;
+  margin: 5px 0;
+  position: relative;
+  background: #fff;
+  font-weight: bold;
+}
+.prdTitle .title-name {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  padding: 0 15px;
+}
+.prdTitle .title-line {
+  height: 2px;
+  width: 100%;
+  background: #ecbba6;
+  display: block;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+}
+.blockSlide {
+  background: #fff;
+  float: left;
+  width: 100%;
+  margin-bottom: 5px;
+  padding-left: 220px;
+  padding-right: 220px;
+}

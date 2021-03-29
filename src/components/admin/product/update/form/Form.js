@@ -1,91 +1,47 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Color from "./color/Color";
+import Image from "./image/Image";
 import axios from "axios";
-import { useDropzone } from "react-dropzone";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router";
-import { CloseButton } from "react-bootstrap";
-import "./addProduct.css";
+import { useParams } from "react-router";
 
-function AddProduct() {
-  const { getRootProps, getInputProps } = useDropzone();
+export default function Form(props) {
+  const { handleAddSubmit, handleEditSubmit, title } = props;
 
-  const history = useHistory();
-  const [categories, setCategories] = useState([]);
-  const [images, setImages] = useState([]);
-  const [category, setCategory] = useState(-1);
-  const [selectColorsId, setSelectColorsId] = useState([]);
   const [colors, setColors] = useState([]);
-  const [subCategoryId, setSubCategoryId] = useState(-1);
+  const [categories, setCategories] = useState([]);
+  const [categoryId, setCategoryId] = useState(0);
+  const [subCategoryId, setSubCategoryId] = useState(0);
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [price, setPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
   const [isTop, setIsTop] = useState(0);
-  const [selectImages, setSelectImages] = useState([]);
+  const [images, setImages] = useState([]);
+  const [selectColors, setSelectColors] = useState([]);
+  const [preImages, setPreImages] = useState([]);
 
-  const handleImagesChange = (e) => {
-    if (e.target.files) {
-      setImages(e.target.files);
+  const formData = new FormData();
 
-      const fileArray = Array.from(e.target.files).map((file) =>
-        URL.createObjectURL(file)
-      );
-      setSelectImages((prevImages) => prevImages.concat(fileArray));
+  const submitForm = (event) => {
+    formData.append("name", name);
+    formData.append("code", code);
+    formData.append("subcategory_id", subCategoryId);
+    formData.append("discount", discount);
+    formData.append("price", price);
+    formData.append("is_top", isTop);
+    formData.append("colors", JSON.stringify(selectColors));
+    formData.append("preImages", JSON.stringify(preImages));
+    Array.from(images).forEach((img) => formData.append("images[]", img));
+
+    if (handleAddSubmit) {
+      handleAddSubmit(event, formData);
+    } else if (handleEditSubmit) {
+      handleEditSubmit(event, formData);
     }
   };
 
-  const handleRemoveImage = (item) => {
-    setSelectImages(selectImages.filter((x) => x !== item));
-  };
-
-  const renderPhotos = (source) => {
-    return source.map((photo) => {
-      return (
-        <div className="col-md-3" style={{ position: "relative" }} key={photo}>
-          <CloseButton onClick={() => handleRemoveImage(photo)} />
-          <img
-            src={photo}
-            alt=""
-            style={{ width: "100%", margin: "0px 10px 10px 0px" }}
-          />
-        </div>
-      );
-    });
-  };
-
-  const handleCreateProduct = (event) => {
-    event.preventDefault();
-
-    const formCreateData = new FormData();
-
-    formCreateData.append("name", name);
-    formCreateData.append("code", code);
-    formCreateData.append("subcategory_id", subCategoryId);
-    formCreateData.append("discount", discount);
-    formCreateData.append("price", price);
-    formCreateData.append("is_top", isTop);
-    Array.from(images).forEach((el) => formCreateData.append("images[]", el));
-    Array.from(selectColorsId).forEach((el) =>
-      formCreateData.append("colorsId[]", el)
-    );
-
-    axios
-      .post(`http://127.0.0.1:8000/api/products`, formCreateData)
-      .then(() => {
-        alert("Create success.");
-        history.push("/admin");
-      });
-  };
-
-  const handleColorClick = (el) => {
-    const exist = selectColorsId.find((x) => x === el.id);
-    if (!exist) {
-      selectColorsId.push(el.id);
-      setSelectColorsId([...selectColorsId]);
-    }
-  };
-
+  const slug = useParams();
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
       setCategories(response.data);
@@ -93,7 +49,22 @@ function AddProduct() {
     axios.get("http://127.0.0.1:8000/api/colors").then((response) => {
       setColors(response.data);
     });
-  }, []);
+    if (slug.id) {
+      axios
+        .get(`http://127.0.0.1:8000/api/product/${slug.id}`)
+        .then((response) => {
+          setCode(response.data.code);
+          setName(response.data.name);
+          setPrice(response.data.price);
+          setDiscount(response.data.discount);
+          setIsTop(response.data.is_top);
+          setSubCategoryId(response.data.subcategory_id);
+          setCategoryId(response.data.sub.category_id);
+          setSelectColors(response.data.colors);
+          setPreImages(response.data.images);
+        });
+    }
+  }, [slug.id]);
 
   return (
     <div className="row mt">
@@ -107,13 +78,10 @@ function AddProduct() {
               color: "rgb(255 166 181)",
             }}
           >
-            Create a Product
+            {title}
           </h1>
-          <form
-            className="form-horizontal style-form"
-            onSubmit={handleCreateProduct}
-          >
-            <table className="table table-hover">
+          <form className="form-horizontal style-form" onSubmit={submitForm}>
+            <table className="table">
               <tbody>
                 <tr>
                   <td style={{ fontWeight: "bold", width: "25%" }}>
@@ -122,16 +90,14 @@ function AddProduct() {
                   <td>
                     <label>
                       <select
-                        name="sub_categories"
-                        value={category}
-                        onChange={(e) => {
-                          setCategory(e.target.value);
-                        }}
+                        name="category_id"
+                        value={categoryId}
+                        onChange={(e) => setCategoryId(e.target.value)}
                         className="form-control"
                       >
-                        <option value={-1}>Chọn một danh mục</option>
-                        {categories.map((item, index) => (
-                          <option key={item.id} value={index}>
+                        <option value="">Chọn một danh mục</option>
+                        {categories.map((item) => (
+                          <option key={item.id} value={item.id}>
                             {item.name}
                           </option>
                         ))}
@@ -148,15 +114,19 @@ function AddProduct() {
                       <select
                         name="subcategory_id"
                         value={subCategoryId}
-                        onChange={(e) => setSubCategoryId(e.target.value)}
+                        onChange={(e) => {
+                          setSubCategoryId(e.target.value);
+                        }}
                         className="form-control"
                       >
-                        <option value={-1}>Chọn một danh mục</option>
-                        {categories[category]?.subs?.map((item) => (
-                          <option key={item.id} value={item.id}>
-                            {item.name}
-                          </option>
-                        ))}
+                        <option value="">Chọn một danh mục</option>
+                        {categories
+                          .find((el) => el.id === parseInt(categoryId))
+                          ?.subs?.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
                       </select>
                     </label>
                   </td>
@@ -192,65 +162,28 @@ function AddProduct() {
                 <tr>
                   <td style={{ fontWeight: "bold" }}>Hình ảnh</td>
                   <td>
-                    <div className="container-fluid row">
-                      {renderPhotos(selectImages)}
-                    </div>
-                    <div
-                      {...getRootProps({ className: "dropzone", tabIndex: 0 })}
-                    >
-                      <input
-                        {...getInputProps()}
-                        onChange={handleImagesChange}
-                      />
-                      <span>
-                        Kéo, thả một số tệp vào đây hoặc nhấp để chọn tệp
-                      </span>
-                    </div>
+                    <Image
+                      preImages={preImages}
+                      setPreImages={setPreImages}
+                      images={images}
+                      setImages={setImages}
+                    />
                   </td>
                 </tr>
-                <tr>
-                  <td style={{ fontWeight: "bold" }}>Màu sắc</td>
-                  <td style={{ display: "flex" }}>
-                    <div className="product-color">
-                      {colors.map((el) => (
-                        <div
-                          className={`color ${
-                            selectColorsId.includes(el.id) ? "active" : ""
-                          }`}
-                          key={el.id}
-                          onClick={() => handleColorClick(el)}
-                        >
-                          <span style={{ backgroundColor: el.code }} />
-                        </div>
-                      ))}
-                    </div>
-                  </td>
-                </tr>
+                <Color
+                  colors={colors}
+                  selectColors={selectColors}
+                  setSelectColors={setSelectColors}
+                />
                 <tr>
                   <td style={{ fontWeight: "bold" }}>Giá</td>
                   <td>
                     <label>
                       <input
                         name="price"
-                        type="text"
+                        type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                        className="form-control"
-                      />
-                    </label>
-                  </td>
-                </tr>
-                <tr>
-                  <td style={{ fontWeight: "bold" }}>Số lượng</td>
-                  <td>
-                    <label>
-                      <input
-                        name="quantity"
-                        type="text"
-                        min="1"
-                        value={quantity}
-                        style={{ width: "40%" }}
-                        onChange={(e) => setQuantity(e.target.value)}
                         className="form-control"
                       />
                     </label>
@@ -262,9 +195,9 @@ function AddProduct() {
                     <label style={{ width: "20%" }}>
                       <input
                         name="discount"
-                        type="text"
+                        type="number"
                         className="form-control"
-                        style={{ width: "30%" }}
+                        style={{ width: "50%" }}
                         value={discount}
                         onChange={(e) => setDiscount(e.target.value)}
                       />
@@ -280,6 +213,7 @@ function AddProduct() {
                           className="form-check-input"
                           type="checkbox"
                           name="is_top"
+                          checked={isTop === 1 ? "checked" : ""}
                           value={isTop}
                           onChange={(e) =>
                             e.target.checked ? setIsTop(1) : setIsTop(0)
@@ -322,5 +256,3 @@ function AddProduct() {
     </div>
   );
 }
-
-export default AddProduct;

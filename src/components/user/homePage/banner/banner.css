@@ -1,0 +1,15 @@
+.slider-group {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-group .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.banner-right img {
+    object-fit: cover;
+}
