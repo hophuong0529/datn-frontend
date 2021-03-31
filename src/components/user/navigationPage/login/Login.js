@@ -6,6 +6,7 @@ import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import { notification } from "antd";
 
 function Login() {
   let history = useHistory();
@@ -14,17 +15,23 @@ function Login() {
 
   let { from } = location.state || { from: { pathname: "/" } };
 
+  const openNotification = (message) => {
+    notification.open({
+      message: "Thông báo",
+      description: message,
+    });
+  };
+
   const handleLogin = ({ username, password }) => {
     axios
       .post(`http://127.0.0.1:8000/api/login`, { username, password })
       .then((response) => {
         setUser(response.data);
-        alert("Đăng nhập thành công. Chào mừng bạn quay trở lại.");
+        openNotification("Đăng nhập thành công.");
         history.replace(from);
       })
-
       .catch(() => {
-        alert("Tên đăng nhập hoặc mật khẩu không chính xác.");
+        openNotification("Tên đăng nhập hoặc mật khẩu không chính xác.");
       });
   };
 
@@ -84,7 +91,6 @@ function Login() {
                 <button
                   type="submit"
                   className="btn btn-pink full text-uppercase"
-                  disabled={isSubmitting}
                 >
                   Đăng nhập
                 </button>

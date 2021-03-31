@@ -91,6 +91,7 @@ img {
 }
 
 .header-user li {
+  font-weight: bold;
   display: inline-block;
 }
 
@@ -134,4 +135,8 @@ img {
   color: #fff;
   font-weight: 700;
   font-size: 12px;
+}
+
+.research a :hover {
+  color: rgb(221, 161, 88) !important;
 }

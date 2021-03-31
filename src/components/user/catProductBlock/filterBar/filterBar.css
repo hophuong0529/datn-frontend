@@ -1,0 +1,78 @@
+.filter-groups {
+  margin-bottom: 15px;
+  z-index: 2;
+  position: relative;
+}
+
+.filter-groups ul li a:hover {
+  color: rgb(221, 161, 88) !important;
+}
+
+.filter-title {
+  font-size: 20px;
+  border-bottom: 1px solid #ecbba6;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding: 0 0 8px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+}
+
+.filter-title h3 {
+  color: #ecbba6;
+  font-size: 19px;
+  margin: 0;
+}
+
+.sty-none ul,
+.sty-none ol {
+  padding-left: 0;
+}
+.sty-none ul,
+.sty-none ol,
+.sty-none li {
+  list-style: none;
+  margin-bottom: 0;
+}
+.filter-nav {
+  border: 1px solid #eee;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.filter-nav li {
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+
+.filter-nav li a {
+  color: #333;
+  width: 100%;
+  display: inline-block;
+  font-size: 16px;
+  padding: 5px 30px 5px 10px;
+}
+
+.filter-nav li .drop {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25px;
+  height: 35px;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.filter-nav li .drop .anticon {
+  font-size: 10px;
+}
+
+.filter-nav li ul li {
+  border-top: 1px solid #eee;
+  border-bottom: none;
+  padding-left: 20px;
+}
+
+.filter-nav li ul li a {
+  padding: 5px 0;
+}

@@ -1,29 +1,29 @@
 .navagation {
-    background-color: #ecbba6;
-    position: relative;
+  background-color: #ecbba6;
+  position: relative;
 }
 
 .navagation ul.flex {
-    position: static;
-    padding: 0 15px;
+  position: static;
+  padding: 0 15px;
 }
 
 .navagation .all {
-    position: static;
+  position: static;
 }
 .navagation li {
-    display: inline-block;
+  display: inline-block;
 }
 
 .navagation li a {
-    display: inline-block;
-    color: #8a4762;
-    font-size: 15px;
-    padding: 12px 5px 9px;
-    font-weight: 700;
+  display: inline-block;
+  color: #8a4762;
+  font-size: 15px;
+  padding: 12px 5px 9px;
+  font-weight: 700;
 }
 
 .navagation li {
-    display: inline-block;
-    padding-right: 5.45%;
+  display: inline-block;
+  padding-right: 5%;
 }

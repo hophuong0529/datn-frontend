@@ -1,0 +1,17 @@
+.ant-modal-content {
+  box-shadow: 0 5px 11px 0 rgb(0 0 0 / 18%), 0 4px 15px 0 rgb(0 0 0 / 15%);
+  border: 0;
+  border-radius: 0.125rem;
+  position: relative;
+}
+.ant-modal {
+  width: 850px !important;
+}
+
+.ant-modal-footer {
+  display: none;
+}
+
+.ant-modal-body #addToCart {
+  width: 90%;
+}

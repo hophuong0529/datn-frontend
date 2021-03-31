@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import { Dropdown } from "antd";
 import axios from "axios";
+import menu from "../menuDropdown/Menu";
 
 export default function Navbar() {
   const [categories, setCategories] = useState([]);
@@ -18,14 +20,15 @@ export default function Navbar() {
         <div className="row">
           <ul className="col flex justify-content-between">
             <li className="all">
-              <Link to="">TẤT CẢ</Link>
+              <Link to="/product">TẤT CẢ</Link>
             </li>
             {categories.map((item) => (
-                <li key={item.id} className="has-dropdown">
-                <Link to="#">{item.name}</Link>
-              </li>
+              <Dropdown key={item.id} overlay={menu(item.subs)}>
+                <li className="has-dropdown">
+                  <Link to={"/category/" + item.id}>{item.name}</Link>
+                </li>
+              </Dropdown>
             ))}
-            
           </ul>
         </div>
       </div>

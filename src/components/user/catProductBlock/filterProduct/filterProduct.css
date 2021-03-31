@@ -1,0 +1,24 @@
+.d-pro-head {
+  justify-content: space-between;
+  align-items: end;
+}
+
+.d-pro-head h1 {
+  min-width: 100%;
+}
+
+.blk-pro-cat h1 {
+  font-size: 20px;
+  color: #ecbba6;
+  border-bottom: 1px solid #ecbba6;
+  font-weight: 650;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.d-pro-head select {
+  max-width: 150px;
+  height: 32px;
+  line-height: 32px;
+  font-size: 14px;
+}

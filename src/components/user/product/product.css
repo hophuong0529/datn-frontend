@@ -1,6 +1,7 @@
 .product-item {
   padding-bottom: 20px;
 }
+
 .product-item .name {
   line-height: 1.5;
   margin: 12px 15px 0px 5px;
@@ -40,4 +41,64 @@
   position: relative;
   overflow: hidden;
   text-align: center;
+}
+
+.product-item .image:hover .product-action {
+  opacity: 1;
+  transform: translateY(0%);
+  transition: all 0.4s;
+}
+.product-action {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 7px 10px;
+  background: #ffb89beb;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(80%);
+  transition: all 0.4s;
+}
+
+.product-action .watch {
+  margin: auto;
+}
+
+.product-action div {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.product-item .image img:hover {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.3s ease;
+  backface-visibility: hidden;
+  transform: scale(1.15);
+}
+
+.product-item .image {
+  padding: 0;
+  border: #fff thin solid;
+}
+
+.product-action .watch svg {
+  margin-top: -2px;
+  font-size: 16px;
+}
+
+.product-action span {
+  padding-left: 3.5px;
+  padding-right: 10px;
+  font-size: 13px;
+}
+
+.product-action .watch button {
+  border: none;
+  background-color: inherit;
 }

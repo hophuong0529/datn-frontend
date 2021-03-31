@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ButtonWatch from "../buttonWatch/ButtonWatch";
 import "./product.css";
 
 export default function Product(props) {
@@ -8,24 +9,28 @@ export default function Product(props) {
   return (
     <div className="col-md-3 product-item">
       <Card>
-        <Card.Body
-          className="image"
-          style={{ padding: 2, border: "#ffbb30 thin solid" }}
-        >
+        <Card.Body className="image">
           {product.discount !== 0 ? (
             <span className="flag">{product.discount}% off</span>
           ) : (
             <Fragment />
           )}
-          <img
-            src={process.env.REACT_APP_URL_IMAGE + product.images[0].path}
-            alt=""
-            style={{ width: "100%" }}
-          />
+          <Link to={"/" + product.id} className="link-detail">
+            <img
+              src={process.env.REACT_APP_URL_IMAGE + product.images[0].path}
+              alt=""
+              style={{ width: "100%" }}
+            />
+          </Link>
+          <div className="product-action d-flex align-center justify-content-center">
+            <div className="watch" data-psid="30184003" data-root="-2">
+              <ButtonWatch product={product} />
+            </div>
+          </div>
         </Card.Body>
       </Card>
       <div className="name">
-        <Link to={"/product/" + product.id} className="link-detail">
+        <Link to={"/" + product.id} className="link-detail">
           {product.name}
         </Link>
       </div>

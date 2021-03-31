@@ -1,12 +1,18 @@
-import React from "react";
+import React, { Fragment, useContext } from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Search } from "react-bootstrap-icons";
 import logo from "../../../../assets/images/logo.png";
 import { Col, Container, Row } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Header() {
+  const history = useHistory();
+  const [account] = useContext(UserContext);
+  const handleSearch = (e) => {
+    history.push("/search?q=" + e.target.value);
+  };
   return (
     <header className="header sty-none">
       <div className="header-top">
@@ -38,13 +44,13 @@ export default function Header() {
           <Row className="align-center">
             <Col lg={3} className="head-col-left">
               <div className="js-menu-logo d-inline-flex align-items-center justify-content-center">
-                <Link to="#" className="logo">
+                <Link to="/" className="logo">
                   <img src={logo} alt="logo" />
                 </Link>
               </div>
             </Col>
             <Col lg={6} className="head-col-center">
-              <form className="form-search">
+              <form className="form-search" onSubmit={handleSearch}>
                 <div className="input-group">
                   <input
                     className="form-control"
@@ -61,23 +67,36 @@ export default function Header() {
               </form>
               <div className="research">
                 <p>
-                  <Link to="#">Gấu bông</Link>
-                  <Link to="#">Văn phòng</Link>
-                  <Link to="#">Dụng cụ học tập</Link>
-                  <Link to="#">Quà tặng</Link>
-                  <Link to="#">Trang trí</Link>
+                  <Link to="/search?q=gấu+bông">Gấu bông</Link>
+                  <Link to="/search?q=văn+phòng">Văn phòng</Link>
+                  <Link to="/search?q=dụng+cụ+học+tập">Dụng cụ học tập</Link>
+                  <Link to="/search?q=quà+tặng">Quà tặng</Link>
+                  <Link to="/search?q=trang+trí">Trang trí</Link>
                 </p>
               </div>
             </Col>
             <Col lg={3} className="head-col-right">
               <div className="header-right d-flex">
                 <ul className="header-user d-md-block">
-                  <li>
-                    <Link to="/login">Đăng nhập |</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Đăng ký</Link>
-                  </li>
+                  {account.length !== 0 ? (
+                    <Fragment>
+                      <li>
+                        <Link to="/profile">{account.name} |</Link>
+                      </li>
+                      <li>
+                        <Link to="#">Thoát</Link>
+                      </li>
+                    </Fragment>
+                  ) : (
+                    <Fragment>
+                      <li>
+                        <Link to="/login">Đăng nhập |</Link>
+                      </li>
+                      <li>
+                        <Link to="#">Đăng ký</Link>
+                      </li>
+                    </Fragment>
+                  )}
                 </ul>
                 <div className="count-cart" title="Giỏ hàng">
                   <div className="count-cart-icon">
