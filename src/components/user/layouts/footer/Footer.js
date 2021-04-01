@@ -128,7 +128,8 @@ export default function Footer() {
       </footer>
       <div className="f-end">
         <span>
-          © Bản quyền thuộc về Mojiy Việt Nam | Cung cấp bởi Phương Hồ
+          © Bản quyền thuộc về <strong>Lakey</strong> Việt Nam | Cung cấp bởi
+          <strong> Phương Hồ</strong>
         </span>
       </div>
     </Fragment>

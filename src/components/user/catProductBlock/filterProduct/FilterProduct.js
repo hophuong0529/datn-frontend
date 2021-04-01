@@ -1,9 +1,17 @@
 import React, { Fragment } from "react";
 import "./filterProduct.css";
 import Product from "../../product/Product";
+import Paginate from "../../../pagination/Paginate";
 
 export default function FilterProduct(props) {
-  const { products, title } = props;
+  const {
+    products,
+    title,
+    activePage,
+    perPage,
+    totalItemsPage,
+    handlePageChange,
+  } = props;
   return (
     <Fragment>
       <div className="d-pro-head">
@@ -15,6 +23,12 @@ export default function FilterProduct(props) {
             <Product key={product.id} product={product} />
           ))}
         </div>
+        <Paginate
+          activePage={activePage}
+          itemsCountPerPage={perPage}
+          totalItemsCount={totalItemsPage}
+          onChange={handlePageChange}
+        />
       </div>
     </Fragment>
   );

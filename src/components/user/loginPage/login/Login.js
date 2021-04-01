@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { Formik } from "formik";
 import { notification } from "antd";
 
-function Login() {
+export default function Login() {
   let history = useHistory();
   let location = useLocation();
   const [, setUser] = useContext(UserContext);
@@ -117,5 +117,3 @@ function Login() {
     </main>
   );
 }
-
-export default Login;

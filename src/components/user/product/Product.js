@@ -35,7 +35,25 @@ export default function Product(props) {
         </Link>
       </div>
       <div className="price">
-        <span>{product.price?.toLocaleString()}₫</span>
+        <p className="overflowed pro-price ">
+          {product.discount !== 0 ? (
+            <span className="pro-price-del">
+              <del className="compare-price">
+                {product.price?.toLocaleString()}₫
+              </del>
+            </span>
+          ) : (
+            <></>
+          )}
+          <span>
+            {(
+              (product.price * (100 - product.discount)) /
+              100
+            ).toLocaleString()}
+            ₫
+          </span>
+        </p>
+        <span></span>
       </div>
     </div>
   );

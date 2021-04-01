@@ -2,8 +2,8 @@ import { PencilFill, PlusSquare, TrashFill } from "react-bootstrap-icons";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Pagination from "react-js-pagination";
 import "./overview.css";
+import Paginate from "../../../pagination/Paginate";
 
 function Overview() {
   const [products, setProducts] = useState([]);
@@ -123,7 +123,7 @@ function Overview() {
                         handleDelete(product);
                     }}
                     style={{
-                      color: "rgb(255 145 163)",
+                      color: "#9e312c",
                       paddingRight: "20px",
                       border: "none",
                       background: "none",
@@ -137,19 +137,12 @@ function Overview() {
           </tbody>
         </table>
       </div>
-      <div className="d-flex justify-content-end" style={{ marginTop: "20px" }}>
-        <Pagination
-          activePage={activePage}
-          itemsCountPerPage={perPage}
-          totalItemsCount={totalItemsPage}
-          pageRangeDisplayed={5}
-          onChange={handlePageChange}
-          itemClass="page-item"
-          linkClass="page-link"
-          prevPageText="Prev"
-          nextPageText="Next"
-        />
-      </div>
+      <Paginate
+        activePage={activePage}
+        itemsCountPerPage={perPage}
+        totalItemsCount={totalItemsPage}
+        onChange={handlePageChange}
+      />
     </div>
   );
 }

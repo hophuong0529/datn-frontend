@@ -5,9 +5,15 @@ import { DownOutlined } from "@ant-design/icons";
 
 export default function FilterBar(props) {
   const { categories } = props;
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const [activeIndex, setActiveIndex] = useState([]);
+  
   const handleOnClick = (index) => {
-    setActiveIndex(index);
+    const exist = activeIndex.findIndex((x) => x === index) !== -1;
+    if (!exist) {
+      setActiveIndex([...activeIndex, index]);
+    } else {
+      setActiveIndex(activeIndex.filter((x) => x !== index));
+    }
   };
   return (
     <Fragment>
@@ -45,7 +51,9 @@ export default function FilterBar(props) {
                   </span>
                   <ul
                     className={`collapse ${
-                      activeIndex === index ? "show" : ""
+                      activeIndex.findIndex((x) => x === index) !== -1
+                        ? "show"
+                        : ""
                     }`}
                   >
                     {cat.subs.map((sbcat) => (

@@ -9,7 +9,7 @@ import Footer from "./components/user/layouts/footer/Footer";
 import { UserProvider } from "./components/user/contexts/UserContext";
 import { CartProvider } from "./components/user/contexts/CartContext";
 import Home from "./components/user/homePage/Home";
-import Login from "./components/user/navigationPage/login/Login";
+import Login from "./components/user/loginPage/login/Login";
 import AdminNavbar from "./components/admin/layouts/navbar/AdminNavbar";
 import AdminSidebar from "./components/admin/layouts/sidebar/AdminSidebar";
 import Detail from "./components/user/detailPage/Detail";
@@ -17,6 +17,7 @@ import AllProduct from "./components/user/filterCatProduct/AllProduct";
 import CatProduct from "./components/user/filterCatProduct/CatProduct";
 import SubCatProduct from "./components/user/filterCatProduct/SubCatProduct";
 import SearchProduct from "./components/user/filterCatProduct/SearchProduct";
+import Register from "./components/user/loginPage/register/Register";
 
 export default function App() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
                 <Route exact path="/category/:id" component={CatProduct} />
                 <Route
                   exact

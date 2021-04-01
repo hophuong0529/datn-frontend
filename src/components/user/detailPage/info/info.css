@@ -133,10 +133,16 @@
 
 .r-at-r .btn-pink {
   color: #fff;
-  background-color: #ecbba6;
-  border-color: #ecbba6;
+  background-color: #ffc8b2;
+  border-color: #ffc8b2;
   border-radius: 0.35rem;
   font-weight: 600;
+}
+
+.r-at-r .btn-pink:hover {
+  color: #fff;
+  background-color: #d3a591;
+  border-color: #d3a591;
 }
 
 .blk-pview-content {

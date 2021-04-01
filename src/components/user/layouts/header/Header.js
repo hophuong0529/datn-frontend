@@ -93,7 +93,7 @@ export default function Header() {
                         <Link to="/login">Đăng nhập |</Link>
                       </li>
                       <li>
-                        <Link to="#">Đăng ký</Link>
+                        <Link to="/register">Đăng ký</Link>
                       </li>
                     </Fragment>
                   )}

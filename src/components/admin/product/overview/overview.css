@@ -1,7 +1,7 @@
 #DIV_admin_3 {
   min-height: 650px;
   width: 100%;
-  box-shadow: #ff8398 0px 1px 1px 0px;
+  box-shadow: #ffaa66 0px 1px 1px 0px;
   text-align: left;
   text-decoration: none solid rgb(86, 103, 135);
   text-size-adjust: 100%;
@@ -41,7 +41,7 @@
   text-decoration: none solid rgb(255, 255, 255);
   text-size-adjust: 100%;
   transform-origin: 555px 32.9px;
-  background: #ffadbb none repeat scroll 0% 0% / auto padding-box border-box;
+  background: #ffbfa6 none repeat scroll 0% 0% / auto padding-box border-box;
   border: 0px none rgb(255, 255, 255);
   border-radius: 3px 3px 0px 0px;
   font: 13px / 19.5px Nunito-Regular, sans-serif;
@@ -298,9 +298,9 @@
   transform-origin: 85.775px 16.6px;
   user-select: none;
   width: 171.55px;
-  background: #ff94a7 none repeat scroll 0% 0% / auto padding-box border-box;
+  background: #ffa986 none repeat scroll 0% 0% / auto padding-box border-box;
   border: 0px none rgb(255, 255, 255);
-  border-radius: 2px;
+  border-radius: 4px;
   font: 13px / 19.5px Nunito-Regular, sans-serif;
   margin: 0px 0px 0px 10px;
   outline: rgb(255, 255, 255) none 0px;
@@ -3571,25 +3571,6 @@
   list-style: outside none none;
   outline: rgb(153, 153, 153) none 0px;
 } /*#A_admin_117:before*/
-
-.page-item.active .page-link {
-  color: #fafafa !important;
-  background-color: rgb(255 176 189) !important;
-  border-color: rgb(255 176 189) !important;
-}
-
-.page-item.disabled .page-link {
-  color: #6c757d !important;
-}
-
-.page-link {
-  color: #ff939e !important;
-}
-
-.page-link:hover {
-  background-color: rgb(255 234 237) !important;
-  color: #414141 !important;
-}
 
 .close {
   color: rgb(255 66 97);

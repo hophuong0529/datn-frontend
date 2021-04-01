@@ -32,7 +32,7 @@ footer .logo {
 .wrapper-home-service {
   margin-top: 25px;
   padding: 30px 0 10px;
-  background: #ecbba6;
+  background: #ffc8b2;
   margin-bottom: 0;
   overflow: hidden;
 }
@@ -55,14 +55,14 @@ footer .logo {
 }
 
 .f-end {
-  background-color: #ecbba6;
+  background-color: #ffc8b2;
   padding: 5px;
   text-align: center;
   border-top: white thin solid;
 }
 
 .f-end span {
-  color: #fff;
+  color: #762143;
   font-size: 14px;
 }
 

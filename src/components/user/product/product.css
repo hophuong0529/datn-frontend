@@ -16,15 +16,23 @@
 }
 
 .product-item .name a {
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
   text-decoration: none;
 }
 
-.product-item .price {
-  margin: 10px 0px 0px 5px;
+.product-item .price .pro-price {
+  margin: 5px 0px 0px 5px;
   font-size: 16px;
   color: #000;
+  font-weight: 750;
+}
+
+.product-item .price .pro-price .pro-price-del {
+  font-size: 14px !important;
+  color: #777a7b;
+  margin-right: 8px;
+  font-weight: 400 !important;
 }
 
 .product-item .flag {
