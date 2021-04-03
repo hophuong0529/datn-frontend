@@ -1,15 +1,65 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useContext } from "react";
 import "./info.css";
 import { PlusOutlined } from "@ant-design/icons";
 import { MinusOutlined } from "@ant-design/icons";
 import Policy from "../policy/Policy";
+import axios from "axios";
+import { notification } from "antd";
+import { CartContext } from "../../contexts/CartContext";
+import { useHistory } from "react-router";
 
 export default function Info(props) {
-  const { product, colors, quantity, setQuantity, id } = props;
+  const { addToCart } = useContext(CartContext);
+  const history = useHistory();
+  const {
+    id,
+    product,
+    colors,
+    price,
+    discount,
+    userId,
+    productId,
+    colorId,
+    setColorId,
+    quantity,
+    setQuantity,
+    activeIndex,
+    setActiveIndex,
+  } = props;
 
-  const [activeIndex, setActiveIndex] = useState(-1);
+  const priceSale = (price * (100 - discount)) / 100;
+  const openNotification = (message) => {
+    notification.open({
+      message: "Thông báo",
+      description: message,
+    });
+  };
+
   const handleColorClick = (index) => {
     setActiveIndex(index);
+    setColorId(colors[index].id);
+  };
+
+  const handleAddToCart = (product) => {
+    history.push("/cart");
+    const selectColor = colors.find((x) => x.id === colorId).name;
+    addToCart(product, selectColor, quantity);
+    axios
+      .post(`http://127.0.0.1:8000/api/cart/${userId}`, {
+        quantity,
+        productId,
+        colorId,
+        price,
+        priceSale,
+      })
+      .then(() => {
+        openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+      })
+      .catch(() => {
+        openNotification(
+          "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
+        );
+      });
   };
 
   const increase = () => {
@@ -30,7 +80,26 @@ export default function Info(props) {
       </div>
       <div className="blk-price">
         <div className="product-price">
-          <span className="price">{product.price?.toLocaleString()}đ</span>
+          <span className="price">
+            <p className="overflowed pro-price ">
+              {product.discount !== 0 ? (
+                <span className="pro-price-del">
+                  <del className="compare-price">
+                    {product.price?.toLocaleString()}đ
+                  </del>
+                </span>
+              ) : (
+                <></>
+              )}
+              <span>
+                {(
+                  (product.price * (100 - product.discount)) /
+                  100
+                ).toLocaleString()}
+                đ
+              </span>
+            </p>
+          </span>
         </div>
       </div>
       <div className="blk-att">
@@ -61,7 +130,11 @@ export default function Info(props) {
               name="quantity"
               min={1}
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) =>
+                setQuantity(
+                  e.target.value !== "" ? parseInt(e.target.value) : 1
+                )
+              }
             />
             <button onClick={() => increase()}>
               <PlusOutlined className="step-up" />
@@ -70,7 +143,11 @@ export default function Info(props) {
         </div>
         <div className="clearfix"></div>
         <div className="r-at-r d-sm-flex align-items-center clearfix">
-          <div id="addToCart" className="btn-js-add-cart btn btn-pink">
+          <div
+            id="addToCart"
+            className="btn-js-add-cart btn btn-pink"
+            onClick={() => handleAddToCart(product)}
+          >
             Thêm vào giỏ hàng
           </div>
           {id ? (

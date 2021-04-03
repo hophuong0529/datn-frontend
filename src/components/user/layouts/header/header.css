@@ -4,7 +4,7 @@ header a {
 
 .header-top {
   padding: 5px 0;
-  background: #ffc8b2;
+  background: #ffb292;
 }
 
 .text-right {
@@ -18,14 +18,14 @@ header a {
 
 .header-top a {
   font-size: 13px;
-  color: #762143;
+  color: #820034;
   padding: 0 15px;
   display: inline-block;
   font-weight: 700;
 }
 
 .header-top a:hover {
-  color: #762143 !important;
+  color: #820034 !important;
 }
 
 .header-content .logo img {
@@ -45,19 +45,19 @@ img {
 }
 
 .form-search .input-group {
-  border: 2px solid #ffc8b2;
+  border: 2px solid #ffb292;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .input-group-btn .btn-pink {
   color: #fff;
-  background-color: #ffc8b2;
+  background-color: #ffb292;
 }
 
 .input-group-btn .btn-pink:hover {
   color: #fff;
-  background-color: #d3a591;
+  background-color: #ffa582;
 }
 
 .form-search .btn {
@@ -109,6 +109,15 @@ img {
   display: inline-block;
 }
 
+.header-user #logout {
+  border: none;
+  background: inherit;
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .header-right {
   height: 100%;
   align-items: center !important;
@@ -123,10 +132,11 @@ img {
 }
 
 .header-user li a:hover {
-  color: #ffc8b2;
+  color: #ffb292;
 }
 
 .count-cart {
+  margin-top: 5px;
   position: static;
   display: block;
 }
@@ -156,5 +166,5 @@ img {
 }
 
 .research a:hover {
-  color: rgb(221, 161, 88) !important;
+  color: rgb(255, 181, 112) !important;
 }

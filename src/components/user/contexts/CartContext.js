@@ -1,43 +1,87 @@
-import {createContext, useState} from "react";
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react";
+import { UserContext } from "./UserContext";
 
-export const CartContext = createContext(null)
+export const CartContext = createContext(null);
 export const CartProvider = (props) => {
-    const [cartItems, setCartItems] = useState([])
-    const [totalCart, setTotalCart] = useState(0)
+  const [cartItems, setCartItems] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
+  const [user] = useContext(UserContext);
 
-    const addToCart = (product) => {
-        const exist = cartItems.find(x => x.id === product.id)
-        if (exist) {
-            setCartItems(
-                cartItems.map((x) =>
-                    x.id === product.id ? {...exist, quantity: exist.quantity + 1} : x
-                )
-            )
-        } else {
-            setCartItems([...cartItems, {...product, quantity: 1}])
-        }
+  useEffect(() => {
+    if (user.length !== 0) {
+      axios
+        .get(`http://127.0.0.1:8000/api/cart/${user.id}`)
+        .then((response) => {
+          setCartItems(response.data.cartItems.map((el) => el.product));
+        });
     }
+  }, [user]);
 
-    const removeToCart = (product) => {
-        const exist = cartItems.find(x => x.id === product.id)
-        if (exist.quantity === 1) {
-            removeItem(product)
-        } else {
-            setCartItems(
-                cartItems.map((x) =>
-                    x.id === product.id ? {...exist, quantity: exist.quantity - 1} : x
-                )
-            )
-        }
+  const addToCart = (product, color, quantity) => {
+    const exist = cartItems.find(
+      (x) => x.id === product.id && x.color === color
+    );
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id && x.color === color
+            ? { ...exist, quantity: exist.quantity + quantity }
+            : x
+        )
+      );
+    } else {
+      setCartItems([
+        ...cartItems,
+        { ...product, color: color, quantity: quantity },
+      ]);
     }
+  };
 
-    const removeItem = (product) => {
+  const removeToCart = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+    if (exist.quantity === 1) {
+      removeItem(product);
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
+        )
+      );
+    }
+  };
+
+  const removeItem = (product) => {
+    const productId = product.id;
+    const userId = user.id;
+    const color = product.color;
+    axios
+      .post(`http://127.0.0.1:8000/api/cart-item/delete`, {
+        productId,
+        color,
+        userId,
+      })
+      .then(() =>
         setCartItems(
-            cartItems.filter((x) => x.id !== product.id))
-    }
-    return (
-        <CartContext.Provider value={{totalCart, setTotalCart, cartItems, setCartItems, addToCart, removeToCart, removeItem}}>
-            {props.children}
-        </CartContext.Provider>
-    )
-}
+          cartItems.filter((x) => !(x.id === product.id && x.color === color))
+        )
+      )
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <CartContext.Provider
+      value={{
+        totalCart,
+        setTotalCart,
+        cartItems,
+        setCartItems,
+        addToCart,
+        removeToCart,
+        removeItem,
+      }}
+    >
+      {props.children}
+    </CartContext.Provider>
+  );
+};

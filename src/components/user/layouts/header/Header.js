@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import "./header.css";
 import { Link, useHistory } from "react-router-dom";
 import { Search } from "react-bootstrap-icons";
@@ -6,13 +6,29 @@ import logo from "../../../../assets/images/logo.png";
 import { Col, Container, Row } from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import { UserContext } from "../../contexts/UserContext";
+import MiniCart from "../../cartPage/miniCart/MiniCart";
+import { CartContext } from "../../contexts/CartContext";
+import { notification } from "antd";
 
 export default function Header() {
   const history = useHistory();
-  const [account] = useContext(UserContext);
-  const handleSearch = (e) => {
-    history.push("/search?q=" + e.target.value);
+  const [user, setUser] = useContext(UserContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
+  const [hovered, setHovered] = useState(false);
+
+  const openNotification = (message) => {
+    notification.open({
+      message: "Thông báo",
+      description: message,
+    });
   };
+
+  const handleLogout = () => {
+    setUser([]);
+    setCartItems([]);
+    openNotification("Đăng xuất thành công.");
+  };
+
   return (
     <header className="header sty-none">
       <div className="header-top">
@@ -50,7 +66,10 @@ export default function Header() {
               </div>
             </Col>
             <Col lg={6} className="head-col-center">
-              <form className="form-search" onSubmit={handleSearch}>
+              <form
+                className="form-search"
+                onSubmit={(e) => history.push("/search?q=" + e.target.value)}
+              >
                 <div className="input-group">
                   <input
                     className="form-control"
@@ -78,13 +97,15 @@ export default function Header() {
             <Col lg={3} className="head-col-right">
               <div className="header-right d-flex">
                 <ul className="header-user d-md-block">
-                  {account.length !== 0 ? (
+                  {user.length !== 0 ? (
                     <Fragment>
                       <li>
-                        <Link to="/profile">{account.name} |</Link>
+                        <Link to="/profile">{user.name} |</Link>
                       </li>
                       <li>
-                        <Link to="#">Thoát</Link>
+                        <button id="logout" onClick={handleLogout}>
+                          Thoát
+                        </button>
                       </li>
                     </Fragment>
                   ) : (
@@ -98,12 +119,25 @@ export default function Header() {
                     </Fragment>
                   )}
                 </ul>
-                <div className="count-cart" title="Giỏ hàng">
-                  <div className="count-cart-icon">
+                <div
+                  className="count-cart"
+                  title="Giỏ hàng"
+                  onMouseMove={() => setHovered(true)}
+                  onMouseOut={() => setHovered(false)}
+                >
+                  <div
+                    className="count-cart-icon"
+                    onClick={() => history.push("/cart")}
+                  >
                     <span className="count d-flex align-items-center justify-content-center">
-                      0
+                      {cartItems.length}
                     </span>
                   </div>
+                  {user.length !== 0 ? (
+                    <MiniCart user={user} hovered={hovered} />
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </Col>

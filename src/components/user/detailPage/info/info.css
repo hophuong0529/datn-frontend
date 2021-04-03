@@ -28,11 +28,6 @@
   margin-bottom: 20px;
 }
 
-.blk-price .product-price {
-  font-size: 30px;
-  font-weight: bold;
-}
-
 .blk-att .r-at-r {
   width: 100%;
   clear: both;
@@ -133,16 +128,16 @@
 
 .r-at-r .btn-pink {
   color: #fff;
-  background-color: #ffc8b2;
-  border-color: #ffc8b2;
+  background-color: #ffb598;
+  border-color: #ffb598;
   border-radius: 0.35rem;
   font-weight: 600;
 }
 
 .r-at-r .btn-pink:hover {
   color: #fff;
-  background-color: #d3a591;
-  border-color: #d3a591;
+  background-color: #ffa582;
+  border-color: #ffa582;
 }
 
 .blk-pview-content {
@@ -157,6 +152,19 @@
   margin-bottom: 15px;
 }
 
+.product-price .price .pro-price {
+  margin: 5px 0px 0px 5px;
+  font-size: 30px;
+  color: #000;
+  font-weight: 750;
+}
+
+.product-price .price .pro-price .pro-price-del {
+  font-size: 16px !important;
+  color: #777a7b;
+  margin-right: 8px;
+  font-weight: 400 !important;
+}
 .content {
   text-align: justify;
   line-height: 1.7;

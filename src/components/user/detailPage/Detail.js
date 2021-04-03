@@ -1,21 +1,25 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Image from "./image/Image";
 import Bread from "./breadcrumb/Bread";
 import Info from "./info/Info";
 import Description from "./description/Description";
+import { UserContext } from "../contexts/UserContext";
 
 export default function Detail() {
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const [selectColorId, setSelectColorId] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [user] = useContext(UserContext);
+  const [colorId, setColorId] = useState(0);
   const slug = useParams();
   useEffect(() => {
     axios
       .get(`http://127.0.0.1:8000/api/product/${slug.id}`)
       .then((response) => {
         setProduct(response.data);
+        setColorId(response.data.colors[0].id);
       });
   }, [slug.id]);
   return (
@@ -34,9 +38,15 @@ export default function Detail() {
               product={product}
               colors={product.colors}
               quantity={quantity}
+              productId={product.id}
+              price={product.price}
+              discount={product.discount}
+              userId={user.id}
+              colorId={colorId}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+              setColorId={setColorId}
               setQuantity={setQuantity}
-              selectColorId={selectColorId}
-              setSelectColorId={setSelectColorId}
             />
           </div>
           <div className="col-lg-12 col-md-12 col-sm-12">

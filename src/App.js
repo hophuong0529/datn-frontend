@@ -6,7 +6,7 @@ import EditProduct from "./components/admin/product/update/EditProduct";
 import AdFooter from "./components/admin/layouts/footer/AdminFooter";
 import Header from "./components/user/layouts/header/Header";
 import Footer from "./components/user/layouts/footer/Footer";
-import { UserProvider } from "./components/user/contexts/UserContext";
+import { PrivateRoute, UserProvider } from "./components/user/contexts/UserContext";
 import { CartProvider } from "./components/user/contexts/CartContext";
 import Home from "./components/user/homePage/Home";
 import Login from "./components/user/loginPage/login/Login";
@@ -18,6 +18,7 @@ import CatProduct from "./components/user/filterCatProduct/CatProduct";
 import SubCatProduct from "./components/user/filterCatProduct/SubCatProduct";
 import SearchProduct from "./components/user/filterCatProduct/SearchProduct";
 import Register from "./components/user/loginPage/register/Register";
+import Cart from "./components/user/cartPage/Cart";
 
 export default function App() {
   return (
@@ -55,6 +56,7 @@ export default function App() {
                   component={SubCatProduct}
                 />
                 <Route path="/search" component={SearchProduct} />
+                <PrivateRoute path="/cart" component={Cart} />
                 <Route exact path="/product" component={AllProduct} />
                 <Route exact path="/:id" component={Detail} />
               </Switch>

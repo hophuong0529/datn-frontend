@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal } from "antd";
 import { Eye } from "react-bootstrap-icons";
 import "./modal.css";
 import Image from "../detailPage/image/Image";
 import Info from "../detailPage/info/Info";
+import { UserContext } from "../contexts/UserContext";
 
 const ButtonBuyNow = (props) => {
   const { product } = props;
   const [quantity, setQuantity] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [user] = useContext(UserContext);
+  const [, setColorId] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -38,6 +42,14 @@ const ButtonBuyNow = (props) => {
               product={product}
               colors={product.colors}
               quantity={quantity}
+              productId={product.id}
+              price={product.price}
+              discount={product.discount}
+              userId={user.id}
+              colorId={product.colors[0]?.id}
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+              setColorId={setColorId}
               setQuantity={setQuantity}
             />
           </div>

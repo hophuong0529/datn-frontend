@@ -18,7 +18,7 @@ export default function Bread(props) {
     <Breadcrumb style={{}}>
       <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
       <Breadcrumb.Item>
-        <Link to="">{category?.name}</Link>
+        <Link to={"/category/" + category?.id}>{category?.name}</Link>
       </Breadcrumb.Item>
       <Breadcrumb.Item>{subCategory?.name}</Breadcrumb.Item>
     </Breadcrumb>

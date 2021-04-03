@@ -1,5 +1,5 @@
 .navagation {
-  background-color: #ffc8b2;
+  background-color: #ffb292;
   position: relative;
 }
 
@@ -17,7 +17,7 @@
 
 .navagation li a {
   display: inline-block;
-  color: #8a4762;
+  color: #820034;
   font-size: 15px;
   padding: 12px 5px 9px;
   font-weight: 700;

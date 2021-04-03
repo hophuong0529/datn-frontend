@@ -49,8 +49,8 @@ export default function Login() {
         <Formik
           initialValues={{ username: "", password: "" }}
           validationSchema={Yup.object().shape({
-            username: Yup.string().max(255).required("Username is required"),
-            password: Yup.string().max(255).required("Password is required"),
+            username: Yup.string().max(255).required("* Tên đăng nhập không được để trống!"),
+            password: Yup.string().max(255).required("* Mật khẩu không được để trống!"),
           })}
           onSubmit={(values) => handleLogin(values)}
         >
@@ -60,7 +60,6 @@ export default function Login() {
             touched,
             handleChange,
             handleSubmit,
-            isSubmitting,
           }) => (
             <form id="formAcount" className="validate" onSubmit={handleSubmit}>
               <div className="form-group">

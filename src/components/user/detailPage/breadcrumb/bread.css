@@ -3,3 +3,12 @@
   padding: 0 !important;
   font-size: 15px !important;
 }
+
+.ant-breadcrumb span {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ant-breadcrumb .ant-breadcrumb-link a:hover {
+  color: #ffa781 !important;
+}

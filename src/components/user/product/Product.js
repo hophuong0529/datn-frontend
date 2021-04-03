@@ -39,7 +39,7 @@ export default function Product(props) {
           {product.discount !== 0 ? (
             <span className="pro-price-del">
               <del className="compare-price">
-                {product.price?.toLocaleString()}₫
+                {product.price?.toLocaleString()}đ
               </del>
             </span>
           ) : (
@@ -50,7 +50,7 @@ export default function Product(props) {
               (product.price * (100 - product.discount)) /
               100
             ).toLocaleString()}
-            ₫
+            đ
           </span>
         </p>
         <span></span>
