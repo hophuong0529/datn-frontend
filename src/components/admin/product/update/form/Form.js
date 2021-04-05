@@ -75,7 +75,7 @@ export default function Form(props) {
               textAlign: "center",
               padding: "20px 0 50px 0",
               fontWeight: "bold",
-              color: "rgb(255 166 181)",
+              color: "rgb(255 193 152)",
             }}
           >
             {title}

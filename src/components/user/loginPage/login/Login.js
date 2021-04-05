@@ -13,8 +13,6 @@ export default function Login() {
   let location = useLocation();
   const [, setUser] = useContext(UserContext);
 
-  let { from } = location.state || { from: { pathname: "/" } };
-
   const openNotification = (message) => {
     notification.open({
       message: "Thông báo",
@@ -28,7 +26,9 @@ export default function Login() {
       .then((response) => {
         setUser(response.data);
         openNotification("Đăng nhập thành công.");
-        history.replace(from);
+        location.state
+          ? history.replace(location.state.from)
+          : history.goBack();
       })
       .catch(() => {
         openNotification("Tên đăng nhập hoặc mật khẩu không chính xác.");
@@ -49,18 +49,16 @@ export default function Login() {
         <Formik
           initialValues={{ username: "", password: "" }}
           validationSchema={Yup.object().shape({
-            username: Yup.string().max(255).required("* Tên đăng nhập không được để trống!"),
-            password: Yup.string().max(255).required("* Mật khẩu không được để trống!"),
+            username: Yup.string()
+              .max(255)
+              .required("* Tên đăng nhập không được để trống!"),
+            password: Yup.string()
+              .max(255)
+              .required("* Mật khẩu không được để trống!"),
           })}
           onSubmit={(values) => handleLogin(values)}
         >
-          {({
-            values,
-            errors,
-            touched,
-            handleChange,
-            handleSubmit,
-          }) => (
+          {({ values, errors, touched, handleChange, handleSubmit }) => (
             <form id="formAcount" className="validate" onSubmit={handleSubmit}>
               <div className="form-group">
                 <input

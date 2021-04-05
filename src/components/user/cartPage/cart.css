@@ -4,15 +4,12 @@
 
 .table-cart {
   position: relative;
-}
-
-.table {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
 }
 
-.table button {
+.table-cart button {
   font-size: 14.5px;
   background: inherit;
   border: none;

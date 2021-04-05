@@ -141,12 +141,18 @@
 }
 
 .blk-pview-content {
-  padding: 20px;
+  padding: 30px;
   margin: 70px 0 60px;
   border: 1px solid rgba(112, 112, 112, 0.65);
 }
 
+.blk-pview-content .descrip {
+  font-size: 16px;
+  padding-bottom: 5px;
+}
+
 .blk-pview-title {
+  font-weight: 450;
   color: #000;
   font-size: 24px;
   margin-bottom: 15px;

@@ -1,17 +1,15 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Image from "./image/Image";
 import Bread from "./breadcrumb/Bread";
 import Info from "./info/Info";
 import Description from "./description/Description";
-import { UserContext } from "../contexts/UserContext";
 
 export default function Detail() {
   const [product, setProduct] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [user] = useContext(UserContext);
   const [colorId, setColorId] = useState(0);
   const slug = useParams();
   useEffect(() => {
@@ -41,7 +39,6 @@ export default function Detail() {
               productId={product.id}
               price={product.price}
               discount={product.discount}
-              userId={user.id}
               colorId={colorId}
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
@@ -50,7 +47,10 @@ export default function Detail() {
             />
           </div>
           <div className="col-lg-12 col-md-12 col-sm-12">
-            <Description images={product.images} />
+            <Description
+              description={product.description}
+              images={product.images}
+            />
           </div>
         </div>
       </div>

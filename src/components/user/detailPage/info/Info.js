@@ -7,9 +7,11 @@ import axios from "axios";
 import { notification } from "antd";
 import { CartContext } from "../../contexts/CartContext";
 import { useHistory } from "react-router";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Info(props) {
   const { addToCart } = useContext(CartContext);
+  const [user] = useContext(UserContext);
   const history = useHistory();
   const {
     id,
@@ -17,7 +19,6 @@ export default function Info(props) {
     colors,
     price,
     discount,
-    userId,
     productId,
     colorId,
     setColorId,
@@ -41,25 +42,27 @@ export default function Info(props) {
   };
 
   const handleAddToCart = (product) => {
-    history.push("/cart");
-    const selectColor = colors.find((x) => x.id === colorId).name;
-    addToCart(product, selectColor, quantity);
-    axios
-      .post(`http://127.0.0.1:8000/api/cart/${userId}`, {
-        quantity,
-        productId,
-        colorId,
-        price,
-        priceSale,
-      })
-      .then(() => {
-        openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
-      })
-      .catch(() => {
-        openNotification(
-          "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
-        );
-      });
+    if (user.length === 0) history.push("/login");
+    else {
+      const selectColor = colors.find((x) => x.id === colorId).name;
+      addToCart(product, selectColor, quantity);
+      axios
+        .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
+          quantity,
+          productId,
+          colorId,
+          price,
+          priceSale,
+        })
+        .then(() => {
+          openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+        })
+        .catch(() => {
+          openNotification(
+            "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
+          );
+        });
+    }
   };
 
   const increase = () => {
