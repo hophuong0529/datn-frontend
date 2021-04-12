@@ -17,7 +17,9 @@ export default function Detail() {
       .get(`http://127.0.0.1:8000/api/product/${slug.id}`)
       .then((response) => {
         setProduct(response.data);
-        setColorId(response.data.colors[0].id);
+        if (response.data.colors.length === 1) {
+          setColorId(response.data.colors[0].id);
+        }
       });
   }, [slug.id]);
   return (

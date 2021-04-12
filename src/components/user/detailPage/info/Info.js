@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import "./info.css";
 import { PlusOutlined } from "@ant-design/icons";
 import { MinusOutlined } from "@ant-design/icons";
@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function Info(props) {
+  const [clicked, setClicked] = useState(false);
   const { addToCart } = useContext(CartContext);
   const [user] = useContext(UserContext);
   const history = useHistory();
@@ -41,28 +42,38 @@ export default function Info(props) {
     setColorId(colors[index].id);
   };
 
-  const handleAddToCart = (product) => {
-    if (user.length === 0) history.push("/login");
-    else {
-      const selectColor = colors.find((x) => x.id === colorId).name;
-      addToCart(product, selectColor, quantity);
-      axios
-        .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
-          quantity,
-          productId,
-          colorId,
-          price,
-          priceSale,
-        })
-        .then(() => {
-          openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
-        })
-        .catch(() => {
-          openNotification(
-            "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
-          );
-        });
+  const handleAddToCart = (product, isRedirect) => {
+    setClicked(true);
+    if (colorId !== 0) {
+      if (user.length === 0) history.push("/login");
+      else {
+        const selectColor = colors.find((x) => x.id === colorId).name;
+        addToCart(product, selectColor, quantity);
+        axios
+          .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
+            quantity,
+            productId,
+            colorId,
+            price,
+            priceSale,
+          })
+          .then(() => {
+            isRedirect
+              ? history.push("/checkout")
+              : openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+          })
+          .catch(() => {
+            openNotification(
+              "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
+            );
+          });
+      }
     }
+  };
+
+  const handleBuyNow = (product) => {
+    const isRedirect = true;
+    handleAddToCart(product, isRedirect);
   };
 
   const increase = () => {
@@ -154,13 +165,24 @@ export default function Info(props) {
             Thêm vào giỏ hàng
           </div>
           {id ? (
-            <div id="addPayNow" className="btn-js-add-cart btn btn-pink">
+            <div
+              id="addPayNow"
+              className="btn-js-add-cart btn btn-pink"
+              onClick={() => handleBuyNow(product)}
+            >
               Mua ngay
             </div>
           ) : (
             <Fragment />
           )}
         </div>
+        {clicked && colorId === 0 ? (
+          <div id="mss-alret" style={{ display: "block" }}>
+            Quý khách vui lòng chọn màu sắc của sản phẩm để tiến hành đặt hàng!
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       {id ? <Policy /> : <Fragment />}
     </div>

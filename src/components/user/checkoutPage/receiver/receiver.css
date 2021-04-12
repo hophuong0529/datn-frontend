@@ -1,0 +1,31 @@
+.formCheckOut .col-left {
+  flex: 0 0 35%;
+  max-width: 35%;
+}
+
+.formCheckOut .col-left {
+  border-right: 1px solid #a4a4a4;
+}
+
+.formCheckOut .col-title {
+  color: #000;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.formCheckOut .col-title span {
+  width: 21px;
+  height: 21px;
+  color: #fff;
+  background: #ffb292;
+  border-radius: 50%;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.form-group .help-block {
+  font-size: 13px;
+  color: #d93e3e;
+  font-weight: bold;
+}

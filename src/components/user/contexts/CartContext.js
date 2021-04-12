@@ -38,19 +38,6 @@ export const CartProvider = (props) => {
     }
   };
 
-  const removeToCart = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.quantity === 1) {
-      removeItem(product);
-    } else {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, quantity: exist.quantity - 1 } : x
-        )
-      );
-    }
-  };
-
   const removeItem = (product) => {
     const productId = product.id;
     const userId = user.id;
@@ -77,7 +64,6 @@ export const CartProvider = (props) => {
         cartItems,
         setCartItems,
         addToCart,
-        removeToCart,
         removeItem,
       }}
     >

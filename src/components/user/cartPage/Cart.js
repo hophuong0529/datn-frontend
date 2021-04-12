@@ -41,7 +41,7 @@ export default function Cart() {
 
   const decrease = (id) => {
     const _cartItems = cartItems.map((el) => {
-      if (el.id === id) {
+      if (el.id === id && el.quantity > 1) {
         return {
           ...el,
           quantity: el.quantity - 1,
@@ -193,15 +193,15 @@ export default function Cart() {
               <sub>đ</sub>
             </div>
             <div className="clearfix"></div>
-            <a className="btn btn-lg btn-pink btn-radius" href="/product">
+            <Link to="/product" className="btn btn-lg btn-pink btn-radius">
               Tiếp tục mua sắm
-            </a>
-            <a
+            </Link>
+            <Link
+              to="/checkout"
               className="btn btn-lg btn-outline-pink btn-radius"
-              href="/cart/checkout"
             >
               Thanh toán
-            </a>
+            </Link>
           </div>
         </div>
       </div>

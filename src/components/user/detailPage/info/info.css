@@ -148,7 +148,6 @@
 
 .blk-pview-content .descrip {
   font-size: 16px;
-  padding-bottom: 5px;
 }
 
 .blk-pview-title {
@@ -180,4 +179,13 @@
 .content img {
   height: auto !important;
   width: 100% !important;
+}
+
+#mss-alret {
+  border: 1px dashed #f88d81;
+  color: #f06455;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  clear: both;
+  display: none;
 }
