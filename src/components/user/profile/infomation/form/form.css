@@ -1,0 +1,27 @@
+.blk-user-right header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.blk-user-right header h1 {
+  font-size: 18px;
+  color: #2f2f2f;
+  margin-bottom: 5px;
+  font-weight: 650;
+}
+
+.blk-user-right header .content {
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+.formAcount label:not(.form-check-label) {
+  text-align: right;
+  line-height: 35px;
+  font-size: 16px;
+}
+
+.formAcount label span {
+  color: #f06455;
+}

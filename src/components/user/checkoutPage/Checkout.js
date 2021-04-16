@@ -45,17 +45,16 @@ export default function Checkout() {
         cartItems,
         totalCart,
       })
-      .then(() => {
-        openNotification(
-          "Đặt hàng thành công. Nhân viên shop sẽ gọi điện xác nhận cho bạn trong thời gian sớm nhất ạ."
-        );
+      .then((response) => {
         setCartItems([]);
         setTotalCart(0);
-        history.push("/");
+        history.push("/checkout/" + response.data);
       })
 
       .catch(() => {
-        openNotification("Đã xảy ra lỗi. Vui lòng thực hiện lại giao dịch này.");
+        openNotification(
+          "Đã xảy ra lỗi. Vui lòng thực hiện lại giao dịch này."
+        );
       });
   };
 
@@ -98,7 +97,7 @@ export default function Checkout() {
                 touched={touched}
                 handleChange={handleChange}
               />
-              <Method handleChange={handleChange} />
+              <Method values={values} handleChange={handleChange} />
               <Cart cartItems={cartItems} totalCart={totalCart} />
             </div>
           </form>

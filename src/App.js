@@ -23,6 +23,10 @@ import SearchProduct from "./components/user/filterCatProduct/SearchProduct";
 import Register from "./components/user/loginPage/register/Register";
 import Cart from "./components/user/cartPage/Cart";
 import Checkout from "./components/user/checkoutPage/Checkout";
+import Profile from "./components/user/profile/infomation";
+import ChangePassword from "./components/user/profile/changePassword";
+import Alert from "./components/user/checkoutPage/alert/Alert";
+import Order from "./components/user/profile/order";
 
 export default function App() {
   return (
@@ -61,7 +65,14 @@ export default function App() {
                 />
                 <Route path="/search" component={SearchProduct} />
                 <PrivateRoute path="/cart" component={Cart} />
-                <Route path="/checkout" component={Checkout} />
+                <PrivateRoute path="/checkout/:code" component={Alert} />
+                <PrivateRoute path="/checkout" component={Checkout} />
+                <Route path="/order/index" component={Order} />
+                <Route
+                  path="/profile/change-password"
+                  component={ChangePassword}
+                />
+                <Route path="/profile" component={Profile} />
                 <Route exact path="/product" component={AllProduct} />
                 <Route exact path="/:id" component={Detail} />
               </Switch>

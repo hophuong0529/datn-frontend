@@ -9,12 +9,15 @@ import { UserContext } from "../../contexts/UserContext";
 import MiniCart from "../../cartPage/miniCart/MiniCart";
 import { CartContext } from "../../contexts/CartContext";
 import { notification } from "antd";
+import axios from "axios";
 
 export default function Header() {
   const history = useHistory();
   const [user, setUser] = useContext(UserContext);
   const { cartItems, setCartItems } = useContext(CartContext);
   const [hovered, setHovered] = useState(false);
+  const [key, setKey] = useState("");
+  const token = localStorage.getItem("token");
 
   const openNotification = (message) => {
     notification.open({
@@ -24,9 +27,18 @@ export default function Header() {
   };
 
   const handleLogout = () => {
-    setUser([]);
-    setCartItems([]);
-    openNotification("Đăng xuất thành công.");
+    axios
+      .get(`http://127.0.0.1:8000/api/logout`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        setUser([]);
+        setCartItems([]);
+        localStorage.removeItem("token");
+        openNotification("Đăng xuất thành công.");
+      });
   };
 
   return (
@@ -66,19 +78,23 @@ export default function Header() {
               </div>
             </Col>
             <Col lg={6} className="head-col-center">
-              <form
-                className="form-search"
-                onSubmit={(e) => history.push("/search?q=" + e.target.value)}
-              >
+              <form className="form-search">
                 <div className="input-group">
                   <input
                     className="form-control"
                     type="text"
                     name="q"
                     placeholder={"Tìm kiếm sản phẩm"}
+                    onChange={(e) => setKey(e.target.value)}
                   />
                   <span className="input-group-btn">
-                    <button className="btn btn-pink" type="submit">
+                    <button
+                      className="btn btn-pink"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        history.push("/search?q=" + key);
+                      }}
+                    >
                       <Search />
                     </button>
                   </span>
@@ -86,11 +102,11 @@ export default function Header() {
               </form>
               <div className="research">
                 <p>
-                  <Link to="/search?q=gấu+bông">Gấu bông</Link>
-                  <Link to="/search?q=văn+phòng">Văn phòng</Link>
-                  <Link to="/search?q=dụng+cụ+học+tập">Dụng cụ học tập</Link>
-                  <Link to="/search?q=quà+tặng">Quà tặng</Link>
-                  <Link to="/search?q=trang+trí">Trang trí</Link>
+                  <Link to="/search?q=gấu%20bông">Gấu bông</Link>
+                  <Link to="/search?q=văn%20phòng">Văn phòng</Link>
+                  <Link to="/search?q=gối%20chữ%20U">Gối chữ U</Link>
+                  <Link to="/search?q=quà%20tặng">Quà tặng</Link>
+                  <Link to="/search?q=trang%20trí">Trang trí</Link>
                 </p>
               </div>
             </Col>

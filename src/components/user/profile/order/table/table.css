@@ -1,0 +1,59 @@
+.header-pdd-order {
+  padding: 20px;
+}
+
+.header-pdd-order header {
+  margin-bottom: 0;
+}
+
+.header-pdd-order header h1 {
+  margin-bottom: 0;
+}
+
+.tableOrder thead th:first-child,
+.tableOrder tbody tr td:first-child {
+  padding-left: 20px;
+}
+
+.tableOrder thead th {
+  border-top: none !important;
+  border-bottom-width: 1px !important;
+}
+
+.tableOrder .code,
+.tableOrder .action,
+.tableOrder .action a {
+  color: #ffb292;
+}
+
+.tableOrder tr td {
+  color: #2f2f2f;
+}
+
+.tableOrder .listOrderIf tbody tr td,
+.tableOrder .listOrderIf tbody tr th {
+  text-align: center;
+}
+
+.listOrderIf > td {
+  border-top: none !important;
+  padding: 0;
+}
+
+.tableOrder .action button {
+  border: none;
+  background: inherit;
+  padding: 0;
+}
+
+.tableOrder .open {
+  display: table-row !important;
+}
+
+.tableOrder .listOrderIf {
+  display: none;
+}
+
+.addressOrder label {
+  font-weight: 600;
+}

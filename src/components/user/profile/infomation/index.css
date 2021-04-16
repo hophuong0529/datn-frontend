@@ -1,0 +1,50 @@
+.main-user {
+  padding: 20px 0 30px;
+}
+
+.blk-user-bor {
+  color: #2f2f2f;
+  padding: 20px;
+  border: 1px solid #9d9d9d;
+}
+
+.blk-user-left {
+  font-weight: 600;
+}
+
+.blk-user-left {
+  margin-bottom: 0;
+}
+
+.blk-user-avatar img {
+  max-width: 90px;
+  max-height: 90px;
+  border-radius: 50%;
+}
+
+.blk-user-avatar h2 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.blk-user-nav {
+  font-size: 15px;
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+.blk-user-nav li a.active,
+.blk-user-nav li a:hover {
+  color: rgb(255, 181, 112) !important;
+}
+
+.blk-user-nav li a {
+  color: #2f2f2f;
+}
+
+.blk-user-nav ul li button {
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  font-weight: 600;
+}

@@ -1,0 +1,58 @@
+.checkout-page {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.pur-title {
+  font-size: 33px;
+  color: #ffb598;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.pur-content {
+  margin-bottom: 40px;
+}
+
+.pur-img {
+  padding-left: 25px;
+}
+
+.pur-img img {
+  max-width: 220px;
+}
+
+.pur-text {
+  text-align: left;
+  padding-left: 40px;
+  font-size: 19px;
+}
+
+.pur-text p {
+  margin-bottom: 0;
+}
+
+.checkout-page .btn-pink {
+  color: #fff;
+  background-color: #ffb598;
+  border-color: #ffb598;
+  border-radius: 0.35rem;
+}
+
+.checkout-page .btn-pink:hover {
+  color: #fff;
+  background-color: #ffa582;
+  border-color: #ffa582;
+}
+
+.checkout-page .btn-pink span {
+  font-weight: 600;
+}
+
+.text-pink {
+  color: #ffa683;
+  font-weight: 700;
+}

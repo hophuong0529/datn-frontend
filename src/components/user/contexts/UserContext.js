@@ -1,11 +1,29 @@
-import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Redirect, Route } from "react-router";
 
 export const UserContext = createContext(null);
+
 export const UserProvider = (props) => {
-  const [User, setUser] = useState([]);
+  const [user, setUser] = useState([]);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get(`http://127.0.0.1:8000/api/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUser(response.data);
+        });
+    }
+  }, [token]);
+
   return (
-    <UserContext.Provider value={[User, setUser]}>
+    <UserContext.Provider value={[user, setUser]}>
       {props.children}
     </UserContext.Provider>
   );

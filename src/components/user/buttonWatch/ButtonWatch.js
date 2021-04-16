@@ -11,8 +11,8 @@ const ButtonBuyNow = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [user] = useContext(UserContext);
-  const [, setColorId] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [colorId, setColorId] = useState(0);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -46,7 +46,9 @@ const ButtonBuyNow = (props) => {
               price={product.price}
               discount={product.discount}
               userId={user.id}
-              colorId={product.colors[0]?.id}
+              colorId={
+                product.colors.length === 1 ? product.colors[0].id : colorId
+              }
               activeIndex={activeIndex}
               setActiveIndex={setActiveIndex}
               setColorId={setColorId}

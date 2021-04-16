@@ -24,9 +24,9 @@ export default function Cart() {
       quantity,
     });
   };
-  const increase = (id) => {
+  const increase = (id, color) => {
     const _cartItems = cartItems.map((el) => {
-      if (el.id === id) {
+      if (el.quantity > 1 && el.id === id && el.color === color) {
         return {
           ...el,
           quantity: el.quantity + 1,
@@ -34,14 +34,13 @@ export default function Cart() {
       }
       return el;
     });
-
     setCartItems(_cartItems);
     handleEditCart(_cartItems, id);
   };
 
-  const decrease = (id) => {
+  const decrease = (id, color) => {
     const _cartItems = cartItems.map((el) => {
-      if (el.id === id && el.quantity > 1) {
+      if (el.quantity > 1 && el.id === id && el.color === color) {
         return {
           ...el,
           quantity: el.quantity - 1,
@@ -49,7 +48,6 @@ export default function Cart() {
       }
       return el;
     });
-
     setCartItems(_cartItems);
     handleEditCart(_cartItems, id);
   };
@@ -131,7 +129,7 @@ export default function Cart() {
                       <div
                         data-label="cart"
                         className="blk-qty-btn minus d-flex justify-content-center align-items-center"
-                        onClick={() => decrease(item.id)}
+                        onClick={() => decrease(item.id, item.color)}
                       >
                         -
                       </div>
@@ -151,7 +149,7 @@ export default function Cart() {
                       <div
                         data-label="cart"
                         className="blk-qty-btn plus d-flex justify-content-center align-items-center"
-                        onClick={() => increase(item.id)}
+                        onClick={() => increase(item.id, item.color)}
                       >
                         +
                       </div>

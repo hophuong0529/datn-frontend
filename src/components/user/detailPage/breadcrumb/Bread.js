@@ -15,7 +15,7 @@ export default function Bread(props) {
     });
   }, [categoryId]);
   return (
-    <Breadcrumb style={{}}>
+    <Breadcrumb>
       <Breadcrumb.Item>Trang chủ</Breadcrumb.Item>
       <Breadcrumb.Item>
         <Link to={"/category/" + category?.id}>{category?.name}</Link>
