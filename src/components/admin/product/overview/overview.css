@@ -298,7 +298,7 @@
   transform-origin: 85.775px 16.6px;
   user-select: none;
   width: 171.55px;
-  background: #ffa986 none repeat scroll 0% 0% / auto padding-box border-box;
+  background: #ff9e77 none repeat scroll 0% 0% / auto padding-box border-box;
   border: 0px none rgb(255, 255, 255);
   border-radius: 4px;
   font: 13px / 19.5px Nunito-Regular, sans-serif;
@@ -3581,4 +3581,27 @@
 .table-striped ul li {
   list-style: none;
   padding-bottom: 10px;
+}
+
+.listProduct .open {
+  display: table-row !important;
+}
+
+.listProduct .productDetail {
+  display: none;
+}
+
+.productDetail p {
+  margin-bottom: 0;
+}
+
+.productDetail .imgProduct {
+  width: 50%;
+  float: right;
+}
+
+.productDetail .imgProduct {
+  width: 50%;
+  float: right;
+  padding: 5px;
 }

@@ -143,3 +143,11 @@
   color: #c60400;
   opacity: 1;
 }
+
+.mini-shopping-cart .mini-shopping-cart__empty-message {
+  font-size: 16px;
+  font-weight: 600;
+  color: #464850;
+  margin: auto;
+  padding: 15px;
+}

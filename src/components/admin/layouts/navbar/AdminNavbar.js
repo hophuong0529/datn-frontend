@@ -13,14 +13,14 @@ export default function AdminNavBar() {
       </div>
       <Link to="/admin/" id="A_he_4">
         <b id="B_he_5">
-          DASH<span id="SPAN_he_6">IO</span>
+          Lakey<span id="SPAN_he_6">Admin</span>
         </b>
       </Link>
       <div id="DIV_he_7">
         <ul id="UL_he_8">
           <li id="LI_he_9">
             <Link to="#" id="A_he_10">
-              Logout
+              Đăng xuất
             </Link>
           </li>
         </ul>

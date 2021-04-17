@@ -11,7 +11,7 @@ export default function Color(props) {
       setSelectColors(selectColors.filter((x) => x.id !== el.id));
     }
   };
-
+  
   const renderColors = (colors) => {
     return colors.map((color) => {
       return (

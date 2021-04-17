@@ -34,7 +34,7 @@ export default function App() {
       <Switch>
         <Route path="/admin/">
           <AdminNavbar />
-          <div className="container-fluid row">
+          <div className="container-fluid row" style={{margin: 0}}>
             <div className="col-md-2">
               <AdminSidebar />
             </div>

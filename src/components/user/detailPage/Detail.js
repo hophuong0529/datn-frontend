@@ -52,6 +52,7 @@ export default function Detail() {
             <Description
               description={product.description}
               images={product.images}
+              producer={product.producer}
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 #DIV_left_1 {
+    width: 245px;
     border-block-end-color: rgb(121, 121, 121);
     border-block-start-color: rgb(121, 121, 121);
     border-inline-end-color: rgb(121, 121, 121);
@@ -9,7 +10,6 @@
     color: rgb(121, 121, 121);
     column-rule-color: rgb(121, 121, 121);
     height: 100%;
-    inline-size: 220px;
     inset-block-end: 0px;
     inset-block-start: 0px;
     inset-inline-end: 1309.2px;
@@ -65,7 +65,6 @@
     color: rgb(121, 121, 121);
     column-rule-color: rgb(121, 121, 121);
     height: 80px;
-    inline-size: 210px;
     margin-block-end: 10px;
     margin-block-start: 0px;
     perspective-origin: 105px 40px;
@@ -73,7 +72,7 @@
     text-decoration: none solid rgb(121, 121, 121);
     text-size-adjust: 100%;
     transform-origin: 105px 40px;
-    width: 210px;
+    width: 100%;
     border: 0px none rgb(121, 121, 121);
     font: 13px / 18.5714px Nunito-Regular, sans-serif;
     margin: 0px 0px 10px;
@@ -172,7 +171,6 @@
     color: rgb(242, 242, 242);
     column-rule-color: rgb(242, 242, 242);
     height: 15.2px;
-    inline-size: 210px;
     margin-block-end: 10px;
     margin-block-start: 10px;
     perspective-origin: 105px 7.6px;
@@ -180,7 +178,7 @@
     text-decoration: none solid rgb(242, 242, 242);
     text-size-adjust: 100%;
     transform-origin: 105px 7.6px;
-    width: 210px;
+    width: 100%;
     border: 0px none rgb(242, 242, 242);
     font: 700 14px / 15.4px Nunito-Regular, sans-serif;
     margin: 10px 0px;
@@ -318,45 +316,9 @@
     font: 15px / 17.1429px Nunito-Regular, sans-serif;
     list-style: outside none none;
     outline: rgb(174, 178, 183) none 0px;
-    padding: 15px 0px 15px 10px;
+    padding: 15px 0px 15px 0px;
     transition: all 0.3s ease 0s;
 }/*#A_left_8, #A_left_12, #A_left_16, #A_left_20*/
-
-#A_left_8:after, #A_left_12:after, #A_left_16:after, #A_left_20:after {
-    border-block-end-color: rgb(174, 178, 183);
-    border-block-start-color: rgb(174, 178, 183);
-    border-inline-end-color: rgb(174, 178, 183);
-    border-inline-start-color: rgb(174, 178, 183);
-    box-sizing: border-box;
-    caret-color: rgb(174, 178, 183);
-    color: rgb(174, 178, 183);
-    column-rule-color: rgb(174, 178, 183);
-    text-align: left;
-    text-decoration: none solid rgb(174, 178, 183);
-    text-size-adjust: 100%;
-    border: 0px none rgb(174, 178, 183);
-    font: 12px / 17.1429px Nunito-Regular, sans-serif;
-    list-style: outside none none;
-    outline: rgb(174, 178, 183) none 0px;
-}/*#A_left_8:after, #A_left_12:after, #A_left_16:after, #A_left_20:after*/
-
-#A_left_8:before, #A_left_12:before, #A_left_16:before, #A_left_20:before {
-    border-block-end-color: rgb(174, 178, 183);
-    border-block-start-color: rgb(174, 178, 183);
-    border-inline-end-color: rgb(174, 178, 183);
-    border-inline-start-color: rgb(174, 178, 183);
-    box-sizing: border-box;
-    caret-color: rgb(174, 178, 183);
-    color: rgb(174, 178, 183);
-    column-rule-color: rgb(174, 178, 183);
-    text-align: left;
-    text-decoration: none solid rgb(174, 178, 183);
-    text-size-adjust: 100%;
-    border: 0px none rgb(174, 178, 183);
-    font: 12px / 17.1429px Nunito-Regular, sans-serif;
-    list-style: outside none none;
-    outline: rgb(174, 178, 183) none 0px;
-}/*#A_left_8:before, #A_left_12:before, #A_left_16:before, #A_left_20:before*/
 
 #SPAN_left_10 {
     block-size: 16.8px;
@@ -401,7 +363,7 @@
     text-decoration: none solid rgb(174, 178, 183);
     text-size-adjust: 100%;
     transform-origin: 24.5562px 8.4px;
-    width: 49.1125px;
+    width: 100px;
     border: 0px none rgb(174, 178, 183);
     font: 12px / 17.1429px Nunito-Regular, sans-serif;
     list-style: outside none none;
@@ -426,7 +388,7 @@
     text-decoration: none solid rgb(174, 178, 183);
     text-size-adjust: 100%;
     transform-origin: 29.625px 8.4px;
-    width: 59.25px;
+    width: 100px;
     border: 0px none rgb(174, 178, 183);
     font: 12px / 17.1429px Nunito-Regular, sans-serif;
     list-style: outside none none;
@@ -451,7 +413,7 @@
     text-decoration: none solid rgb(174, 178, 183);
     text-size-adjust: 100%;
     transform-origin: 14.4187px 8.4px;
-    width: 28.8375px;
+    width: 120px;
     border: 0px none rgb(174, 178, 183);
     font: 12px / 17.1429px Nunito-Regular, sans-serif;
     list-style: outside none none;

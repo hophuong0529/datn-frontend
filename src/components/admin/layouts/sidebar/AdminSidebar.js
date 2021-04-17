@@ -14,25 +14,31 @@ function AdLeft() {
         <li id="LI_left_7">
           <Link to="/admin/" id="A_left_8">
             <HouseDoorFill style={{ marginTop: "-5px", marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_10">Dashboard</span>
+            <span id="SPAN_left_10">Thống kê</span>
           </Link>
         </li>
         <li id="LI_left_11">
           <Link to="/admin/products" id="A_left_12">
             <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_14">Products</span>
+            <span id="SPAN_left_14">Quản lý sản phẩm</span>
           </Link>
         </li>
         <li id="LI_left_15">
           <Link to="#" id="A_left_16">
             <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_18">Categories</span>
+            <span id="SPAN_left_18">Quản lý danh mục</span>
           </Link>
         </li>
         <li id="LI_left_19">
           <Link to="#" id="A_left_20">
             <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_22">Carts</span>
+            <span id="SPAN_left_22">Quản lý đơn hàng</span>
+          </Link>
+        </li>
+        <li id="LI_left_19">
+          <Link to="#" id="A_left_20">
+            <Stack style={{ marginRight: "10px" }} />{" "}
+            <span id="SPAN_left_22">Quản lý người dùng</span>
           </Link>
         </li>
       </ul>

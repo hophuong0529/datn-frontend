@@ -10,21 +10,22 @@ export default function Alert() {
   return (
     <div className="checkout-page container sty-none">
       <div className="row">
-        <div class="purchase offset-lg-2 col-lg-8 col-12 text-center">
-          <div class="pur-title">
+        <div className="purchase offset-lg-2 col-lg-8 col-12 text-center">
+          <div className="pur-title">
             THANK YOU&nbsp;
             <SuitHeartFill style={{ fontSize: 19 }} />
           </div>
-          <div class="pur-content d-flex align-items-center ">
-            <div class="pur-img d-inline-flex ">
+          <div className="pur-content d-flex align-items-center ">
+            <div className="pur-img d-inline-flex ">
               <img src={purchase} alt="purchase" />
             </div>
-            <div class="pur-text d-block">
+            <div className="pur-text d-block">
               <p>
                 <strong>Lakey đã nhận được yêu cầu đặt hàng của bạn!</strong>
               </p>
               <p>
-                Mã đơn hàng của bạn là <span class="text-pink">{slug.code}</span>
+                Mã đơn hàng của bạn là{" "}
+                <span className="text-pink">{slug.code}</span>
               </p>
               <p>
                 Bộ phận CSKH sẽ gọi điện xác nhận đơn hàng và hướng dẫn thanh
@@ -40,7 +41,7 @@ export default function Alert() {
           </div>
           <Link
             to="/product"
-            class="btn btn-pink"
+            className="btn btn-pink"
             title="Quay lại trang sản phẩm"
           >
             <span>Quay lại trang sản phẩm</span>
