@@ -1,49 +1,50 @@
-import "./adminSidebar.css";
-import { HouseDoorFill, Stack } from "react-bootstrap-icons";
+import React from "react";
+import "./sidebar.css";
+import { Speedometer2, Stack } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import avatar from "../../../../assets/images/avatar.jpg";
 
-function AdLeft() {
+const AdminSidebar = () => {
   return (
-    <div id="DIV_left_1">
-      <ul id="UL_left_2">
-        <p id="P_left_3">
-          <img src={avatar} width="80" alt="" id="IMG_left_5" />
+    <div
+      id="sidebar"
+      className="nav-collapse "
+      tabIndex="5000"
+      style={{ overflow: "hidden", outline: "none" }}
+    >
+      <ul className="sidebar-menu" id="nav-accordion">
+        <p className="centered">
+          <a href="profile.html">
+            <img src={avatar} className="img-circle" width="80" alt="" />
+          </a>
         </p>
-        <h5 id="H5_left_6">Phương</h5>
-        <li id="LI_left_7">
-          <Link to="/admin/" id="A_left_8">
-            <HouseDoorFill style={{ marginTop: "-5px", marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_10">Thống kê</span>
-          </Link>
+        <h6 className="centered">Admin</h6>
+        <li className="mt">
+          <a href="index.html">
+            <Speedometer2 />
+            <span>Thống kê</span>
+          </a>
         </li>
-        <li id="LI_left_11">
-          <Link to="/admin/products" id="A_left_12">
-            <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_14">Quản lý sản phẩm</span>
+        <li className="sub-menu dcjq-parent-li">
+          <Link to="/admin/products" className="dcjq-parent">
+            <Stack />
+            <span>Quản lý sản phẩm</span>
           </Link>
-        </li>
-        <li id="LI_left_15">
-          <Link to="#" id="A_left_16">
-            <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_18">Quản lý danh mục</span>
-          </Link>
-        </li>
-        <li id="LI_left_19">
-          <Link to="#" id="A_left_20">
-            <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_22">Quản lý đơn hàng</span>
-          </Link>
-        </li>
-        <li id="LI_left_19">
-          <Link to="#" id="A_left_20">
-            <Stack style={{ marginRight: "10px" }} />{" "}
-            <span id="SPAN_left_22">Quản lý người dùng</span>
-          </Link>
+          <ul className="sub" style={{ display: "block" }}>
+            <li>
+              <a href="general.html">Quản lý danh mục</a>
+            </li>
+            <li>
+              <a href="buttons.html">Quản lý màu sắc</a>
+            </li>
+            <li>
+              <a href="panels.html">Quản lý nhà cung cấp</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
   );
-}
+};
 
-export default AdLeft;
+export default AdminSidebar;

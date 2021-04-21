@@ -17,7 +17,7 @@ export default function Image(props) {
 
   return (
     <Fragment>
-      <div className="container-fluid">
+      <div className="container-fluid imgPro">
           <div className="row">
             {preImages?.map((img) => (
               <div

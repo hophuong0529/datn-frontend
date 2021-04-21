@@ -70,16 +70,14 @@ export default function Form(props) {
     <div className="row mt">
       <div className="col-lg-12">
         <div className="form-panel">
-          <h1
+          <h2
             style={{
               textAlign: "center",
-              padding: "30px 0 25px 0",
-              fontWeight: "bold",
-              color: "rgb(255 193 152)",
+              padding: "5px 0 20px 0",
             }}
           >
             {title}
-          </h1>
+          </h2>
           <form className="form-horizontal style-form" onSubmit={submitForm}>
             <table className="table">
               <tbody>

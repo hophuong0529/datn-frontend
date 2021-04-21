@@ -1,9 +1,4 @@
-import {
-  EmojiSmileUpsideDown,
-  PencilFill,
-  PlusSquare,
-  TrashFill,
-} from "react-bootstrap-icons";
+import { PencilFill, TrashFill } from "react-bootstrap-icons";
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -15,7 +10,7 @@ function Overview() {
   const [perPage, setPerPage] = useState(0);
   const [totalItemsPage, setTotalItemsPage] = useState(0);
   const [activePage, setActivePage] = useState(1);
-  const [activeIndex, setActiveIndex] = useState([]);
+  const [activeProduct, setActiveProduct] = useState([]);
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/products").then((response) => {
@@ -25,12 +20,12 @@ function Overview() {
     });
   }, []);
 
-  const handleOnClick = (index) => {
-    const exist = activeIndex.findIndex((x) => x === index) !== -1;
+  const handleOnClick = (id) => {
+    const exist = activeProduct.findIndex((x) => x === id) !== -1;
     if (!exist) {
-      setActiveIndex([...activeIndex, index]);
+      setActiveProduct([...activeProduct, id]);
     } else {
-      setActiveIndex(activeIndex.filter((x) => x !== index));
+      setActiveProduct(activeProduct.filter((x) => x !== id));
     }
   };
 
@@ -51,23 +46,16 @@ function Overview() {
   };
 
   return (
-    <div>
-      <div id="DIV_admin_3">
-        <div id="DIV_admin_4">
-          <div id="DIV_admin_5">
-            <div id="DIV_admin_6">
-              <h2 id="H2_admin_7">
-                Quản lý <b id="B_admin_8">Sản phẩm</b>
-              </h2>
-            </div>
-            <div id="DIV_admin_9">
-              <Link to="/admin/product/add" id="A_admin_10">
-                <PlusSquare />
-                <span id="SPAN_admin_12">Thêm sản phẩm mới</span>
-              </Link>
-            </div>
-          </div>
+    <>
+      <div class="card-top">
+        <div class="title">
+          <h2>Danh sách các sản phẩm</h2>
         </div>
+        <div class="button-add">
+          <Link class="btn btn-add" to="/admin/product/create">Thêm sản phẩm mới</Link>
+        </div>
+      </div>
+      <div class="card-body">
         <table id="TABLE_admin_16" className="table table-striped">
           <thead>
             <tr>
@@ -82,11 +70,11 @@ function Overview() {
             </tr>
           </thead>
           <tbody className="listProduct">
-            {products.map((product, index) => (
+            {products.map((product) => (
               <Fragment key={product.id}>
                 <tr
                   style={{ textAlign: "center" }}
-                  onClick={() => handleOnClick(index)}
+                  onClick={() => handleOnClick(product.id)}
                 >
                   <td>{product.id}</td>
                   <td>{product.code}</td>
@@ -145,7 +133,7 @@ function Overview() {
                 </tr>
                 <tr
                   className={`productDetail${
-                    activeIndex.findIndex((x) => x === index) !== -1
+                    activeProduct.findIndex((x) => x === product.id) !== -1
                       ? " open"
                       : ""
                   }`}
@@ -162,8 +150,7 @@ function Overview() {
                       <span>
                         {product.colors.map((color) => (
                           <span key={color.id}>
-                            <br />
-                            - {color.name} (Số lượng: {color.quantity})
+                            <br />- {color.name} (Số lượng: {color.quantity})
                           </span>
                         ))}
                       </span>
@@ -211,14 +198,14 @@ function Overview() {
             ))}
           </tbody>
         </table>
+        <Paginate
+          activePage={activePage}
+          itemsCountPerPage={perPage}
+          totalItemsCount={totalItemsPage}
+          onChange={handlePageChange}
+        />
       </div>
-      <Paginate
-        activePage={activePage}
-        itemsCountPerPage={perPage}
-        totalItemsCount={totalItemsPage}
-        onChange={handlePageChange}
-      />
-    </div>
+    </>
   );
 }
 

@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Overview from "./components/admin/product/overview/Overview";
 import AddProduct from "./components/admin/product/update/AddProduct";
 import EditProduct from "./components/admin/product/update/EditProduct";
-import AdFooter from "./components/admin/layouts/footer/AdminFooter";
 import Header from "./components/user/layouts/header/Header";
 import Footer from "./components/user/layouts/footer/Footer";
 import {
@@ -13,7 +12,7 @@ import {
 import { CartProvider } from "./components/user/contexts/CartContext";
 import Home from "./components/user/homePage/Home";
 import Login from "./components/user/loginPage/login/Login";
-import AdminNavbar from "./components/admin/layouts/navbar/AdminNavbar";
+import AdminHeader from "./components/admin/layouts/navbar/AdminHeader";
 import AdminSidebar from "./components/admin/layouts/sidebar/AdminSidebar";
 import Detail from "./components/user/detailPage/Detail";
 import AllProduct from "./components/user/filterCatProduct/AllProduct";
@@ -33,21 +32,32 @@ export default function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/admin/">
-          <AdminNavbar />
-          <div className="container-fluid row" style={{margin: 0}}>
-            <div className="col-md-2">
-              <AdminSidebar />
-            </div>
-            <div className="col-md-10">
-              <Switch>
-                <Route exact path="/admin/" component={Overview} />
-                <Route path="/admin/products" component={Overview} />
-                <Route path="/admin/product/add" component={AddProduct} />
-                <Route path="/admin/product/edit/:id" component={EditProduct} />
-              </Switch>
+          <AdminHeader />
+          <div className="container-fluid main-admin">
+            <div className="row">
+              <div className="col-md-2">
+                <AdminSidebar />
+              </div>
+              <div className="col-md-10">
+                <section className="wrapper">
+                  <div className="card card-content">
+                    <Switch>
+                      <Route exact path="/admin/" component={Overview} />
+                      <Route path="/admin/products" component={Overview} />
+                      <Route
+                        path="/admin/product/create"
+                        component={AddProduct}
+                      />
+                      <Route
+                        path="/admin/product/edit/:id"
+                        component={EditProduct}
+                      />
+                    </Switch>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
-          <AdFooter />
         </Route>
         <Route path="/">
           <UserProvider>
