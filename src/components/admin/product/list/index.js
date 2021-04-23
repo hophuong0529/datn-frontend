@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import "./overview.css";
 import Paginate from "../../../pagination/Paginate";
 
-function Overview() {
+const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
   const [totalItemsPage, setTotalItemsPage] = useState(0);
@@ -47,33 +47,34 @@ function Overview() {
 
   return (
     <>
-      <div class="card-top">
-        <div class="title">
+      <div className="card-top">
+        <div className="title">
           <h2>Danh sách các sản phẩm</h2>
         </div>
-        <div class="button-add">
-          <Link class="btn btn-add" to="/admin/product/create">Thêm sản phẩm mới</Link>
+        <div className="button-add">
+          <Link className="btn btn-add" to="/admin/product/create">
+            Thêm sản phẩm mới
+          </Link>
         </div>
       </div>
-      <div class="card-body">
-        <table id="TABLE_admin_16" className="table table-striped">
+      <div className="card-body">
+        <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ textAlign: "center", width: "5%" }}>ID</th>
-              <th style={{ textAlign: "center", width: "10%" }}>Mã sản phẩm</th>
-              <th style={{ textAlign: "center", width: "25%" }}>Hình ảnh</th>
-              <th style={{ textAlign: "center", width: "15%" }}>Tên</th>
-              <th style={{ textAlign: "center", width: "15%" }}>Đơn giá</th>
-              <th style={{ textAlign: "center", width: "10%" }}>Số lượng</th>
-              <th style={{ textAlign: "center", width: "10%" }}>Giảm giá</th>
-              <th style={{ textAlign: "center", width: "10%" }}></th>
+              <th style={{ width: "6%" }}>ID</th>
+              <th style={{ width: "10%" }}>Mã sản phẩm</th>
+              <th style={{ width: "25%" }}>Hình ảnh</th>
+              <th style={{ width: "15%" }}>Tên</th>
+              <th style={{ width: "15%" }}>Đơn giá</th>
+              <th style={{ width: "10%" }}>Số lượng</th>
+              <th style={{ width: "9%" }}>Giảm giá</th>
+              <th style={{ width: "10%" }}></th>
             </tr>
           </thead>
           <tbody className="listProduct">
             {products.map((product) => (
               <Fragment key={product.id}>
                 <tr
-                  style={{ textAlign: "center" }}
                   onClick={() => handleOnClick(product.id)}
                 >
                   <td>{product.id}</td>
@@ -207,6 +208,6 @@ function Overview() {
       </div>
     </>
   );
-}
+};
 
-export default Overview;
+export default ProductList;

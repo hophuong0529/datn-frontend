@@ -4,7 +4,7 @@ header a {
 
 .header-top {
   padding: 5px 0;
-  background: #ffb292;
+  background: #ffb698;
 }
 
 .text-right {
@@ -21,7 +21,7 @@ header a {
   color: #820034;
   padding: 0 15px;
   display: inline-block;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .header-top a:hover {
@@ -45,14 +45,14 @@ img {
 }
 
 .form-search .input-group {
-  border: 2px solid #ffb292;
+  border: 2px solid #ffb698;
   border-radius: 8px;
   overflow: hidden;
 }
 
 .input-group-btn .btn-pink {
   color: #fff;
-  background-color: #ffb292;
+  background-color: #ffb698;
 }
 
 .input-group-btn .btn-pink:hover {
@@ -84,7 +84,7 @@ img {
 
 .research a {
   color: #000;
-  font-size: 14px;
+  font-size: 15px;
   padding: 0 5px;
   display: inline-block;
 }
@@ -133,7 +133,7 @@ img {
 }
 
 .header-user li a:hover {
-  color: #ffb292;
+  color: #ffb698;
 }
 
 .count-cart {
@@ -162,7 +162,7 @@ img {
   background: #e56266;
   border-radius: 50%;
   color: #fff;
-  font-weight: 700;
+  font-weight: 900;
   font-size: 12px;
 }
 

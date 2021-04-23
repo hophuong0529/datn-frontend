@@ -9,8 +9,11 @@ export default function Form(props) {
   const { handleAddSubmit, handleEditSubmit, title } = props;
 
   const [colors, setColors] = useState([]);
+  const [selectColors, setSelectColors] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState(0);
+  const [producers, setProducers] = useState([]);
+  const [producerId, setProducerId] = useState(0);
   const [subCategoryId, setSubCategoryId] = useState(0);
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
@@ -18,8 +21,8 @@ export default function Form(props) {
   const [discount, setDiscount] = useState(0);
   const [isTop, setIsTop] = useState(0);
   const [images, setImages] = useState([]);
-  const [selectColors, setSelectColors] = useState([]);
   const [preImages, setPreImages] = useState([]);
+  const [description, setDescription] = useState("");
 
   const formData = new FormData();
 
@@ -30,6 +33,8 @@ export default function Form(props) {
     formData.append("discount", discount);
     formData.append("price", price);
     formData.append("is_top", isTop);
+    formData.append("description", description);
+    formData.append("producer_id", producerId);
     formData.append("colors", JSON.stringify(selectColors));
     formData.append("preImages", JSON.stringify(preImages));
     Array.from(images).forEach((img) => formData.append("images[]", img));
@@ -46,6 +51,9 @@ export default function Form(props) {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
       setCategories(response.data);
     });
+    axios.get("http://127.0.0.1:8000/api/producers").then((response) => {
+      setProducers(response.data);
+    });
     axios.get("http://127.0.0.1:8000/api/colors").then((response) => {
       setColors(response.data);
     });
@@ -60,6 +68,8 @@ export default function Form(props) {
           setIsTop(response.data.is_top);
           setSubCategoryId(response.data.subcategory_id);
           setCategoryId(response.data.sub.category_id);
+          setProducerId(response.data.producer_id);
+          setDescription(response.data.description);
           setSelectColors(response.data.colors);
           setPreImages(response.data.images);
         });
@@ -139,6 +149,7 @@ export default function Form(props) {
                         value={code}
                         className="form-control"
                         onChange={(e) => setCode(e.target.value)}
+                        placeholder="Mã sản phẩm"
                       />
                     </label>
                   </td>
@@ -153,10 +164,31 @@ export default function Form(props) {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="form-control"
+                        placeholder="Tên sản phẩm"
                       />
                     </label>
                   </td>
                 </tr>
+                <td style={{ fontWeight: "bold", width: "25%" }}>
+                  Xưởng sản xuất
+                </td>
+                <td>
+                  <label>
+                    <select
+                      name="producer_id"
+                      value={producerId}
+                      onChange={(e) => setProducerId(e.target.value)}
+                      className="form-control"
+                    >
+                      <option value="">Chọn một xưởng sản xuất</option>
+                      {producers.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </td>
                 <tr>
                   <td style={{ fontWeight: "bold" }}>Hình ảnh</td>
                   <td>
@@ -200,6 +232,18 @@ export default function Form(props) {
                         onChange={(e) => setDiscount(e.target.value)}
                       />
                     </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ fontWeight: "bold" }}>Mô tả</td>
+                  <td>
+                    <textarea
+                      rows="6"
+                      className="form-control"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Mô tả sản phẩm"
+                    ></textarea>
                   </td>
                 </tr>
                 <tr>

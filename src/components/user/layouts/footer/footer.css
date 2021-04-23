@@ -32,7 +32,7 @@ footer .logo {
 .wrapper-home-service {
   margin-top: 25px;
   padding: 30px 0 10px;
-  background: #ffb292;
+  background: #ffb698;
   margin-bottom: 0;
   overflow: hidden;
 }
@@ -55,7 +55,7 @@ footer .logo {
 }
 
 .f-end {
-  background-color: #ffb292;
+  background-color: #ffb698;
   padding: 5px;
   text-align: center;
   border-top: white thin solid;
@@ -63,7 +63,7 @@ footer .logo {
 
 .f-end span {
   color: #820034;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .service-box .icon img {
@@ -74,7 +74,7 @@ footer .logo {
 
 .service-box h3 {
   font-weight: bold;
-  font-size: 14px;
+  font-size: 15px;
   text-transform: uppercase;
   margin-bottom: 5px;
 }

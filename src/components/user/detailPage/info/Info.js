@@ -133,7 +133,10 @@ export default function Info(props) {
             ))}
           </div>
         </div>
-        <div className="r-at-r d-flex align-items-center">
+        <div
+          className="r-at-r d-flex align-items-center"
+          style={{ marginBottom: 40 }}
+        >
           <label className="pull-left">Số lượng</label>
           <div className="pull-left select-quantity">
             <button onClick={() => decrease()}>

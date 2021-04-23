@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import { UserContext } from "../../../contexts/UserContext";
 
-export default function Form(props) {
+export default function Form() {
   const [user] = useContext(UserContext);
 
   const handleUpdate = ({ name, mobile, email, address }) => {
@@ -21,6 +21,8 @@ export default function Form(props) {
       });
   };
 
+  console.log(user);
+
   return (
     <div className="blk-user-right blk-user-bor full d-block">
       <header>
@@ -30,6 +32,7 @@ export default function Form(props) {
         </div>
       </header>
       <Formik
+        enableReinitialize
         initialValues={{
           name: user.name,
           mobile: user.mobile,

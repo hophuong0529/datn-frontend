@@ -18,6 +18,7 @@
 }
 
 .blk-code .title {
+  font-weight: 900;
   font-size: 28px;
   letter-spacing: 0;
   margin-bottom: 5px;
@@ -132,6 +133,7 @@
   border-color: #ffb598;
   border-radius: 0.35rem;
   font-weight: 600;
+  padding-top: 9px;
 }
 
 .r-at-r .btn-pink:hover {
@@ -158,10 +160,10 @@
 }
 
 .product-price .price .pro-price {
-  margin: 5px 0px 0px 5px;
   font-size: 30px;
   color: #000;
-  font-weight: 750;
+  font-weight: 900;
+  margin: 0;
 }
 
 .product-price .price .pro-price .pro-price-del {

@@ -10,7 +10,7 @@
 .blk-pro-cat h1 {
   font-size: 20px;
   color: #ffa884;
-  border-bottom: 1px solid #ffb292;
+  border-bottom: 1px solid #ffd0bc;
   font-weight: 600;
   margin-bottom: 20px;
   padding-bottom: 5px;
@@ -20,5 +20,5 @@
   max-width: 150px;
   height: 32px;
   line-height: 32px;
-  font-size: 14px;
+  font-size: 15px;
 }

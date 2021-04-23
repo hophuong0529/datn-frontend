@@ -60,8 +60,31 @@
   white-space: nowrap;
 }
 
-.button-add a {
+.button-add a,
+.button-add button {
   font-size: 14.5px;
   background-color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 5px;
+}
+
+.table-striped tr {
+  text-align: center;
+}
+
+.card-top .title h2 {
+  margin-bottom: 0;
+}
+
+.listCategory .col-md-6 {
+  padding: 0;
+}
+
+.listCategory .col-md-6 table {
+  padding: 0;
+  border: #dee2e6 thin solid;
+}
+
+.listCategory .card-top {
+  margin: 0px;
 }

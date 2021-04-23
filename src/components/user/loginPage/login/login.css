@@ -69,9 +69,11 @@
 
 .user-foot .btn-pink {
   color: #fff;
-  background-color: #ffb292;
-  border-color: #ffb292;
+  background-color: #ffb698;
+  border-color: #ffb698;
   border-radius: 0.35rem;
+  padding-top: 8px;
+  padding-bottom: 5px;
 }
 
 .user-foot .btn-pink:hover {
@@ -99,7 +101,7 @@
 .user-foot a {
   padding: 8px 0;
   display: block;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .user-foot a:hover {

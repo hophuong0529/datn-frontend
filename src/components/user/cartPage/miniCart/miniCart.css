@@ -1,7 +1,7 @@
 .mini-shopping-cart__bottom .btn-pink {
   color: #fff;
-  background-color: #ffb292;
-  border-color: #ffb292;
+  background-color: #ffb698;
+  border-color: #ffb698;
   border-radius: 0.35rem;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .mini-shopping-cart .shopping-cart-total-amount {
-  font-weight: 700;
+  font-weight: 900;
   color: #c60400;
 }
 

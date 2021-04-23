@@ -18,7 +18,7 @@
 .blk-pro-cat .product-item .name {
   line-height: 1.5;
   margin: 12px 15px 0px 5px;
-  font-size: 14px;
+  font-size: 15px;
   min-height: 44px;
   color: #333;
   text-overflow: ellipsis;
@@ -38,7 +38,7 @@
   margin: 5px 0px 0px 5px;
   font-size: 16.5px;
   color: #000;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 .product-item .price .pro-price .pro-price-del {
@@ -50,7 +50,7 @@
 
 .blk-pro-cat .product-item .price .pro-price {
   margin: 5px 0px 0px 5px;
-  font-size: 14px;
+  font-size: 15px;
   color: #000;
   font-weight: 650;
 }
