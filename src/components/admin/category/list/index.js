@@ -3,33 +3,51 @@ import React, { useEffect, useState } from "react";
 import { List, PencilFill, TrashFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import Paginate from "../../../pagination/Paginate";
+import AddButton from "../create/addButton";
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
-  const [perPage, setPerPage] = useState(0);
-  const [totalItemsPage, setTotalItemsPage] = useState(0);
-  const [activePage, setActivePage] = useState(1);
+  //category
+  const [perPageC, setPerPageC] = useState(0);
+  const [totalItemsPageC, setTotalItemsPageC] = useState(0);
+  const [activePageC, setActivePageC] = useState(1);
+  //subcategory
+  const [perPageS, setPerPageS] = useState(0);
+  const [totalItemsPageS, setTotalItemsPageS] = useState(0);
+  const [activePageS, setActivePageS] = useState(1);
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
-      setCategories(response.data);
+      setCategories(response.data.data);
+      setPerPageC(response.data.per_page);
+      setTotalItemsPageC(response.data.total);
     });
     axios.get("http://127.0.0.1:8000/api/sub-categories").then((response) => {
       setSubCategories(response.data.data);
-      setPerPage(response.data.per_page);
-      setTotalItemsPage(response.data.total);
+      setPerPageS(response.data.per_page);
+      setTotalItemsPageS(response.data.total);
     });
   }, []);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageCChange = (pageNumber) => {
     axios
-      .get("http://127.0.0.1:8000/api/sub-categories?page=" + pageNumber)
+      .get("http://127.0.0.1:8000/api/categories?page=" + pageNumber)
       .then((response) => {
-        setSubCategories(response.data.data);
-        setActivePage(pageNumber);
+        setCategories(response.data.data);
+        setActivePageC(pageNumber);
       });
   };
+
+  const handlePageSChange = (pageNumber) => {
+    axios
+      .get("http://127.0.0.1:8000/api/categories?page=" + pageNumber)
+      .then((response) => {
+        setSubCategories(response.data.data);
+        setActivePageS(pageNumber);
+      });
+  };
+
   return (
     <>
       <div className="title-card">
@@ -37,7 +55,13 @@ const CategoryList = () => {
       </div>
       <div className="card-body">
         <div className="container-fluid row listCategory">
-          <div className="col-md-6" style={{ paddingRight: 15 }}>
+          <div
+            className="col-md-6"
+            style={{
+              paddingRight: 30,
+              borderRight: "rgb(237 237 237) 1px solid",
+            }}
+          >
             <div className="card-top">
               <div className="title">
                 <h5>
@@ -45,12 +69,10 @@ const CategoryList = () => {
                 </h5>
               </div>
               <div className="button-add">
-                <div className="button-add">
-                  <button className="btn btn-add">Thêm danh mục mới</button>
-                </div>
+                <AddButton title="Thêm danh mục sản phẩm chính" sub={0} />
               </div>
             </div>
-            <table className="table table-striped">
+            <table className="table table-striped" style={{marginBottom: 30}}>
               <thead>
                 <tr>
                   <th style={{ width: "10%" }}>ID</th>
@@ -101,8 +123,20 @@ const CategoryList = () => {
                 ))}
               </tbody>
             </table>
+            <Paginate
+              activePage={activePageC}
+              itemsCountPerPage={perPageC}
+              totalItemsCount={totalItemsPageC}
+              onChange={handlePageCChange}
+            />
           </div>
-          <div className="col-md-6 sub-cate" style={{ paddingLeft: 15 }}>
+          <div
+            className="col-md-6 sub-cate"
+            style={{
+              paddingLeft: 30,
+              borderLeft: "rgb(237 237 237) 1px solid",
+            }}
+          >
             <div className="card-top">
               <div className="title">
                 <h5>
@@ -110,9 +144,7 @@ const CategoryList = () => {
                 </h5>
               </div>
               <div className="button-add">
-                <div className="button-add">
-                  <button className="btn btn-add">Thêm danh mục mới</button>
-                </div>
+                <AddButton title="Thêm danh mục sản phẩm phụ" sub={1} />
               </div>
             </div>
             <table className="table table-striped">
@@ -159,10 +191,10 @@ const CategoryList = () => {
               </tbody>
             </table>
             <Paginate
-              activePage={activePage}
-              itemsCountPerPage={perPage}
-              totalItemsCount={totalItemsPage}
-              onChange={handlePageChange}
+              activePage={activePageS}
+              itemsCountPerPage={perPageS}
+              totalItemsCount={totalItemsPageS}
+              onChange={handlePageSChange}
             />
           </div>
         </div>

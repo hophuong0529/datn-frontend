@@ -30,7 +30,7 @@ export const UserProvider = (props) => {
 };
 
 export const PrivateRoute = ({ component: Component, ...rest }) => {
-  let [user] = useContext(UserContext);
+  const [user] = useContext(UserContext);
   return (
     <Route
       {...rest}

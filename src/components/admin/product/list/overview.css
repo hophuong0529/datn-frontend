@@ -82,7 +82,10 @@
 
 .listCategory .col-md-6 table {
   padding: 0;
-  border: #dee2e6 thin solid;
+}
+
+.listCategory .col-md-6 table th {
+  border-top: none;
 }
 
 .listCategory .card-top {

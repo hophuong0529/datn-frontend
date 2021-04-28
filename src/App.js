@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ProductList from "./components/admin/product/list";
 import CategoryList from "./components/admin/category/list";
-import AddProduct from "./components/admin/product/update/AddProduct";
-import EditProduct from "./components/admin/product/update/EditProduct";
+import AddProduct from "./components/admin/product/create/AddProduct";
+import EditProduct from "./components/admin/product/create/EditProduct";
 import Header from "./components/user/layouts/header/Header";
 import Footer from "./components/user/layouts/footer/Footer";
 import {
@@ -44,8 +44,16 @@ export default function App() {
                   <div className="card card-content">
                     <Switch>
                       <Route exact path="/admin/" component={ProductList} />
-                      <Route exact path="/admin/products" component={ProductList} />
-                      <Route exact path="/admin/categories" component={CategoryList} />
+                      <Route
+                        exact
+                        path="/admin/products"
+                        component={ProductList}
+                      />
+                      <Route
+                        exact
+                        path="/admin/categories"
+                        component={CategoryList}
+                      />
                       <Route
                         path="/admin/product/create"
                         component={AddProduct}

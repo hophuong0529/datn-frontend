@@ -11,7 +11,7 @@ export default function AllProduct() {
   const title = "Sản phẩm";
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
-      setCategories(response.data);
+      setCategories(response.data.data);
     });
     axios.get("http://127.0.0.1:8000/api/products").then((response) => {
       setProducts(response.data.data);

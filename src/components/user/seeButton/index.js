@@ -6,7 +6,7 @@ import Image from "../detailPage/image/Image";
 import Info from "../detailPage/info/Info";
 import { UserContext } from "../contexts/UserContext";
 
-const ButtonBuyNow = (props) => {
+const SeeButton = (props) => {
   const { product } = props;
   const [quantity, setQuantity] = useState(1);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -61,4 +61,4 @@ const ButtonBuyNow = (props) => {
   );
 };
 
-export default ButtonBuyNow;
+export default SeeButton;

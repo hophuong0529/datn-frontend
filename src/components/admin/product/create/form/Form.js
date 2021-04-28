@@ -49,7 +49,7 @@ export default function Form(props) {
   const slug = useParams();
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
-      setCategories(response.data);
+      setCategories(response.data.data);
     });
     axios.get("http://127.0.0.1:8000/api/producers").then((response) => {
       setProducers(response.data);

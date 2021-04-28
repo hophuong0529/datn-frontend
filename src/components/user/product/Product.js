@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ButtonWatch from "../buttonWatch/ButtonWatch";
+import SeeButton from "../seeButton";
 import "./product.css";
 
 export default function Product(props) {
@@ -24,7 +24,7 @@ export default function Product(props) {
           </Link>
           <div className="product-action d-flex align-center justify-content-center">
             <div className="watch" data-psid="30184003" data-root="-2">
-              <ButtonWatch product={product} />
+              <SeeButton product={product} />
             </div>
           </div>
         </Card.Body>
