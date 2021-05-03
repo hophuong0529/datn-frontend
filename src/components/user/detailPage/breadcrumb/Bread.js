@@ -11,7 +11,7 @@ export default function Bread(props) {
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
-      setCategory(response.data.find((x) => x.id === categoryId));
+      setCategory(response.data.data.find((x) => x.id === categoryId));
     });
   }, [categoryId]);
   return (

@@ -6,7 +6,7 @@ const Receiver = ({ values, errors, touched, handleChange }) => {
     <div className="col-checkout col-left col-xl-4 col-lg-6 col-12">
       <h2 className="col-title">
         <span className="d-inline-flex align-items-center justify-content-center">
-          1
+          2
         </span>
         Thông tin người nhận
       </h2>

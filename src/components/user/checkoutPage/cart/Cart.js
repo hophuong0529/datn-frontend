@@ -7,7 +7,7 @@ const Cart = ({ cartItems, totalCart }) => {
     <div className="col-checkout col-right col-xl-5 col-lg-12 col-12">
       <h2 className="col-title">
         <span className="d-inline-flex align-items-center justify-content-center">
-          3
+          1
         </span>
         Thông tin giỏ hàng
       </h2>
@@ -83,18 +83,6 @@ const Cart = ({ cartItems, totalCart }) => {
             </tr>
           </tfoot>
         </table>
-      </div>
-      <div className="form-term">
-        <p>
-          Khi nhấn "Thanh toán" đồng nghĩa với việc bạn đồng ý với tất cả các{" "}
-          <a href="/chinhsachbanhang-n53878.html">chính sách giao hàng </a>
-          của shop.
-        </p>
-      </div>
-      <div className="d-block text-right">
-        <button type="submit" id="js-btn-submit" className="btn btn-pink">
-          Thanh toán
-        </button>
       </div>
     </div>
   );

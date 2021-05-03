@@ -13,7 +13,7 @@ export default function SearchProduct(props) {
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
-      setCategories(response.data);
+      setCategories(response.data.data.slice(0, 6));
     });
     axios
       .get(`http://127.0.0.1:8000/api/search/${keyword}`)

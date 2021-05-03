@@ -19,6 +19,8 @@
 
 .listProduct .productDetail {
   display: none;
+  text-align: left;
+  padding-left: 50px;
 }
 
 .productDetail p {
@@ -37,7 +39,7 @@
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgb(255 132 0 / 5%) !important;
+  background-color: #fff0e5 !important;
 }
 
 .card-content {

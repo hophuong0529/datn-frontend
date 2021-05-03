@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { List, PencilFill, TrashFill } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { List, TrashFill } from "react-bootstrap-icons";
 import Paginate from "../../../pagination/Paginate";
 import AddButton from "../create/addButton";
+import EditButton from "../create/editButton";
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -23,6 +23,7 @@ const CategoryList = () => {
       setPerPageC(response.data.per_page);
       setTotalItemsPageC(response.data.total);
     });
+    
     axios.get("http://127.0.0.1:8000/api/sub-categories").then((response) => {
       setSubCategories(response.data.data);
       setPerPageS(response.data.per_page);
@@ -41,11 +42,28 @@ const CategoryList = () => {
 
   const handlePageSChange = (pageNumber) => {
     axios
-      .get("http://127.0.0.1:8000/api/categories?page=" + pageNumber)
+      .get("http://127.0.0.1:8000/api/sub-categories?page=" + pageNumber)
       .then((response) => {
         setSubCategories(response.data.data);
         setActivePageS(pageNumber);
       });
+  };
+
+  const handleDelete = (item, sub) => {
+    const categoryId = item.id;
+    if (sub) {
+      axios
+        .post(`http://127.0.0.1:8000/api/sub-category/delete`, { categoryId })
+        .then(() =>
+          setSubCategories(subCategories.filter((x) => x.id !== item.id))
+        )
+        .catch((error) => console.log(error));
+    } else {
+      axios
+        .post(`http://127.0.0.1:8000/api/category/delete`, { categoryId })
+        .then(() => setCategories(categories.filter((x) => x.id !== item.id)))
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
@@ -56,7 +74,7 @@ const CategoryList = () => {
       <div className="card-body">
         <div className="container-fluid row listCategory">
           <div
-            className="col-md-6"
+            className="col-md-5"
             style={{
               paddingRight: 30,
               borderRight: "rgb(237 237 237) 1px solid",
@@ -69,15 +87,18 @@ const CategoryList = () => {
                 </h5>
               </div>
               <div className="button-add">
-                <AddButton title="Thêm danh mục sản phẩm chính" sub={0} />
+                <AddButton
+                  title="Thêm danh mục sản phẩm chính"
+                  sub={0}
+                  setCategories={setCategories}
+                />
               </div>
             </div>
-            <table className="table table-striped" style={{marginBottom: 30}}>
+            <table className="table table-striped" style={{ marginBottom: 30 }}>
               <thead>
                 <tr>
                   <th style={{ width: "10%" }}>ID</th>
-                  <th style={{ width: "25%" }}>Tên danh mục</th>
-                  <th style={{ width: "40%" }}>Tên các danh mục phụ</th>
+                  <th style={{ width: "65%" }}>Tên danh mục chính</th>
                   <th style={{ width: "25%" }}></th>
                 </tr>
               </thead>
@@ -86,29 +107,17 @@ const CategoryList = () => {
                   <tr key={cat.id}>
                     <td>{cat.id}</td>
                     <td>{cat.name}</td>
-                    <td>
-                      {cat.subs.map((sub) => (
-                        <p key={sub.id} style={{ marginBottom: 0 }}>
-                          {sub.name}
-                        </p>
-                      ))}
-                    </td>
                     <td style={{ textAlign: "right" }}>
-                      <Link
-                        to={"/admin/category/edit/" + cat.id}
-                        style={{
-                          paddingRight: "20px",
-                          color: "black",
-                          textDecoration: "none",
-                        }}
-                      >
-                        <PencilFill />
-                      </Link>
+                      <EditButton
+                        title="Chỉnh sửa danh mục chính"
+                        category={cat}
+                        sub={0}
+                      />
                       <button
-                        // onClick={() => {
-                        //   if (window.confirm("Bạn muốn xóa sản phẩm này?"))
-                        //     handleDelete(cat);
-                        // }}
+                        onClick={() => {
+                          if (window.confirm("Bạn muốn xóa danh mục này?"))
+                            handleDelete(cat);
+                        }}
                         style={{
                           color: "#9e312c",
                           paddingRight: "20px",
@@ -131,7 +140,7 @@ const CategoryList = () => {
             />
           </div>
           <div
-            className="col-md-6 sub-cate"
+            className="col-md-7 sub-cate"
             style={{
               paddingLeft: 30,
               borderLeft: "rgb(237 237 237) 1px solid",
@@ -144,14 +153,20 @@ const CategoryList = () => {
                 </h5>
               </div>
               <div className="button-add">
-                <AddButton title="Thêm danh mục sản phẩm phụ" sub={1} />
+                <AddButton
+                  title="Thêm danh mục sản phẩm phụ"
+                  sub={1}
+                  categories={categories}
+                  setSubCategories={setSubCategories}
+                />
               </div>
             </div>
             <table className="table table-striped">
               <thead>
                 <tr>
                   <th style={{ width: "15%" }}>ID</th>
-                  <th style={{ width: "60%" }}>Tên danh mục phụ</th>
+                  <th style={{ width: "35%" }}>Tên danh mục phụ</th>
+                  <th style={{ width: "25%" }}>Tên danh mục chính</th>
                   <th style={{ width: "25%" }}></th>
                 </tr>
               </thead>
@@ -160,22 +175,19 @@ const CategoryList = () => {
                   <tr key={sub.id}>
                     <td>{sub.id}</td>
                     <td>{sub.name}</td>
+                    <td>{sub.category?.name}</td>
                     <td style={{ textAlign: "right" }}>
-                      <Link
-                        to={"/admin/category/edit/" + sub.id}
-                        style={{
-                          paddingRight: "20px",
-                          color: "black",
-                          textDecoration: "none",
-                        }}
-                      >
-                        <PencilFill />
-                      </Link>
+                      <EditButton
+                        title="Chỉnh sửa danh mục phụ"
+                        category={sub}
+                        sub={1}
+                        categories={categories}
+                      />
                       <button
-                        // onClick={() => {
-                        //   if (window.confirm("Bạn muốn xóa sản phẩm này?"))
-                        //     handleDelete(cat);
-                        // }}
+                        onClick={() => {
+                          if (window.confirm("Bạn muốn xóa sản phẩm này?"))
+                            handleDelete(sub, sub);
+                        }}
                         style={{
                           color: "#9e312c",
                           paddingRight: "20px",

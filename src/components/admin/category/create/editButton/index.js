@@ -2,16 +2,10 @@ import React, { useState } from "react";
 import { Modal } from "antd";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import "./index.css";
 import axios from "axios";
+import { PencilFill } from "react-bootstrap-icons";
 
-const AddButton = ({
-  title,
-  sub,
-  categories,
-  setCategories,
-  setSubCategories,
-}) => {
+const EditButton = ({ title, category, sub, categories }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -26,31 +20,29 @@ const AddButton = ({
     setIsModalVisible(false);
   };
 
-  const handleCreateCategory = ({ name, categoryId }) => {
+  const handleEditCategory = ({ name, categoryId }) => {
     if (sub === 1) {
       axios
-        .post(`http://127.0.0.1:8000/api/sub-categories`, { name, categoryId })
-        .then((res) => {
+        .post(`http://127.0.0.1:8000/api/sub-category/${category.id}`, {
+          name,
+          categoryId,
+        })
+        .then(() => {
           alert("success");
-          setSubCategories(res.data.data);
-          handleCancel();
         });
-    }
-    if (sub === 0) {
+    } else {
       axios
-        .post(`http://127.0.0.1:8000/api/categories`, { name })
-        .then((res) => {
+        .post(`http://127.0.0.1:8000/api/category/${categoryId}`, { name })
+        .then(() => {
           alert("success");
-          setCategories(res.data.data);
-          handleCancel();
         });
     }
   };
 
   return (
     <>
-      <button className="btn btn-add" onClick={showModal}>
-        Thêm danh mục mới
+      <button className="button-edit" onClick={showModal}>
+        <PencilFill />
       </button>
       <Modal
         style={{ left: 105, marginTop: 90 }}
@@ -61,14 +53,14 @@ const AddButton = ({
       >
         <Formik
           initialValues={{
-            name: "",
-            categoryId: 0,
+            name: category.name,
+            categoryId: sub === 1 ? category.category?.id : category.id,
           }}
           validationSchema={Yup.object().shape({
             name: Yup.string().required("* Tên danh mục không được để trống!"),
             categoryId: Yup.string().required("* Vui lòng chọn danh mục chính"),
           })}
-          onSubmit={(values) => handleCreateCategory(values)}
+          onSubmit={(values) => handleEditCategory(values)}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
             <form
@@ -117,7 +109,7 @@ const AddButton = ({
                         onChange={handleChange}
                         className="form-control input-sm"
                       >
-                        <option value={0}>Chọn một danh mục</option>
+                        <option value="">Chọn một danh mục</option>
                         {categories.map((item) => (
                           <option key={item.id} value={item.id}>
                             {item.name}
@@ -138,7 +130,7 @@ const AddButton = ({
                   <label className="col-lg-3 col-md-3 control-label"></label>
                   <div className="col-lg-6 col-md-9">
                     <button type="submit" className="btn btn-pink">
-                      Tạo mới
+                      Chỉnh sửa
                     </button>
                   </div>
                 </div>
@@ -151,4 +143,4 @@ const AddButton = ({
   );
 };
 
-export default AddButton;
+export default EditButton;

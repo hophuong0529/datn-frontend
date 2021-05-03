@@ -5,7 +5,7 @@ export default function Description(props) {
       <div className="blk-pview-title">Mô tả sản phẩm</div>
       <div className="content full clearfix">
         <p className="descrip">
-          - <b>Xưởng sản xuất: </b>
+          - <b>Nhà cung cấp: </b>
           {producer?.name}
         </p>
         <p

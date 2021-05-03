@@ -27,6 +27,9 @@ import Profile from "./components/user/profile/infomation";
 import ChangePassword from "./components/user/profile/changePassword";
 import Alert from "./components/user/checkoutPage/alert/Alert";
 import Order from "./components/user/profile/order";
+import ProducerList from "./components/admin/producer/list";
+import OrderList from "./components/admin/order/list";
+import UserList from "./components/admin/user/list";
 
 export default function App() {
   return (
@@ -54,6 +57,17 @@ export default function App() {
                         path="/admin/categories"
                         component={CategoryList}
                       />
+                      <Route
+                        exact
+                        path="/admin/producers"
+                        component={ProducerList}
+                      />
+                      <Route
+                        exact
+                        path="/admin/users"
+                        component={UserList}
+                      />
+                      <Route exact path="/admin/orders" component={OrderList} />
                       <Route
                         path="/admin/product/create"
                         component={AddProduct}

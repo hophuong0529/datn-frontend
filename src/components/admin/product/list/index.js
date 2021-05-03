@@ -2,7 +2,7 @@ import { PencilFill, TrashFill } from "react-bootstrap-icons";
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./overview.css";
+import "./index.css";
 import Paginate from "../../../pagination/Paginate";
 
 const ProductList = () => {
@@ -37,6 +37,7 @@ const ProductList = () => {
         setActivePage(pageNumber);
       });
   };
+
   const handleDelete = (item) => {
     const productId = item.id;
     axios
@@ -74,9 +75,7 @@ const ProductList = () => {
           <tbody className="listProduct">
             {products.map((product) => (
               <Fragment key={product.id}>
-                <tr
-                  onClick={() => handleOnClick(product.id)}
-                >
+                <tr onClick={() => handleOnClick(product.id)}>
                   <td>{product.id}</td>
                   <td>{product.code}</td>
                   <td>
@@ -157,7 +156,7 @@ const ProductList = () => {
                       </span>
                     </p>
                     <p>
-                      <b>Xưởng sản xuất:</b> {product.producer.name}
+                      <b>Nhà cung cấp:</b> {product.producer.name}
                     </p>
                     <p>
                       <b>Danh mục sản phẩm:</b> {product.sub.name}

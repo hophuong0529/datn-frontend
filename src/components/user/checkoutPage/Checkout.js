@@ -91,6 +91,7 @@ export default function Checkout() {
             onSubmit={handleSubmit}
           >
             <div className="row">
+              <Cart cartItems={cartItems} totalCart={totalCart} />
               <Infomation
                 values={values}
                 errors={errors}
@@ -98,7 +99,6 @@ export default function Checkout() {
                 handleChange={handleChange}
               />
               <Method values={values} handleChange={handleChange} />
-              <Cart cartItems={cartItems} totalCart={totalCart} />
             </div>
           </form>
         )}

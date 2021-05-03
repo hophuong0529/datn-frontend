@@ -1,17 +1,23 @@
 import axios from "axios";
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../contexts/UserContext";
-import "./table.css";
+import React, { useEffect, useState } from "react";
+import { Fragment } from "react";
+import { CaretDownFill } from "react-bootstrap-icons";
+import EditButton from "../create/editButton";
+import "./index.css";
 
-export default function Table() {
+const OrderList = () => {
   const [orders, setOrders] = useState([]);
-  const [user] = useContext(UserContext);
+  const [states, setStates] = useState([]);
   const [activeIndex, setActiveIndex] = useState([]);
+
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/orders/${user.id}`).then((response) => {
+    axios.get("http://127.0.0.1:8000/api/orders").then((response) => {
       setOrders(response.data);
     });
-  }, [user]);
+    axios.get("http://127.0.0.1:8000/api/states").then((response) => {
+      setStates(response.data);
+    });
+  }, []);
 
   const handleOnClick = (index) => {
     const exist = activeIndex.findIndex((x) => x === index) !== -1;
@@ -23,58 +29,81 @@ export default function Table() {
   };
 
   return (
-    <div className="blk-user-right blk-user-bor full d-block">
-      <div className="header-pdd-order">
-        <header>
-          <h1>Lịch sử đơn hàng</h1>
-        </header>
+    <>
+      <div className="card-top">
+        <div className="title">
+          <h2>Danh sách các hóa đơn bán</h2>
+        </div>
       </div>
-      <div className="table-responsive">
-        <table className="tableOrder table">
+      <div className="card-body">
+        <table className="table table-striped table-orders">
           <thead>
             <tr>
-              <th>Mã đơn hàng</th>
-              <th className="text-center">Ngày</th>
-              <th className="text-center">Tổng đơn</th>
-              <th className="text-center">Trạng thái</th>
-              <th className="text-center"></th>
+              <th style={{ width: "5%" }}>ID</th>
+              <th style={{ width: "10%" }}>Mã đơn hàng</th>
+              <th style={{ width: "12%" }}>Tên người đặt</th>
+              <th style={{ width: "15%" }}>Tổng tiền</th>
+              <th style={{ width: "20%" }}>PT thanh toán</th>
+              <th style={{ width: "13%" }}>Trạng thái</th>
+              <th style={{ width: "15%" }}>Ngày tạo</th>
+              <th style={{ width: "10%" }}></th>
             </tr>
           </thead>
           <tbody>
             {orders.map((item, index) => (
-              <Fragment key={item.id}>
-                <tr className="listItemOrder">
-                  <td className="code">
-                    <strong>{item.code}</strong>
-                  </td>
-                  <td className="date text-center">{item.created_at}</td>
-                  <td className="text-center">
-                    {item.total_bill.toLocaleString()} vnd
-                  </td>
-                  <td className="status text-center">{item.status}</td>
-                  <td className="action text-center">
-                    <button onClick={() => handleOnClick(index)}>
-                      Xem Chi tiết
+              <Fragment>
+                <tr key={item.id}>
+                  <td>{item.id}</td>
+                  <td>{item.code}</td>
+                  <td>{item.user.name}</td>
+                  <td>{item.total_bill.toLocaleString()} VNĐ</td>
+                  <td>{item.method.name}</td>
+                  <td>{item.status.status}</td>
+                  <td>{item.created_at}</td>
+                  <td style={{ textAlign: "right" }}>
+                    <EditButton
+                      setOrders={setOrders}
+                      order={item}
+                      states={states}
+                    />
+                    <button
+                      onClick={() => handleOnClick(index)}
+                      style={{
+                        color: "#9e312c",
+                        paddingRight: "20px",
+                        border: "none",
+                        background: "none",
+                      }}
+                    >
+                      <CaretDownFill />
                     </button>
                   </td>
                 </tr>
                 <tr
-                  className={`listOrderIf ${
+                  className={`listOrderIf${
                     activeIndex.findIndex((x) => x === index) !== -1
-                      ? "open"
+                      ? " open"
                       : ""
                   }`}
                 >
-                  <td colSpan="5">
-                    <table className="col-md-12">
+                  <td colSpan="8">
+                    <table className="table-pro col-md-12">
                       <thead>
                         <tr>
-                          <td colSpan="5" className="addressOrder">
+                          <td
+                            colSpan="10"
+                            className="addressOrder"
+                            style={{
+                              backgroundColor: "#fff",
+                              borderTop: "none",
+                              textAlign: "left",
+                            }}
+                          >
                             <label>ĐỊA CHỈ NHẬN HÀNG:</label>
                             <p>Họ tên: {item.receiver.name}</p>
                             <p>Điện thoại: {item.receiver.mobile}</p>
                             <p>Địa chỉ: {item.receiver.address}</p>
-                            <p>Hình thức thanh toán: {item.method}</p>
+                            <p>Hình thức thanh toán: {item.method.name}</p>
                             <p>
                               <b>Ghi chú:</b> {item.receiver.note}
                             </p>
@@ -113,7 +142,7 @@ export default function Table() {
                         ))}
                         <tr className="total">
                           <td colSpan="3"></td>
-                          <td className="text-right" colSpan="2">
+                          <td className="text-right" colSpan="2" style={{marginTop: 10}}>
                             <p>
                               <b>TỔNG TIỀN: </b>
                               {(item.total_bill - 35000).toLocaleString()} VNĐ
@@ -138,9 +167,8 @@ export default function Table() {
           </tbody>
         </table>
       </div>
-      <div className="d-block full text-center">
-        <ul className="pagination justify-content-center"></ul>
-      </div>
-    </div>
+    </>
   );
-}
+};
+
+export default OrderList;

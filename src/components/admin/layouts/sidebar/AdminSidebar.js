@@ -53,39 +53,24 @@ const AdminSidebar = () => {
               <Link to="/admin/categories">Quản lý danh mục</Link>
             </li>
             <li>
-              <a href="buttons.html">Quản lý màu sắc</a>
+              <Link href="/admin/colors">Quản lý màu sắc</Link>
             </li>
             <li>
-              <a href="panels.html">Quản lý nhà cung cấp</a>
-            </li>
-          </ul>
-        </li>
-        <li className="sub-menu dcjq-parent-li">
-          <button className="dcjq-parent" onClick={() => handleOnClick(2)}>
-            <ClipboardCheck />
-            <span>Quản lý đơn hàng</span>
-          </button>
-          <ul
-            className={`sub${
-              activeIndex.findIndex((x) => x === 2) !== -1 ? " open" : ""
-            }`}
-          >
-            <li>
-              <a href="general.html">Quản lý hóa đơn bán</a>
-            </li>
-            <li>
-              <a href="buttons.html">Quản lý trạng thái</a>
-            </li>
-            <li>
-              <a href="panels.html">Quản lý người nhận</a>
+              <Link to="/admin/producers">Quản lý nhà cung cấp</Link>
             </li>
           </ul>
         </li>
         <li className="mt">
-          <a href="index.html">
+          <Link to="/admin/orders">
+            <ClipboardCheck />
+            <span>Quản lý đơn hàng</span>
+          </Link>
+        </li>
+        <li className="mt">
+          <Link to="/admin/users">
             <Person />
             <span>Quản lý người dùng</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

@@ -170,7 +170,7 @@ export default function Form(props) {
                   </td>
                 </tr>
                 <td style={{ fontWeight: "bold", width: "25%" }}>
-                  Xưởng sản xuất
+                  Nhà cung cấp
                 </td>
                 <td>
                   <label>
@@ -180,7 +180,7 @@ export default function Form(props) {
                       onChange={(e) => setProducerId(e.target.value)}
                       className="form-control"
                     >
-                      <option value="">Chọn một xưởng sản xuất</option>
+                      <option value="">Chọn một nhà cung cấp</option>
                       {producers.map((item) => (
                         <option key={item.id} value={item.id}>
                           {item.name}
