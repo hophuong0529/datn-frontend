@@ -30,6 +30,7 @@ import Order from "./components/user/profile/order";
 import ProducerList from "./components/admin/producer/list";
 import OrderList from "./components/admin/order/list";
 import UserList from "./components/admin/user/list";
+import ColorList from "./components/admin/color/list";
 
 export default function App() {
   return (
@@ -61,6 +62,11 @@ export default function App() {
                         exact
                         path="/admin/producers"
                         component={ProducerList}
+                      />
+                       <Route
+                        exact
+                        path="/admin/colors"
+                        component={ColorList}
                       />
                       <Route
                         exact

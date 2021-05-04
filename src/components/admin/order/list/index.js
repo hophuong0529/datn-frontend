@@ -122,8 +122,8 @@ const OrderList = () => {
                           <tr key={detail.id}>
                             <td>
                               <img
-                                width="80"
-                                height="60"
+                                width="75.8"
+                                height="69.5"
                                 src={
                                   process.env.REACT_APP_URL_IMAGE +
                                   detail.product.images[0].path
@@ -142,7 +142,11 @@ const OrderList = () => {
                         ))}
                         <tr className="total">
                           <td colSpan="3"></td>
-                          <td className="text-right" colSpan="2" style={{marginTop: 10}}>
+                          <td
+                            className="text-right"
+                            colSpan="2"
+                            style={{ marginTop: 10 }}
+                          >
                             <p>
                               <b>TỔNG TIỀN: </b>
                               {(item.total_bill - 35000).toLocaleString()} VNĐ

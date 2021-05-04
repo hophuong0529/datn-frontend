@@ -13,7 +13,9 @@ export const CartProvider = (props) => {
       axios
         .get(`http://127.0.0.1:8000/api/cart/${user.id}`)
         .then((response) => {
-          setCartItems(response.data.cartItems.map((el) => el.product));
+          if (response.data.cartItems) {
+            setCartItems(response.data.cartItems.map((el) => el.product));
+          }
         });
     }
   }, [user]);

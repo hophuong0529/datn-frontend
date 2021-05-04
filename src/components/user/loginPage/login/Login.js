@@ -69,7 +69,7 @@ export default function Login() {
                   onChange={handleChange}
                   placeholder="Nhập tên đăng nhập"
                 />
-                <small id="passwordHelpBlock" className="form-text">
+                <small id="helpBlock" className="form-text">
                   {touched.username && errors.username}
                 </small>
               </div>

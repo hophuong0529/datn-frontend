@@ -53,7 +53,7 @@ const AdminSidebar = () => {
               <Link to="/admin/categories">Quản lý danh mục</Link>
             </li>
             <li>
-              <Link href="/admin/colors">Quản lý màu sắc</Link>
+              <Link to="/admin/colors">Quản lý màu sắc</Link>
             </li>
             <li>
               <Link to="/admin/producers">Quản lý nhà cung cấp</Link>
