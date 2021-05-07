@@ -33,7 +33,7 @@ const EditButton = ({ states, order, setOrders }) => {
   return (
     <>
       <button className="button-edit" onClick={showModal}>
-        <PencilFill />
+        <PencilFill style={{ marginTop: -5 }} />
       </button>
       <Modal
         style={{ left: 105, marginTop: 90 }}

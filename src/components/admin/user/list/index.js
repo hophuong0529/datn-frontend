@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import EditButton from "../create/editButton/index";
-import "./index.css";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { List, TrashFill } from "react-bootstrap-icons";
-import Paginate from "../../../pagination/Paginate";
+import Paginate from "../../../../pagination/Paginate";
 import AddButton from "../create/addButton";
 import EditButton from "../create/editButton";
 

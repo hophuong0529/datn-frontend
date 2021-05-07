@@ -1,9 +1,5 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import ProductList from "./components/admin/product/list";
-import CategoryList from "./components/admin/category/list";
-import AddProduct from "./components/admin/product/create/AddProduct";
-import EditProduct from "./components/admin/product/create/EditProduct";
 import Header from "./components/user/layouts/header/Header";
 import Footer from "./components/user/layouts/footer/Footer";
 import {
@@ -27,10 +23,14 @@ import Profile from "./components/user/profile/infomation";
 import ChangePassword from "./components/user/profile/changePassword";
 import Alert from "./components/user/checkoutPage/alert/Alert";
 import Order from "./components/user/profile/order";
-import ProducerList from "./components/admin/producer/list";
 import OrderList from "./components/admin/order/list";
 import UserList from "./components/admin/user/list";
-import ColorList from "./components/admin/color/list";
+import ProducerList from "./components/admin/product/producer/list";
+import ColorList from "./components/admin/product/color/list";
+import ProductList from "./components/admin/product/info/list";
+import CategoryList from "./components/admin/product/category/list";
+import AddProduct from "./components/admin/product/info/create/AddProduct";
+import EditProduct from "./components/admin/product/info/create/EditProduct";
 
 export default function App() {
   return (

@@ -13,31 +13,6 @@
   padding-bottom: 10px;
 }
 
-.listProduct .open {
-  display: table-row !important;
-}
-
-.listProduct .productDetail {
-  display: none;
-  text-align: left;
-  padding-left: 50px;
-}
-
-.productDetail p {
-  margin-bottom: 0;
-}
-
-.productDetail .imgProduct {
-  width: 50%;
-  float: right;
-}
-
-.productDetail .imgProduct {
-  width: 50%;
-  float: right;
-  padding: 5px;
-}
-
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #fff0e5 !important;
 }
@@ -92,4 +67,14 @@
 
 .listCategory .card-top {
   margin: 0px;
+}
+
+.imgProduct .col-md-3 {
+  padding-left: 0;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
+.descrip-pro p {
+  margin-bottom: 0;
 }

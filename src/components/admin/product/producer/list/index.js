@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { TrashFill } from "react-bootstrap-icons";
 import AddButton from "../create/addButton";
 import EditButton from "../create/editButton";
-import "./index.css"
 
 const ProducerList = () => {
   const [producers, setProducers] = useState([]);

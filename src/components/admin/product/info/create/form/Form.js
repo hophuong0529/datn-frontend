@@ -17,6 +17,7 @@ export default function Form(props) {
   const [subCategoryId, setSubCategoryId] = useState(0);
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
+  const [priceImport, setPriceImport] = useState(0);
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [isTop, setIsTop] = useState(0);
@@ -31,6 +32,7 @@ export default function Form(props) {
     formData.append("code", code);
     formData.append("subcategory_id", subCategoryId);
     formData.append("discount", discount);
+    formData.append("price_import", priceImport);
     formData.append("price", price);
     formData.append("is_top", isTop);
     formData.append("description", description);
@@ -63,6 +65,7 @@ export default function Form(props) {
         .then((response) => {
           setCode(response.data.code);
           setName(response.data.name);
+          setPriceImport(response.data.price_import);
           setPrice(response.data.price);
           setDiscount(response.data.discount);
           setIsTop(response.data.is_top);
@@ -206,7 +209,21 @@ export default function Form(props) {
                   setSelectColors={setSelectColors}
                 />
                 <tr>
-                  <td style={{ fontWeight: "bold" }}>Giá</td>
+                  <td style={{ fontWeight: "bold" }}>Giá nhập </td>
+                  <td>
+                    <label>
+                      <input
+                        name="price"
+                        type="number"
+                        value={priceImport}
+                        onChange={(e) => setPriceImport(e.target.value)}
+                        className="form-control"
+                      />
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <td style={{ fontWeight: "bold" }}>Giá bán </td>
                   <td>
                     <label>
                       <input

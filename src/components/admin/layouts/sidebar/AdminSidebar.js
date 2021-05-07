@@ -69,7 +69,7 @@ const AdminSidebar = () => {
         <li className="mt">
           <Link to="/admin/users">
             <Person />
-            <span>Quản lý người dùng</span>
+            <span>Quản lý tài khoản</span>
           </Link>
         </li>
       </ul>

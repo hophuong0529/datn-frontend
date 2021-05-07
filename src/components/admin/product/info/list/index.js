@@ -3,14 +3,29 @@ import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./index.css";
-import Paginate from "../../../pagination/Paginate";
+import Paginate from "../../../../pagination/Paginate";
+import { Modal } from "antd";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
   const [totalItemsPage, setTotalItemsPage] = useState(0);
   const [activePage, setActivePage] = useState(1);
-  const [activeProduct, setActiveProduct] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [product, setProduct] = useState({});
+
+  const showModal = (selectProduct) => {
+    setIsModalVisible(true);
+    setProduct(selectProduct);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/products").then((response) => {
@@ -19,15 +34,6 @@ const ProductList = () => {
       setTotalItemsPage(response.data.total);
     });
   }, []);
-
-  const handleOnClick = (id) => {
-    const exist = activeProduct.findIndex((x) => x === id) !== -1;
-    if (!exist) {
-      setActiveProduct([...activeProduct, id]);
-    } else {
-      setActiveProduct(activeProduct.filter((x) => x !== id));
-    }
-  };
 
   const handlePageChange = (pageNumber) => {
     axios
@@ -58,15 +64,69 @@ const ProductList = () => {
           </Link>
         </div>
       </div>
+      <Modal
+        style={{ left: 105 }}
+        visible={isModalVisible}
+        title="Thông tin chi tiết sản phẩm"
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <div className="modal-pro">
+          <h4 style={{ marginBottom: 0 }}>{product.name}</h4>
+          <br />
+          <b>Mã sản phẩm:</b> {product.code}&emsp;&emsp;
+          <b>Danh mục sản phẩm:</b> {product.sub?.name}
+          <br />
+          <b>Màu sắc: </b>
+          <span>
+            {product.colors?.map((color) => (
+              <span key={color.id}>
+                {color.name} (Số lượng: {color.quantity}) &emsp;&emsp;
+              </span>
+            ))}
+          </span>
+          &emsp;&emsp;
+          <b>Sản phẩm bán chạy: </b>
+          {product.is_top === 1 ? "Có" : "Không"}
+          <br />
+          <b>Giá nhập:</b> {product.price_import?.toLocaleString()}{" "}
+          VNĐ&emsp;&emsp;
+          <b>Giá bán:</b> {product.price?.toLocaleString()} VNĐ&emsp;&emsp;
+          <b>Giảm giá:</b> {product.discount}% <br />
+          <b>Nhà cung cấp: </b>
+          {product.producer?.name} <br />
+          <b>Ngày tạo:</b> {product.created_at} <br />
+          <b>Mô tả:</b>
+          <span
+            className="descrip-pro"
+            dangerouslySetInnerHTML={{
+              __html: product.description,
+            }}
+          ></span>
+          <b>Hình ảnh:</b>
+          <div className="container-fluid imgProduct">
+            <div className="row">
+              {product.images?.map((img) => (
+                <div className="col-md-3" key={img.id}>
+                  <img
+                    src={process.env.REACT_APP_URL_IMAGE + img.path}
+                    alt=""
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Modal>
       <div className="card-body">
         <table className="table table-striped">
           <thead>
             <tr>
               <th style={{ width: "6%" }}>ID</th>
               <th style={{ width: "10%" }}>Mã sản phẩm</th>
-              <th style={{ width: "25%" }}>Hình ảnh</th>
-              <th style={{ width: "15%" }}>Tên</th>
-              <th style={{ width: "15%" }}>Đơn giá</th>
+              <th style={{ width: "20%" }}>Hình ảnh</th>
+              <th style={{ width: "23%" }}>Tên</th>
+              <th style={{ width: "12%" }}>Giá bán</th>
               <th style={{ width: "10%" }}>Số lượng</th>
               <th style={{ width: "9%" }}>Giảm giá</th>
               <th style={{ width: "10%" }}></th>
@@ -75,7 +135,7 @@ const ProductList = () => {
           <tbody className="listProduct">
             {products.map((product) => (
               <Fragment key={product.id}>
-                <tr onClick={() => handleOnClick(product.id)}>
+                <tr onClick={() => showModal(product)}>
                   <td>{product.id}</td>
                   <td>{product.code}</td>
                   <td>
@@ -129,69 +189,6 @@ const ProductList = () => {
                     >
                       <TrashFill />
                     </button>
-                  </td>
-                </tr>
-                <tr
-                  className={`productDetail${
-                    activeProduct.findIndex((x) => x === product.id) !== -1
-                      ? " open"
-                      : ""
-                  }`}
-                >
-                  <td colSpan="4">
-                    <p>
-                      <b>Tên sản phẩm:</b> {product.name}
-                    </p>
-                    <p>
-                      <b>Mã sản phẩm:</b> {product.code}
-                    </p>
-                    <p>
-                      <b>Màu sắc: </b>
-                      <span>
-                        {product.colors.map((color) => (
-                          <span key={color.id}>
-                            <br />- {color.name} (Số lượng: {color.quantity})
-                          </span>
-                        ))}
-                      </span>
-                    </p>
-                    <p>
-                      <b>Nhà cung cấp:</b> {product.producer.name}
-                    </p>
-                    <p>
-                      <b>Danh mục sản phẩm:</b> {product.sub.name}
-                    </p>
-                    <p>
-                      <b>Giá sản phẩm:</b> {product.price.toLocaleString()}{" "}
-                      VNĐ&emsp;&emsp;
-                      <b>Số lượng:</b> {product.quantity}
-                    </p>
-                    <p>
-                      <b>Giảm giá:</b> {product.discount}%&emsp;&emsp;
-                      <b>Sản phẩm bán chạy: </b>
-                      {product.is_top === 1 ? "Có" : "Không"}
-                    </p>
-                    <p>
-                      <b>Mô tả:</b>
-                      <span
-                        dangerouslySetInnerHTML={{
-                          __html: product.description,
-                        }}
-                      ></span>
-                    </p>
-                    <p>
-                      <b>Ngày tạo:</b> {product.created_at}
-                    </p>
-                  </td>
-                  <td colSpan="4">
-                    {product.images.map((img) => (
-                      <div className="imgProduct" key={img.id}>
-                        <img
-                          src={process.env.REACT_APP_URL_IMAGE + img.path}
-                          alt=""
-                        />
-                      </div>
-                    ))}
                   </td>
                 </tr>
               </Fragment>
