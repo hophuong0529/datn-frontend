@@ -54,12 +54,12 @@ export default function Header() {
               </p>
               <p>
                 <span style={{ fontSize: 14 }}>
-                  <Link to="#">VỀ LAKEY</Link>
+                  <Link to="/admin">QUẢN TRỊ VIÊN</Link>
                 </span>
               </p>
               <p>
                 <span style={{ fontSize: 14 }}>
-                  <Link to="#">TUYỂN DỤNG</Link>
+                  <Link to="#">VỀ LAKEY</Link>
                 </span>
               </p>
               <p></p>
