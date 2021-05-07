@@ -6,6 +6,7 @@ import service2 from "../../../../assets/images/service-2.png";
 import service3 from "../../../../assets/images/service-3.png";
 import service4 from "../../../../assets/images/service-4.png";
 import { Link } from "react-router-dom";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 import "./footer.css";
 
 export default function Footer() {
@@ -132,6 +133,7 @@ export default function Footer() {
           <strong> Phương Hồ</strong>
         </span>
       </div>
+      <MessengerCustomerChat pageId="109491107968552" appId="469341577668904" />
     </Fragment>
   );
 }

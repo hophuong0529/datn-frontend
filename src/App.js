@@ -31,6 +31,7 @@ import ProductList from "./components/admin/product/info/list";
 import CategoryList from "./components/admin/product/category/list";
 import AddProduct from "./components/admin/product/info/create/AddProduct";
 import EditProduct from "./components/admin/product/info/create/EditProduct";
+import { General } from "./components/admin/statistic/general";
 
 export default function App() {
   return (
@@ -50,6 +51,11 @@ export default function App() {
                       <Route exact path="/admin/" component={ProductList} />
                       <Route
                         exact
+                        path="/admin/statistic"
+                        component={General}
+                      />
+                      <Route
+                        exact
                         path="/admin/products"
                         component={ProductList}
                       />
@@ -63,16 +69,8 @@ export default function App() {
                         path="/admin/producers"
                         component={ProducerList}
                       />
-                       <Route
-                        exact
-                        path="/admin/colors"
-                        component={ColorList}
-                      />
-                      <Route
-                        exact
-                        path="/admin/users"
-                        component={UserList}
-                      />
+                      <Route exact path="/admin/colors" component={ColorList} />
+                      <Route exact path="/admin/users" component={UserList} />
                       <Route exact path="/admin/orders" component={OrderList} />
                       <Route
                         path="/admin/product/create"

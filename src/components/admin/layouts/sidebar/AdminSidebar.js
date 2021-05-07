@@ -30,11 +30,26 @@ const AdminSidebar = () => {
           </a>
         </p>
         <h6 className="centered">Admin</h6>
-        <li className="mt">
-          <a href="index.html">
+        <li className="sub-menu dcjq-parent-li">
+          <button className="dcjq-parent" onClick={() => handleOnClick(2)}>
             <Gem />
             <span>Thống kê</span>
-          </a>
+          </button>
+          <ul
+            className={`sub${
+              activeIndex.findIndex((x) => x === 2) !== -1 ? " open" : ""
+            }`}
+          >
+            <li>
+              <Link to="/admin/statistic">Thống kê chung</Link>
+            </li>
+            <li>
+              <Link to="/admin/categories">Số lượng theo màu sắc</Link>
+            </li>
+            <li>
+              <Link to="/admin/colors">Số lượng theo danh mục</Link>
+            </li>
+          </ul>
         </li>
         <li className="sub-menu dcjq-parent-li">
           <button className="dcjq-parent" onClick={() => handleOnClick(1)}>
