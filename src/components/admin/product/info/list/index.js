@@ -103,6 +103,7 @@ const ProductList = () => {
               __html: product.description,
             }}
           ></span>
+          <br />
           <b>Hình ảnh:</b>
           <div className="container-fluid imgProduct">
             <div className="row">

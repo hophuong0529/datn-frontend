@@ -32,60 +32,73 @@ import CategoryList from "./components/admin/product/category/list";
 import AddProduct from "./components/admin/product/info/create/AddProduct";
 import EditProduct from "./components/admin/product/info/create/EditProduct";
 import { General } from "./components/admin/statistic/general";
+import { AdminLogin } from "./components/admin/login";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/admin/">
-          <AdminHeader />
-          <div className="container-fluid main-admin">
-            <div className="row">
-              <div className="col-md-2">
-                <AdminSidebar />
-              </div>
-              <div className="col-md-10">
-                <section className="wrapper">
-                  <div className="card card-content">
-                    <Switch>
-                      <Route exact path="/admin/" component={ProductList} />
-                      <Route
-                        exact
-                        path="/admin/statistic"
-                        component={General}
-                      />
-                      <Route
-                        exact
-                        path="/admin/products"
-                        component={ProductList}
-                      />
-                      <Route
-                        exact
-                        path="/admin/categories"
-                        component={CategoryList}
-                      />
-                      <Route
-                        exact
-                        path="/admin/producers"
-                        component={ProducerList}
-                      />
-                      <Route exact path="/admin/colors" component={ColorList} />
-                      <Route exact path="/admin/users" component={UserList} />
-                      <Route exact path="/admin/orders" component={OrderList} />
-                      <Route
-                        path="/admin/product/create"
-                        component={AddProduct}
-                      />
-                      <Route
-                        path="/admin/product/edit/:id"
-                        component={EditProduct}
-                      />
-                    </Switch>
+          <Switch>
+            <Route exact path="/admin/login" component={AdminLogin} />
+            <Route path="/admin">
+              <AdminHeader />
+              <div className="container-fluid main-admin">
+                <div className="row">
+                  <div className="col-md-2">
+                    <AdminSidebar />
                   </div>
-                </section>
+                  <div className="col-md-10">
+                    <section className="wrapper">
+                      <div className="card card-content">
+                        <Switch>
+                          <Route exact path="/admin" component={General} />
+                          <Route
+                            exact
+                            path="/admin/products"
+                            component={ProductList}
+                          />
+                          <Route
+                            exact
+                            path="/admin/categories"
+                            component={CategoryList}
+                          />
+                          <Route
+                            exact
+                            path="/admin/producers"
+                            component={ProducerList}
+                          />
+                          <Route
+                            exact
+                            path="/admin/colors"
+                            component={ColorList}
+                          />
+                          <Route
+                            exact
+                            path="/admin/users"
+                            component={UserList}
+                          />
+                          <Route
+                            exact
+                            path="/admin/orders"
+                            component={OrderList}
+                          />
+                          <Route
+                            path="/admin/product/create"
+                            component={AddProduct}
+                          />
+                          <Route
+                            path="/admin/product/edit/:id"
+                            component={EditProduct}
+                          />
+                        </Switch>
+                      </div>
+                    </section>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </Route>
+          </Switch>
         </Route>
         <Route path="/">
           <UserProvider>

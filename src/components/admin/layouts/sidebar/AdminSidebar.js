@@ -41,7 +41,7 @@ const AdminSidebar = () => {
             }`}
           >
             <li>
-              <Link to="/admin/statistic">Thống kê chung</Link>
+              <Link to="/admin">Thống kê chung</Link>
             </li>
             <li>
               <Link to="/admin/categories">Số lượng theo màu sắc</Link>
