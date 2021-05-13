@@ -23,7 +23,7 @@ const CategoryList = () => {
       setPerPageC(response.data.per_page);
       setTotalItemsPageC(response.data.total);
     });
-    
+
     axios.get("http://127.0.0.1:8000/api/sub-categories").then((response) => {
       setSubCategories(response.data.data);
       setPerPageS(response.data.per_page);
@@ -97,8 +97,9 @@ const CategoryList = () => {
             <table className="table table-striped" style={{ marginBottom: 30 }}>
               <thead>
                 <tr>
-                  <th style={{ width: "10%" }}>ID</th>
-                  <th style={{ width: "65%" }}>Tên danh mục chính</th>
+                  <th style={{ width: "8%" }}>ID</th>
+                  <th style={{ width: "42%" }}>Tên danh mục</th>
+                  <th style={{ width: "25%" }}>Số lượng bán</th>
                   <th style={{ width: "25%" }}></th>
                 </tr>
               </thead>
@@ -107,6 +108,7 @@ const CategoryList = () => {
                   <tr key={cat.id}>
                     <td>{cat.id}</td>
                     <td>{cat.name}</td>
+                    <td>{cat.quantity_export}</td>
                     <td style={{ textAlign: "right" }}>
                       <EditButton
                         title="Chỉnh sửa danh mục chính"
@@ -164,10 +166,11 @@ const CategoryList = () => {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th style={{ width: "15%" }}>ID</th>
-                  <th style={{ width: "35%" }}>Tên danh mục phụ</th>
-                  <th style={{ width: "25%" }}>Tên danh mục chính</th>
-                  <th style={{ width: "25%" }}></th>
+                  <th style={{ width: "8%" }}>ID</th>
+                  <th style={{ width: "29%" }}>Tên danh mục phụ</th>
+                  <th style={{ width: "26%" }}>Tên danh mục chính</th>
+                  <th style={{ width: "17%" }}>Số lượng bán</th>
+                  <th style={{ width: "20%" }}></th>
                 </tr>
               </thead>
               <tbody>
@@ -176,6 +179,7 @@ const CategoryList = () => {
                     <td>{sub.id}</td>
                     <td>{sub.name}</td>
                     <td>{sub.category?.name}</td>
+                    <td>{sub.quantity_export}</td>
                     <td style={{ textAlign: "right" }}>
                       <EditButton
                         title="Chỉnh sửa danh mục phụ"

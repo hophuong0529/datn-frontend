@@ -53,6 +53,7 @@ const SeeButton = (props) => {
               setActiveIndex={setActiveIndex}
               setColorId={setColorId}
               setQuantity={setQuantity}
+              handleCancel={handleCancel}
             />
           </div>
         </div>

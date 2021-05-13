@@ -36,10 +36,11 @@ const ColorList = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ width: "15%" }}>ID</th>
+              <th style={{ width: "10%" }}>ID</th>
               <th style={{ width: "20%" }}>Màu hiển thị</th>
-              <th style={{ width: "25%" }}>Tên màu</th>
-              <th style={{ width: "30%" }}>Mã màu</th>
+              <th style={{ width: "20%" }}>Tên màu</th>
+              <th style={{ width: "25%" }}>Mã màu</th>
+              <th style={{ width: "15%" }}>Số lượng bán</th>
               <th style={{ width: "10%" }}></th>
             </tr>
           </thead>
@@ -52,6 +53,7 @@ const ColorList = () => {
                 <td>
                   <div className="color-code">{item.code}</div>
                 </td>
+                <td>{item.quantity_export}</td>
                 <td style={{ textAlign: "right" }}>
                   <EditButton
                     title="Sửa thông tin màu sắc"

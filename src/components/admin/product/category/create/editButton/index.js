@@ -28,13 +28,15 @@ const EditButton = ({ title, category, sub, categories }) => {
           categoryId,
         })
         .then(() => {
-          alert("success");
+          alert("Edit success.");
+          handleCancel();
         });
     } else {
       axios
         .post(`http://127.0.0.1:8000/api/category/${categoryId}`, { name })
         .then(() => {
-          alert("success");
+          alert("Edit success.");
+          handleCancel();
         });
     }
   };

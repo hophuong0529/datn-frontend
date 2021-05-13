@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Paginate from "../../../pagination/Paginate";
 import "./index.css";
 
-export const TableProduct = ({ setRevenue }) => {
+export const TableProduct = () => {
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
   const [totalItemsPage, setTotalItemsPage] = useState(0);
@@ -13,12 +13,11 @@ export const TableProduct = ({ setRevenue }) => {
     axios
       .get("http://127.0.0.1:8000/api/statistic/product")
       .then((response) => {
-        setProducts(response.data.product.data);
-        setRevenue(response.data.revenue);
-        setPerPage(response.data.product.per_page);
-        setTotalItemsPage(response.data.product.total);
+        setProducts(response.data.data);
+        setPerPage(response.data.per_page);
+        setTotalItemsPage(response.data.total);
       });
-  }, [setRevenue]);
+  }, []);
 
   const handlePageChange = (pageNumber) => {
     axios
@@ -33,8 +32,8 @@ export const TableProduct = ({ setRevenue }) => {
     <div className="row">
       <div className="col-sm-12">
         <div className="card-box">
-          <h5 class="mt-0 font-16 mb-3">Thống kê số lượng sản phẩm</h5>
-          <div className="table-responsive">
+          <h5 className="mt-0 font-16 mb-3">Thống kê số lượng sản phẩm</h5>
+          <div className="table-responsive" style={{ marginBottom: 10 }}>
             <table className="table table-striped mails m-0 table table-actions-bar table-centered">
               <thead>
                 <tr>
@@ -48,7 +47,7 @@ export const TableProduct = ({ setRevenue }) => {
               </thead>
               <tbody>
                 {products.map((item) => (
-                  <tr>
+                  <tr key={item.id}>
                     <td>{item.id}</td>
                     <td>{item.code}</td>
                     <td>

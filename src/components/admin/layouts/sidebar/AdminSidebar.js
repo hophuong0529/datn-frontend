@@ -25,31 +25,14 @@ const AdminSidebar = () => {
     >
       <ul className="sidebar-menu" id="nav-accordion">
         <p className="centered">
-          <a href="profile.html">
-            <img src={avatar} className="img-circle" width="80" alt="" />
-          </a>
+          <img src={avatar} className="img-circle" width="80" alt="" />
         </p>
         <h6 className="centered">Admin</h6>
-        <li className="sub-menu dcjq-parent-li">
-          <button className="dcjq-parent" onClick={() => handleOnClick(2)}>
+        <li className="mt">
+          <Link to="/admin/statistic">
             <Gem />
             <span>Thống kê</span>
-          </button>
-          <ul
-            className={`sub${
-              activeIndex.findIndex((x) => x === 2) !== -1 ? " open" : ""
-            }`}
-          >
-            <li>
-              <Link to="/admin">Thống kê chung</Link>
-            </li>
-            <li>
-              <Link to="/admin/categories">Số lượng theo màu sắc</Link>
-            </li>
-            <li>
-              <Link to="/admin/colors">Số lượng theo danh mục</Link>
-            </li>
-          </ul>
+          </Link>
         </li>
         <li className="sub-menu dcjq-parent-li">
           <button className="dcjq-parent" onClick={() => handleOnClick(1)}>

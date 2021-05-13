@@ -27,6 +27,7 @@ export default function Info(props) {
     setQuantity,
     activeIndex,
     setActiveIndex,
+    handleCancel
   } = props;
 
   const priceSale = (price * (100 - discount)) / 100;
@@ -58,9 +59,11 @@ export default function Info(props) {
             priceSale,
           })
           .then(() => {
-            isRedirect
-              ? history.push("/checkout")
-              : openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+            if (isRedirect) history.push("/checkout");
+            else {
+              if (handleCancel) handleCancel();
+              openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+            }
           })
           .catch(() => {
             openNotification(

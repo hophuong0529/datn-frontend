@@ -6,7 +6,6 @@ import "./index.css";
 
 export const General = () => {
   const [statistic, setStatistic] = useState([]);
-  const [revenue, setRevenue] = useState(0);
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/statistic").then((response) => {
       setStatistic(response.data);
@@ -14,61 +13,63 @@ export const General = () => {
   }, []);
   return (
     <div className="container-fluid">
-      <div class="row">
-        <div class="col-12">
+      <div className="row">
+        <div className="col-12">
           <div>
-            <h4 class="header-title mb-3">Chào mừng bạn đến với trang quản trị viên của LAKEY!</h4>
+            <h4 className="header-title mb-3">
+              Chào mừng bạn đến với trang quản trị viên của LAKEY!
+            </h4>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
+      <div className="row">
+        <div className="col-12">
           <div>
-            <div class="card-box widget-inline">
-              <div class="row">
-                <div class="col-xl-3 col-sm-6 widget-inline-box">
-                  <div class="text-center p-3">
-                    <h2 class="mt-2">
+            <div className="card-box widget-inline">
+              <div className="row">
+                <div className="col-xl-3 col-sm-6 widget-inline-box">
+                  <div className="text-center p-3">
+                    <h2 className="mt-2">
                       <span className="vnd">VNĐ</span>
-                      <b>{revenue.toLocaleString()}</b>
+                      <b>{statistic.revenue?.toLocaleString()}</b>
                     </h2>
-                    <p class="text-muted mb-0">Doanh thu</p>
+                    <p className="text-muted mb-0">Doanh thu</p>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 widget-inline-box">
-                  <div class="text-center p-3">
-                    <h2 class="mt-2">
+                <div className="col-xl-3 col-sm-6 widget-inline-box">
+                  <div className="text-center p-3">
+                    <h2 className="mt-2">
                       <Gift
                         className="mdi mdi-access-point-network mr-2"
                         style={{ color: "#32863f" }}
                       />
                       <b>{statistic.product}</b>
                     </h2>
-                    <p class="text-muted mb-0">Sản phẩm</p>
+                    <p className="text-muted mb-0">Sản phẩm</p>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 widget-inline-box">
-                  <div class="text-center p-3">
-                    <h2 class="mt-2">
+                <div className="col-xl-3 col-sm-6 widget-inline-box">
+                  <div className="text-center p-3">
+                    <h2 className="mt-2">
                       <ClipboardCheck
-                        class="mdi mdi-black-mesa mr-2"
+                        className="mdi mdi-black-mesa mr-2"
                         style={{ color: "#ff7a7a" }}
                       />
                       <b>{statistic.order}</b>
                     </h2>
-                    <p class="text-muted mb-0">Đơn hàng</p>
+                    <p className="text-muted mb-0">Đơn hàng</p>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
-                  <div class="text-center p-3">
-                    <h2 class="mt-2">
+                <div className="col-xl-3 col-sm-6">
+                  <div className="text-center p-3">
+                    <h2 className="mt-2">
                       <Person
                         className="mdi mdi-black-mesa mr-2"
                         style={{ color: "#7575ff" }}
                       />
                       <b>{statistic.user}</b>
                     </h2>
-                    <p class="text-muted mb-0">Tài khoản</p>
+                    <p className="text-muted mb-0">Tài khoản</p>
                   </div>
                 </div>
               </div>
@@ -76,7 +77,7 @@ export const General = () => {
           </div>
         </div>
       </div>
-      <TableProduct setRevenue={setRevenue} />
+      <TableProduct />
     </div>
   );
 };
