@@ -37,6 +37,8 @@ import {
   AdminProvider,
   PrivateAdminRoute,
 } from "./components/admin/contexts/AdminContext";
+import { StoreList } from "./components/user/store";
+import { Introduce } from "./components/user/introduce";
 
 export default function App() {
   return (
@@ -121,6 +123,8 @@ export default function App() {
               <Header />
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/stores" component={StoreList} />
+                <Route exact path="/introduce" component={Introduce} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/category/:id" component={CatProduct} />

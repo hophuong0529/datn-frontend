@@ -34,8 +34,9 @@
 }
 
 .blk-user-nav li a.active,
-.blk-user-nav li a:hover {
-  color: rgb(255, 181, 112) !important;
+.blk-user-nav li a:hover,
+.blk-user-nav ul li button:hover {
+  color: #ff9c75 !important;
 }
 
 .blk-user-nav li a {

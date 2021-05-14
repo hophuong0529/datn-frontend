@@ -49,7 +49,7 @@ export default function Header() {
             <div className="col text-right">
               <p>
                 <span style={{ fontSize: 14 }}>
-                  <Link to="#">HỆ THỐNG CỬA HÀNG</Link>
+                  <Link to="/stores">HỆ THỐNG CỬA HÀNG</Link>
                 </span>
               </p>
               <p>
@@ -59,7 +59,7 @@ export default function Header() {
               </p>
               <p>
                 <span style={{ fontSize: 14 }}>
-                  <Link to="#">VỀ LAKEY</Link>
+                  <Link to="/introduce">VỀ LAKEY</Link>
                 </span>
               </p>
               <p></p>

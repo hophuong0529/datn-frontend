@@ -9,43 +9,43 @@ const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
   //category
-  const [perPageC, setPerPageC] = useState(0);
-  const [totalItemsPageC, setTotalItemsPageC] = useState(0);
-  const [activePageC, setActivePageC] = useState(1);
+  const [perCatPage, setPerCatPage] = useState(0);
+  const [totalCatPage, setTotalCatPage] = useState(0);
+  const [activeCatPage, setActiveCatPage] = useState(1);
   //subcategory
-  const [perPageS, setPerPageS] = useState(0);
-  const [totalItemsPageS, setTotalItemsPageS] = useState(0);
-  const [activePageS, setActivePageS] = useState(1);
+  const [perPage, setPerPage] = useState(0);
+  const [totalItemsPage, setTotalItemsPage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
       setCategories(response.data.data);
-      setPerPageC(response.data.per_page);
-      setTotalItemsPageC(response.data.total);
+      setPerCatPage(response.data.per_page);
+      setTotalCatPage(response.data.total);
     });
 
     axios.get("http://127.0.0.1:8000/api/sub-categories").then((response) => {
       setSubCategories(response.data.data);
-      setPerPageS(response.data.per_page);
-      setTotalItemsPageS(response.data.total);
+      setPerPage(response.data.per_page);
+      setTotalItemsPage(response.data.total);
     });
   }, []);
 
-  const handlePageCChange = (pageNumber) => {
+  const categoryPageChange = (pageNumber) => {
     axios
       .get("http://127.0.0.1:8000/api/categories?page=" + pageNumber)
       .then((response) => {
         setCategories(response.data.data);
-        setActivePageC(pageNumber);
+        setActiveCatPage(pageNumber);
       });
   };
 
-  const handlePageSChange = (pageNumber) => {
+  const subCategoryPageChange = (pageNumber) => {
     axios
       .get("http://127.0.0.1:8000/api/sub-categories?page=" + pageNumber)
       .then((response) => {
         setSubCategories(response.data.data);
-        setActivePageS(pageNumber);
+        setActivePage(pageNumber);
       });
   };
 
@@ -135,10 +135,10 @@ const CategoryList = () => {
               </tbody>
             </table>
             <Paginate
-              activePage={activePageC}
-              itemsCountPerPage={perPageC}
-              totalItemsCount={totalItemsPageC}
-              onChange={handlePageCChange}
+              activePage={activeCatPage}
+              itemsCountPerPage={perCatPage}
+              totalItemsCount={totalCatPage}
+              onChange={categoryPageChange}
             />
           </div>
           <div
@@ -207,10 +207,10 @@ const CategoryList = () => {
               </tbody>
             </table>
             <Paginate
-              activePage={activePageS}
-              itemsCountPerPage={perPageS}
-              totalItemsCount={totalItemsPageS}
-              onChange={handlePageSChange}
+              activePage={activePage}
+              itemsCountPerPage={perPage}
+              totalItemsCount={totalItemsPage}
+              onChange={subCategoryPageChange}
             />
           </div>
         </div>
