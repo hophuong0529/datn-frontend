@@ -23,7 +23,7 @@ export const TableProduct = () => {
     axios
       .get("http://127.0.0.1:8000/api/statistic/product?page=" + pageNumber)
       .then((response) => {
-        setProducts(response.data.product.data);
+        setProducts(response.data.data);
         setActivePage(pageNumber);
       });
   };

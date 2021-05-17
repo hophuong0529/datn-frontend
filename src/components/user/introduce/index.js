@@ -4,7 +4,7 @@ import intro from "../../../assets/images/introduce.png";
 
 export const Introduce = () => {
   return (
-    <main class="mains">
+    <main class="mains-intro">
       <div class="container">
         <div class="row">
           <div class="land-head col-12 text-center sty-none">

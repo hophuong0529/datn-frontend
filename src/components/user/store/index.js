@@ -5,7 +5,7 @@ import hcm from "../../../assets/images/hcm.jpg";
 
 export const StoreList = () => {
   return (
-    <main class="mains">
+    <main class="mains-store">
       <div class="container">
         <div class="row">
           <div class="land-head col-lg-12 col-12 text-center sty-none">
