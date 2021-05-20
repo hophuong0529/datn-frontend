@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./index.css";
 import login from "../../../assets/images/login.png";
-import { EnvelopeFill, LockFill } from "react-bootstrap-icons";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import axios from "axios";
@@ -80,10 +79,6 @@ export const AdminLogin = () => {
                   <small id="helpBlock" className="form-text">
                     {touched.email && errors.email}
                   </small>
-                  <span className="focus-input100"></span>
-                  <span className="symbol-input100">
-                    <EnvelopeFill />
-                  </span>
                 </div>
                 <div className="wrap-input100 validate-input">
                   <input
@@ -93,13 +88,9 @@ export const AdminLogin = () => {
                     placeholder="Mật khẩu"
                     onChange={handleChange}
                   />
-                  <small id="passwordHelpBlock" className="form-text">
+                  <small id="helpBlock" className="form-text">
                     {touched.password && errors.password}
                   </small>
-                  <span className="focus-input100"></span>
-                  <span className="symbol-input100">
-                    <LockFill />
-                  </span>
                 </div>
                 <div className="container-login100-form-btn">
                   <button className="login100-form-btn">Đăng nhập</button>
