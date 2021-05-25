@@ -1,25 +1,28 @@
 .product-color .color span {
-    display: inline-block;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: 1px solid #707070;
-  }
-  
-  .product-color .color {
-    align-items: center !important;
-    justify-content: center !important;
-    display: inline-flex !important;
-    margin-right: 3px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-  }
-  
-  .product-color .active {
-    border: 2px solid #707070;
-    align-items: center !important;
-    justify-content: center !important;
-    display: inline-flex !important;
-  }
-  
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #707070;
+}
+
+.product-color .color {
+  align-items: center !important;
+  justify-content: center !important;
+  display: inline-flex !important;
+  margin-right: 3px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.product-color .active {
+  border: 2px solid #707070;
+  align-items: center !important;
+  justify-content: center !important;
+  display: inline-flex !important;
+}
+
+.style-form td label {
+  margin: 0.25em;
+}

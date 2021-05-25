@@ -48,6 +48,7 @@ export default function Login() {
           </Link>
         </div>
         <Formik
+          enableReinitialize={true}
           initialValues={{ username: "", password: "" }}
           validationSchema={Yup.object().shape({
             username: Yup.string()

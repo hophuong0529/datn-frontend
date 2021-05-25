@@ -50,6 +50,7 @@ export const AdminLogin = () => {
             <p className="admini">Quản trị viên</p>
           </div>
           <Formik
+            enableReinitialize={true}
             initialValues={{ email: "", password: "" }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
