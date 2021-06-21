@@ -185,7 +185,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li className="address-store" className="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
