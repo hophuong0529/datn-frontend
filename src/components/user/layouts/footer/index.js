@@ -73,14 +73,14 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <footer class="footer tp_footer">
-        <div class="main-footer">
-          <div class="container">
-            <div class="row custom_md_3">
-              <div class="col-xs-12 col-sm-6 col-md-3 col-lg col_1">
-                <div class="footer-col">
-                  <h4 class="footer-title tp_footer">VỀ CHÚNG TÔI</h4>
-                  <div class="footer-content">
+      <footer className="footer tp_footer">
+        <div className="main-footer">
+          <div className="container">
+            <div className="row custom_md_3">
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg col_1">
+                <div className="footer-col">
+                  <h4 className="footer-title tp_footer">VỀ CHÚNG TÔI</h4>
+                  <div className="footer-content">
                     <p>
                       Ở Lakey - Phụ kiện và Quà tặng, các bạn có thể tìm thấy
                       rất nhiều items hấp dẫn như gấu bông, văn phòng phẩm,
@@ -89,51 +89,51 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-6 col-md-3 col-lg col_2">
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg col_2">
                 <div
-                  class="footer-col footer-block"
+                  className="footer-col footer-block"
                   style={{ paddingLeft: 35 }}
                 >
-                  <h4 class="footer-title tp_footer">HỖ TRỢ MUA HÀNG</h4>
-                  <div class="footer-content toggle-footer">
+                  <h4 className="footer-title tp_footer">HỖ TRỢ MUA HÀNG</h4>
+                  <div className="footer-content toggle-footer">
                     <ul>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Size Guide">
                           <ArrowRight />
                           &nbsp; Size Guide
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Chính sách khách hàng">
                           <ArrowRight />
                           &nbsp;Chính sách khách hàng
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Chính sách bảo hành">
                           <ArrowRight />
                           &nbsp;Chính sách bảo hành
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Chính sách đổi sản phẩm">
                           <ArrowRight />
                           &nbsp;Chính sách đổi sản phẩm
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Giao hàng- thanh toán">
                           <ArrowRight />
                           &nbsp;Giao hàng- thanh toán
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Bảo mật thông tin">
                           <ArrowRight />
                           &nbsp;Bảo mật thông tin
                         </a>
                       </li>
-                      <li class="item">
+                      <li className="item">
                         <a href="/" title="Tuyển dụng">
                           <ArrowRight />
                           &nbsp;Tuyển dụng
@@ -144,24 +144,24 @@ export default function Footer() {
                 </div>
               </div>
               <div
-                class="col-xs-12 col-sm-6 col-md-3 col-lg col_3 footer_none"
+                className="col-xs-12 col-sm-6 col-md-3 col-lg col_3 footer_none"
                 style={{ paddingLeft: 0 }}
               >
-                <div class="footer-col">
-                  <h4 class="footer-title tp_footer">THÔNG TIN LIÊN HỆ</h4>
-                  <div class="footer-content footer-contact footer-contact53436">
+                <div className="footer-col">
+                  <h4 className="footer-title tp_footer">THÔNG TIN LIÊN HỆ</h4>
+                  <div className="footer-content footer-contact footer-contact53436">
                     <ul>
-                      <li class="contact-2 icon">
+                      <li className="contact-2 icon">
                         <Headset />
                         &nbsp;CSKH{" "}
                         <span style={{ color: "#a73340" }}>097.654.3210</span>
                       </li>
-                      <li class="contact-5 icon">
+                      <li className="contact-5 icon">
                         <Headset />
                         &nbsp;Mua hàng{" "}
                         <span style={{ color: "#a73340" }}>097.654.3210</span>
                       </li>
-                      <li class="contact-4 icon">
+                      <li className="contact-4 icon">
                         <Envelope
                           style={{
                             marginTop: -3.5,
@@ -175,17 +175,17 @@ export default function Footer() {
                         </span>
                       </li>
                     </ul>
-                    <div class="wrapper-home-newsletter animation-tran">
-                      <div class="content-newsletter">
-                        <p class="tp_text_color">
+                    <div className="wrapper-home-newsletter animation-tran">
+                      <div className="content-newsletter">
+                        <p className="tp_text_color">
                           Đăng kí nhận thông tin ưu đãi và xu hướng mới nhất
                         </p>
-                        <div class="form-newsletter">
-                          <form accept-charset="UTF-8" class="contact-form">
-                            <div class="form-group">
+                        <div className="form-newsletter">
+                          <form accept-charset="UTF-8" className="contact-form">
+                            <div className="form-group">
                               <input
                                 id="contactFormEmail"
-                                class="inputNew form-control newsletter-input"
+                                className="inputNew form-control newsletter-input"
                                 required=""
                                 type="email"
                                 placeholder="Nhập email của bạn"
@@ -197,7 +197,7 @@ export default function Footer() {
                                 type="submit"
                                 name="submitNewsletter"
                                 id="contactFormSubmit"
-                                class="tp_button"
+                                className="tp_button"
                               >
                                 <span>Gửi</span>
                               </button>
@@ -209,13 +209,13 @@ export default function Footer() {
                   </div>
                 </div>
               </div>
-              <div class="col-xs-12 col-sm-6 col-md-3 col-lg col_4">
-                <div class="footer-col" style={{ paddingLeft: 15 }}>
-                  <h4 class="footer-title tp_footer">Fanpage</h4>
-                  <div class="footer-content footer-contact">
-                    <div class="footer-static-content">
+              <div className="col-xs-12 col-sm-6 col-md-3 col-lg col_4">
+                <div className="footer-col" style={{ paddingLeft: 15 }}>
+                  <h4 className="footer-title tp_footer">Fanpage</h4>
+                  <div className="footer-content footer-contact">
+                    <div className="footer-static-content">
                       <div
-                        class="fb-page fb_iframe_widget"
+                        className="fb-page fb_iframe_widget"
                         data-href="https://www.facebook.com/Lakey-Ph%E1%BB%A5-ki%E1%BB%87n-Qu%C3%A0-t%E1%BA%B7ng-109491107968552"
                         data-height="300"
                         data-small-header="false"
@@ -225,7 +225,7 @@ export default function Footer() {
                       >
                         <blockquote
                           cite="https://www.facebook.com/Lakey-Ph%E1%BB%A5-ki%E1%BB%87n-Qu%C3%A0-t%E1%BA%B7ng-109491107968552"
-                          class="fb-xfbml-parse-ignore"
+                          className="fb-xfbml-parse-ignore"
                         >
                           <a href="https://www.facebook.com/Lakey-Ph%E1%BB%A5-ki%E1%BB%87n-Qu%C3%A0-t%E1%BA%B7ng-109491107968552">
                             Lakey - Phụ kiện &amp; Quà tặng
