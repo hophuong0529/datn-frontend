@@ -28,7 +28,7 @@ export default function ChangePassword() {
         newPassword,
       })
       .then((response) => {
-        alert("success");
+        alert("Cập nhật thành công");
       })
       .catch(() => {
         alert("Vui lòng nhập lại mật khẩu chính xác.");

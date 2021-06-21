@@ -31,7 +31,7 @@ const AddButton = ({
       axios
         .post(`http://127.0.0.1:8000/api/sub-categories`, { name, categoryId })
         .then((res) => {
-          alert("success");
+          alert("Thêm mới thành công");
           setSubCategories(res.data.data);
           handleCancel();
         });
@@ -40,7 +40,7 @@ const AddButton = ({
       axios
         .post(`http://127.0.0.1:8000/api/categories`, { name })
         .then((res) => {
-          alert("success");
+          alert("Thêm mới thành công");
           setCategories(res.data.data);
           handleCancel();
         });

@@ -25,7 +25,7 @@ const AddButton = ({ title, setColors }) => {
     axios
       .post(`http://127.0.0.1:8000/api/colors`, { name, code })
       .then((res) => {
-        alert("success");
+        alert("Thêm mới thành công");
         setColors(res.data);
         handleCancel();
       });

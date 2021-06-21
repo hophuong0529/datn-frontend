@@ -26,7 +26,7 @@ const EditButton = ({ color, title, setColors }) => {
     axios
       .post(`http://127.0.0.1:8000/api/color/${color.id}`, { name, code })
       .then((res) => {
-        alert("success");
+        alert("Cập nhật thành công");
         setColors(res.data);
         handleCancel();
       });

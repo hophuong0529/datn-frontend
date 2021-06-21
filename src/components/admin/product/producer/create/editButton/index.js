@@ -28,7 +28,7 @@ const EditButton = ({ title, producer, setProducers }) => {
         quantity,
       })
       .then((res) => {
-        alert("success");
+        alert("Cập nhật thành công");
         setProducers(res.data);
         handleCancel();
       });

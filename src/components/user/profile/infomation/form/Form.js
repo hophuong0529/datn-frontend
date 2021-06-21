@@ -17,7 +17,7 @@ export default function Form() {
         address,
       })
       .then(() => {
-        alert("success");
+        alert("Cập nhật thành công");
       });
   };
 

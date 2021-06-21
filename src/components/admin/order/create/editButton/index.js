@@ -24,7 +24,7 @@ const EditButton = ({ states, order, setOrders }) => {
     axios
       .post(`http://127.0.0.1:8000/api/order/${order.id}`, { statusId })
       .then((res) => {
-        alert("success");
+        alert("Cập nhật thành công");
         setOrders(res.data);
         handleCancel();
       });
