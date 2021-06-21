@@ -13,7 +13,7 @@ export default function Color(props) {
   };
 
   const renderColors = (colors) => {
-    return colors.map((color) => {
+    return colors?.map((color) => {
       return (
         <tr key={color.id}>
           <td style={{ width: "40%" }}>
@@ -58,7 +58,7 @@ export default function Color(props) {
             {colors.map((el) => (
               <div
                 className={`color ${
-                  selectColors.find((x) => x.id === el.id) ? "active" : ""
+                  selectColors?.find((x) => x.id === el.id) ? "active" : ""
                 }`}
                 key={el.id}
                 onClick={() => handleColorClick(el)}

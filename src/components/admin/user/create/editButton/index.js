@@ -24,7 +24,7 @@ const EditButton = ({ user, setUsers }) => {
     axios
       .post(`http://127.0.0.1:8000/api/user/${user.id}`, { isActive })
       .then((res) => {
-        alert("Cập nhật thành công");
+        alert("Cập nhật thành công.");
         setUsers(res.data);
         handleCancel();
       });

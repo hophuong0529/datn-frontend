@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import Form from "./form/Form";
@@ -8,6 +8,15 @@ export default function EditProduct() {
   const history = useHistory();
   const slug = useParams();
   const title = "Chỉnh sửa sản phẩm";
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/api/product/${slug.id}`)
+      .then((response) => {
+        setProduct(response.data);
+      });
+  }, [slug.id]);
 
   const handleEditSubmit = (event, formData) => {
     event.preventDefault();
@@ -19,5 +28,7 @@ export default function EditProduct() {
       });
   };
 
-  return <Form handleEditSubmit={handleEditSubmit} title={title} />;
+  return (
+    <Form product={product} title={title} handleEditSubmit={handleEditSubmit} />
+  );
 }
