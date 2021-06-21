@@ -181,7 +181,7 @@ export default function Footer() {
                           Đăng kí nhận thông tin ưu đãi và xu hướng mới nhất
                         </p>
                         <div className="form-newsletter">
-                          <form accept-charset="UTF-8" className="contact-form">
+                          <form acceptCharset="UTF-8" className="contact-form">
                             <div className="form-group">
                               <input
                                 id="contactFormEmail"
@@ -191,7 +191,7 @@ export default function Footer() {
                                 placeholder="Nhập email của bạn"
                                 name="contact[email]"
                                 size="18"
-                                autocomplete="off"
+                                autoComplete="off"
                               />
                               <button
                                 type="submit"
