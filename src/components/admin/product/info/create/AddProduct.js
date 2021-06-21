@@ -11,7 +11,7 @@ export default function AddProduct() {
     event.preventDefault();
     axios.post(`http://127.0.0.1:8000/api/products`, formData).then(() => {
       alert("Thêm mới thành công.");
-      history.push("/admin");
+      history.push("/admin/products");
     });
   };
 

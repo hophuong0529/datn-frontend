@@ -15,7 +15,7 @@ export default function EditProduct() {
       .post(`http://127.0.0.1:8000/api/product/${slug.id}`, formData)
       .then(() => {
         alert("Cập nhật thành công.");
-        history.push("/admin");
+        history.push("/admin/products");
       });
   };
 
