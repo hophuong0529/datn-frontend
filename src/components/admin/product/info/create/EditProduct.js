@@ -14,8 +14,8 @@ export default function EditProduct() {
     axios
       .post(`http://127.0.0.1:8000/api/product/${slug.id}`, formData)
       .then(() => {
-        alert("Updated success.");
-        history.push("/admin");
+        alert("Cập nhật thành công");
+        history.push("/admin/products");
       });
   };
 

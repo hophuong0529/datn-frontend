@@ -28,7 +28,7 @@ const EditButton = ({ title, producer, setProducers }) => {
         quantity,
       })
       .then((res) => {
-        alert("success");
+        alert("Cập nhật thành công.");
         setProducers(res.data);
         handleCancel();
       });
@@ -147,7 +147,7 @@ const EditButton = ({ title, producer, setProducers }) => {
                   <label className="col-lg-3 col-md-3 control-label"></label>
                   <div className="col-lg-6 col-md-9">
                     <button type="submit" className="btn btn-pink">
-                      Tạo mới
+                      Chỉnh sửa
                     </button>
                   </div>
                 </div>

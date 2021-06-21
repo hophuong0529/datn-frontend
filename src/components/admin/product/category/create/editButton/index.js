@@ -28,7 +28,7 @@ const EditButton = ({ title, category, sub, categories }) => {
           categoryId,
         })
         .then(() => {
-          alert("Edit success.");
+          alert("Cập nhật thành công.");
           handleCancel();
         });
     } else {

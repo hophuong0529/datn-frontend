@@ -10,8 +10,8 @@ export default function AddProduct() {
   const handleAddSubmit = (event, formData) => {
     event.preventDefault();
     axios.post(`http://127.0.0.1:8000/api/products`, formData).then(() => {
-      alert("Created success.");
-      history.push("/admin");
+      alert("Thêm mới thành công.");
+      history.push("/admin/products");
     });
   };
 

@@ -4,13 +4,13 @@ import intro from "../../../assets/images/introduce.png";
 
 export const Introduce = () => {
   return (
-    <main class="mains-intro">
-      <div class="container">
-        <div class="row">
-          <div class="land-head col-12 text-center sty-none">
-            <h1 class="heading">Giới thiệu về Lakey</h1>
+    <main className="mains-intro">
+      <div className="container">
+        <div className="row">
+          <div className="land-head col-12 text-center sty-none">
+            <h1 className="heading">Giới thiệu về Lakey</h1>
           </div>
-          <div class="content col-12">
+          <div className="content col-12">
             <p
               dir="ltr"
               style={{
@@ -170,7 +170,7 @@ export const Introduce = () => {
               </span>
             </p>
             <ul>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -185,7 +185,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li className="address-store" class="address-store">
+              <li className="address-store" className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -200,7 +200,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -215,7 +215,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -231,7 +231,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -246,7 +246,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -289,7 +289,7 @@ export const Introduce = () => {
               </span>
             </p>
             <ul>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -304,7 +304,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -320,7 +320,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -336,7 +336,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
@@ -352,7 +352,7 @@ export const Introduce = () => {
                   </span>
                 </span>
               </li>
-              <li class="address-store">
+              <li className="address-store">
                 <span style={{ fontSize: 14 }}>
                   <span>
                     <span
