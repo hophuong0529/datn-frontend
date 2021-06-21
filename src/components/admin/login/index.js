@@ -50,15 +50,16 @@ export const AdminLogin = () => {
             <p className="admini">Quản trị viên</p>
           </div>
           <Formik
+            enableReinitialize={true}
             initialValues={{ email: "", password: "" }}
             validationSchema={Yup.object().shape({
               email: Yup.string()
                 .max(255)
-                .email("* Định dạng email không hợp lệ!")
-                .required("* Email không được để trống!"),
+                .email("Định dạng email không hợp lệ!")
+                .required("Email không được để trống!"),
               password: Yup.string()
                 .max(255)
-                .required("* Mật khẩu không được để trống!"),
+                .required("Mật khẩu không được để trống!"),
             })}
             onSubmit={(values) => handleAdminLogin(values)}
           >
@@ -76,7 +77,11 @@ export const AdminLogin = () => {
                     placeholder="Email"
                     onChange={handleChange}
                   />
-                  <small id="helpBlock" className="form-text">
+                  <small
+                    id="helpBlock"
+                    className="form-text"
+                    style={{ marginLeft: 20 }}
+                  >
                     {touched.email && errors.email}
                   </small>
                 </div>
@@ -88,7 +93,11 @@ export const AdminLogin = () => {
                     placeholder="Mật khẩu"
                     onChange={handleChange}
                   />
-                  <small id="helpBlock" className="form-text">
+                  <small
+                    id="helpBlock"
+                    className="form-text"
+                    style={{ marginLeft: 20 }}
+                  >
                     {touched.password && errors.password}
                   </small>
                 </div>

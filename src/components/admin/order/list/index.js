@@ -37,7 +37,7 @@ const OrderList = () => {
     <>
       <div className="card-top">
         <div className="title">
-          <h2>Danh sách các hóa đơn bán</h2>
+          <h2>Danh sách các đơn đặt hàng</h2>
         </div>
       </div>
       <Modal
@@ -61,8 +61,8 @@ const OrderList = () => {
                     textAlign: "left",
                   }}
                 >
-                  <label style={{fontSize: 16}}>ĐỊA CHỈ NHẬN HÀNG:</label>
-                  <p style={{fontSize: 14.5}}>
+                  <label style={{ fontSize: 16 }}>ĐỊA CHỈ NHẬN HÀNG:</label>
+                  <p style={{ fontSize: 14.5 }}>
                     <b>Họ tên:</b> {order.receiver?.name}&emsp;&emsp;
                     <b>Điện thoại:</b> {order.receiver?.mobile} <br />
                     <b>Địa chỉ:</b> {order.receiver?.address} <br />
