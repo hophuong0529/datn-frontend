@@ -7,8 +7,7 @@ export default function AddProduct() {
   const history = useHistory();
   const title = "Thêm sản phẩm mới";
 
-  const handleAddSubmit = (event, formData) => {
-    event.preventDefault();
+  const handleAddSubmit = (formData) => {
     axios.post(`http://127.0.0.1:8000/api/products`, formData).then(() => {
       alert("Thêm mới thành công.");
       history.push("/admin/products");

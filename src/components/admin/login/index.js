@@ -75,6 +75,7 @@ export const AdminLogin = () => {
                     type="text"
                     name="email"
                     placeholder="Email"
+                    value={values.email}
                     onChange={handleChange}
                   />
                   <small
@@ -90,6 +91,7 @@ export const AdminLogin = () => {
                     className="input100"
                     type="password"
                     name="password"
+                    value={values.password}
                     placeholder="Mật khẩu"
                     onChange={handleChange}
                   />

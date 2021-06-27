@@ -18,8 +18,7 @@ export default function EditProduct() {
       });
   }, [slug.id]);
 
-  const handleEditSubmit = (event, formData) => {
-    event.preventDefault();
+  const handleEditSubmit = (formData) => {
     axios
       .post(`http://127.0.0.1:8000/api/product/${slug.id}`, formData)
       .then(() => {

@@ -20,24 +20,32 @@ export default function Form(props) {
 
   const formData = new FormData();
 
-  const submitForm = (event, values) => {
-    formData.append("name", values.name);
-    formData.append("code", values.code);
-    formData.append("subcategory_id", values.subCategoryId);
-    formData.append("discount", values.discount);
-    formData.append("price_import", values.priceImport);
-    formData.append("price", values.price);
-    formData.append("description", values.description);
-    formData.append("producer_id", values.producerId);
+  const submitForm = ({
+    name,
+    code,
+    subCategoryId,
+    discount,
+    priceImport,
+    price,
+    description,
+    producerId,
+  }) => {
+    formData.append("name", name);
+    formData.append("code", code);
+    formData.append("subcategory_id", subCategoryId);
+    formData.append("discount", discount);
+    formData.append("price_import", priceImport);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("producer_id", producerId);
     formData.append("is_top", isTop);
     formData.append("colors", JSON.stringify(selectColors));
     formData.append("preImages", JSON.stringify(preImages));
     Array.from(images).forEach((img) => formData.append("images[]", img));
-
     if (!product) {
-      handleAddSubmit(event, formData);
+      handleAddSubmit(formData);
     } else {
-      handleEditSubmit(event, formData);
+      handleEditSubmit(formData);
     }
   };
 
@@ -78,23 +86,29 @@ export default function Form(props) {
               code: product ? product.code : "",
               name: product ? product.name : "",
               producerId: product ? product.producer_id : "",
-              priceImport: product ? product.price_import : 0,
-              price: product ? product.price : 0,
+              priceImport: product ? product.price_import : "",
+              price: product ? product.price : "",
               discount: product ? product.discount : 0,
               description: product ? product.description : "",
             }}
             validationSchema={Yup.object().shape({
+              categoryId: Yup.string().required("* Vui lòng chọn một mục!"),
+              subCategoryId: Yup.string().required("* Vui lòng chọn một mục!"),
+              producerId: Yup.string().required("* Vui lòng chọn một mục!"),
               code: Yup.string().required("* Vui lòng nhập dữ liệu vào ô này!"),
               name: Yup.string().required("* Vui lòng nhập dữ liệu vào ô này!"),
-              priceImport: Yup.number().required(
-                "* Vui lòng nhập dữ liệu vào ô này!"
-              ),
-              price: Yup.number().required(
-                "* Vui lòng nhập dữ liệu vào ô này!"
-              ),
-              discount: Yup.number().required(
-                "* Vui lòng nhập dữ liệu vào ô này!"
-              ),
+              priceImport: Yup.number()
+                .typeError("* Vui lòng nhập chữ số vào ô này!")
+                .positive("* Vui lòng nhập số lớn hơn 0")
+                .required("* Vui lòng nhập dữ liệu vào ô này!"),
+              price: Yup.number()
+                .typeError("* Vui lòng nhập chữ số vào ô này!")
+                .positive("* Vui lòng nhập số lớn hơn 0 vào ô này!")
+                .required("* Vui lòng nhập dữ liệu vào ô này!"),
+              discount: Yup.number()
+                .typeError("* Vui lòng nhập chữ số vào ô này!")
+                .moreThan(-1, "* Vui lòng nhập số lớn hơn -1 vào ô này!")
+                .required("* Vui lòng nhập dữ liệu vào ô này!"),
             })}
             onSubmit={(values) => submitForm(values)}
           >
@@ -124,6 +138,9 @@ export default function Form(props) {
                               </option>
                             ))}
                           </select>
+                          <small id="helpBlock" className="form-text">
+                            {touched.categoryId && errors.categoryId}
+                          </small>
                         </label>
                       </td>
                     </tr>
@@ -150,6 +167,9 @@ export default function Form(props) {
                                 </option>
                               ))}
                           </select>
+                          <small id="helpBlock" className="form-text">
+                            {touched.subCategoryId && errors.subCategoryId}
+                          </small>
                         </label>
                       </td>
                     </tr>
@@ -189,26 +209,31 @@ export default function Form(props) {
                         </label>
                       </td>
                     </tr>
-                    <td style={{ fontWeight: "bold", width: "25%" }}>
-                      Nhà cung cấp
-                    </td>
-                    <td>
-                      <label>
-                        <select
-                          name="producerId"
-                          value={values.producerId}
-                          onChange={handleChange}
-                          className="form-control"
-                        >
-                          <option value="">Chọn một nhà cung cấp</option>
-                          {producers.map((item) => (
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                    </td>
+                    <tr>
+                      <td style={{ fontWeight: "bold", width: "25%" }}>
+                        Nhà cung cấp
+                      </td>
+                      <td>
+                        <label>
+                          <select
+                            name="producerId"
+                            value={values.producerId}
+                            onChange={handleChange}
+                            className="form-control"
+                          >
+                            <option value="">Chọn một nhà cung cấp</option>
+                            {producers.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                          </select>
+                          <small id="helpBlock" className="form-text">
+                            {touched.producerId && errors.producerId}
+                          </small>
+                        </label>
+                      </td>
+                    </tr>
                     <tr>
                       <td style={{ fontWeight: "bold" }}>Hình ảnh</td>
                       <td>
@@ -231,8 +256,7 @@ export default function Form(props) {
                         <label>
                           <input
                             name="priceImport"
-                            type="number"
-                            min={0}
+                            type="text"
                             value={values.priceImport}
                             onChange={handleChange}
                             className="form-control"
@@ -249,8 +273,7 @@ export default function Form(props) {
                         <label>
                           <input
                             name="price"
-                            type="number"
-                            min={0}
+                            type="text"
                             value={values.price}
                             onChange={handleChange}
                             className="form-control"
@@ -267,17 +290,20 @@ export default function Form(props) {
                         <label style={{ width: "20%" }}>
                           <input
                             name="discount"
-                            type="number"
-                            min={0}
+                            type="text"
                             className="form-control"
                             style={{ width: "50%" }}
                             value={values.discount}
                             onChange={handleChange}
                           />
-                          <small id="helpBlock" className="form-text">
-                            {touched.discount && errors.discount}
-                          </small>
                         </label>
+                        <small
+                          id="helpBlock"
+                          className="form-text"
+                          style={{ marginTop: 0, marginBottom: "0.25em" }}
+                        >
+                          {touched.discount && errors.discount}
+                        </small>
                       </td>
                     </tr>
                     <tr>
@@ -301,6 +327,7 @@ export default function Form(props) {
                         <div className="form-check">
                           <label style={{ marginRight: "200px" }}>
                             <input
+                              style={{ marginTop: 8.5 }}
                               className="form-check-input"
                               type="checkbox"
                               name="isTop"
@@ -324,6 +351,7 @@ export default function Form(props) {
                       <td />
                       <td>
                         <button
+                          type="submit"
                           className="btn btn-success"
                           style={{ width: "200px" }}
                         >
