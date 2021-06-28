@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "./color.css";
 
 export default function Color(props) {
-  const { colors, selectColors, setSelectColors } = props;
+  const { colors, selectColors, setSelectColors, clickSubmit } = props;
   const handleColorClick = (el) => {
     const exist = selectColors.find((x) => x.id === el.id);
     if (!exist) {
@@ -24,6 +24,7 @@ export default function Color(props) {
               <input
                 name="quantity"
                 type="number"
+                min={0}
                 value={selectColors.find((el) => el.id === color.id).quantity}
                 className="form-control"
                 onChange={(e) => handleQuantityChange(e, color.id)}
@@ -66,6 +67,15 @@ export default function Color(props) {
                 <span style={{ background: el.code }} />
               </div>
             ))}
+            {clickSubmit && selectColors.length === 0 ? (
+              <div>
+                <small id="helpBlock" className="form-text">
+                  &emsp;* Vui lòng chọn một màu!
+                </small>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </td>
       </tr>

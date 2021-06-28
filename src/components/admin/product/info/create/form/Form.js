@@ -8,6 +8,7 @@ import * as Yup from "yup";
 
 export default function Form(props) {
   const { handleAddSubmit, handleEditSubmit, title, product } = props;
+  const [clickSubmit, setClickSubmit] = useState(false);
 
   const [colors, setColors] = useState([]);
   const [selectColors, setSelectColors] = useState([]);
@@ -30,22 +31,25 @@ export default function Form(props) {
     description,
     producerId,
   }) => {
-    formData.append("name", name);
-    formData.append("code", code);
-    formData.append("subcategory_id", subCategoryId);
-    formData.append("discount", discount);
-    formData.append("price_import", priceImport);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("producer_id", producerId);
-    formData.append("is_top", isTop);
-    formData.append("colors", JSON.stringify(selectColors));
-    formData.append("preImages", JSON.stringify(preImages));
-    Array.from(images).forEach((img) => formData.append("images[]", img));
-    if (!product) {
-      handleAddSubmit(formData);
-    } else {
-      handleEditSubmit(formData);
+    setClickSubmit(true);
+    if (selectColors.length !== 0) {
+      formData.append("name", name);
+      formData.append("code", code);
+      formData.append("subcategory_id", subCategoryId);
+      formData.append("discount", discount);
+      formData.append("price_import", priceImport);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("producer_id", producerId);
+      formData.append("is_top", isTop);
+      formData.append("colors", JSON.stringify(selectColors));
+      formData.append("preImages", JSON.stringify(preImages));
+      Array.from(images).forEach((img) => formData.append("images[]", img));
+      if (!product) {
+        handleAddSubmit(formData);
+      } else {
+        handleEditSubmit(formData);
+      }
     }
   };
 
@@ -249,6 +253,7 @@ export default function Form(props) {
                       colors={colors}
                       selectColors={selectColors}
                       setSelectColors={setSelectColors}
+                      clickSubmit={clickSubmit}
                     />
                     <tr>
                       <td style={{ fontWeight: "bold" }}>Giá nhập </td>
