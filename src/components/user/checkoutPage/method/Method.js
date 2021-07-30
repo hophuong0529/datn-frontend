@@ -20,14 +20,14 @@ const Method = ({ values, handleChange }) => {
       </h2>
       <Radio.Group onChange={handleChange} value={values.methodId}>
         {methods.map((method) => (
-          <div className="d-block item">
+          <div className="d-block item" key={method.id}>
             <label className="form-check-label">
               <input
                 type="radio"
                 value={method.id}
                 name="methodId"
                 className="form-check-input"
-                checked
+                defaultChecked
               />
               <div
                 className="d-block"

@@ -21,8 +21,6 @@ export default function Form() {
       });
   };
 
-  console.log(user);
-
   return (
     <div className="blk-user-right blk-user-bor full d-block">
       <header>

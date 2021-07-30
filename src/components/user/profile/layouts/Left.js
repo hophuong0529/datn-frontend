@@ -1,7 +1,7 @@
 import { notification } from "antd";
 import axios from "axios";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import avatar from "../../../../assets/images/avatar.jpg";
 import { CartContext } from "../../contexts/CartContext";
 import { UserContext } from "../../contexts/UserContext";
@@ -10,6 +10,7 @@ export default function Left() {
   const [user, setUser] = useContext(UserContext);
   const { setCartItems } = useContext(CartContext);
   const token = localStorage.getItem("token");
+  const history = useHistory();
 
   const openNotification = (message) => {
     notification.open({
@@ -30,6 +31,7 @@ export default function Left() {
         setCartItems([]);
         localStorage.removeItem("token");
         openNotification("Đăng xuất thành công.");
+        history.push("/");
       });
   };
 

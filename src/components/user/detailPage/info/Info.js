@@ -27,7 +27,7 @@ export default function Info(props) {
     setQuantity,
     activeIndex,
     setActiveIndex,
-    handleCancel
+    handleCancel,
   } = props;
 
   const priceSale = (price * (100 - discount)) / 100;
@@ -48,28 +48,33 @@ export default function Info(props) {
     if (colorId !== 0) {
       if (user.length === 0) history.push("/login");
       else {
-        const selectColor = colors.find((x) => x.id === colorId).name;
-        addToCart(product, selectColor, quantity);
-        axios
-          .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
-            quantity,
-            productId,
-            colorId,
-            price,
-            priceSale,
-          })
-          .then(() => {
-            if (isRedirect) history.push("/checkout");
-            else {
-              if (handleCancel) handleCancel();
-              openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
-            }
-          })
-          .catch(() => {
-            openNotification(
-              "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
-            );
-          });
+        const maxColorQuantity = colors.find((x) => x.id === colorId).quantity;
+        if (quantity > maxColorQuantity) {
+          alert("Bạn chỉ được đặt tối đa " + maxColorQuantity + " sản phẩm");
+        } else {
+          const selectColor = colors.find((x) => x.id === colorId).name;
+          addToCart(product, selectColor, quantity);
+          axios
+            .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
+              quantity,
+              productId,
+              colorId,
+              price,
+              priceSale,
+            })
+            .then(() => {
+              if (isRedirect) history.push("/checkout");
+              else {
+                if (handleCancel) handleCancel();
+                openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+              }
+            })
+            .catch(() => {
+              openNotification(
+                "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
+              );
+            });
+        }
       }
     }
   };
@@ -123,17 +128,23 @@ export default function Info(props) {
         <div className="r-at-r req color d-flex align-items-center">
           <label className="pull-left">Màu sắc</label>
           <div className="pull-left product-color">
-            {colors?.map((el, index) => (
-              <div
-                className={`color ${
-                  activeIndex === index || colors.length === 1 ? "active" : ""
-                }`}
-                key={index}
-                onClick={() => handleColorClick(index)}
-              >
-                <span style={{ background: el.code }} />
-              </div>
-            ))}
+            {colors?.map((el, index) => [
+              el.quantity > 0 ? (
+                <div
+                  className={`color ${
+                    activeIndex === index || colors.length === 1 ? "active" : ""
+                  }`}
+                  key={index}
+                  onClick={() => handleColorClick(index)}
+                >
+                  <span style={{ background: el.code }} />
+                </div>
+              ) : (
+                <div className="color" style={{ opacity: "0.4" }}>
+                  <span style={{ background: el.code }} />
+                </div>
+              ),
+            ])}
           </div>
         </div>
         <div
