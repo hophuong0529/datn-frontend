@@ -1,10 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { List } from "react-bootstrap-icons";
 import "./header.css";
 import logo from "../../../../assets/images/logo.png";
+import { AdminContext } from "../../contexts/AdminContext";
 
 export default function AdminHeader() {
+  const [, setAdmin] = useContext(AdminContext);
+  const history = useHistory();
+  const handleLogout = () => {
+    setAdmin([]);
+    alert("Đăng xuất thành công.");
+    history.push("/admin/login");
+  };
+
   return (
     <header className="admin-header black-bg">
       <div className="sidebar-toggle-box">
@@ -22,9 +31,9 @@ export default function AdminHeader() {
       <div className="top-menu">
         <ul className="nav pull-right top-menu">
           <li>
-            <a className="logout" href="login.html">
-              Logout
-            </a>
+            <button className="logout" onClick={() => handleLogout()}>
+              Đăng xuất
+            </button>
           </li>
         </ul>
       </div>
