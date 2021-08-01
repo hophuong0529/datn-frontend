@@ -39,10 +39,12 @@ import {
 } from "./components/admin/contexts/AdminContext";
 import { StoreList } from "./components/user/store";
 import { Introduce } from "./components/user/introduce";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/admin/">
           <AdminProvider>
