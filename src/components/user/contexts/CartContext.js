@@ -58,7 +58,6 @@ export const CartProvider = (props) => {
       .catch((error) => console.log(error));
   };
 
-  console.log(cartItems);
   return (
     <CartContext.Provider
       value={{

@@ -26,16 +26,13 @@ export default function Cart() {
   };
   const increase = (id, color) => {
     const _cartItems = cartItems.map((el) => {
-      if (
-        el.cart_quantity > 1 &&
-        el.cart_quantity + 1 <= el.quantity &&
-        el.id === id &&
-        el.color === color
-      ) {
-        return {
-          ...el,
-          cart_quantity: el.cart_quantity + 1,
-        };
+      if (el.cart_quantity > 0 && el.id === id && el.color === color) {
+        if (el.cart_quantity + 1 <= el.max_color_quantity) {
+          return {
+            ...el,
+            cart_quantity: el.cart_quantity + 1,
+          };
+        }
       }
       return el;
     });
@@ -60,13 +57,13 @@ export default function Cart() {
   function handleQuantityChange(e, id) {
     const _cartItems = cartItems.map((el) => {
       if (el.id === id && e.target.value !== "") {
-        if (e.target.value <= el.quantity) {
+        if (e.target.value <= el.max_color_quantity) {
           return {
             ...el,
             cart_quantity: parseInt(e.target.value),
           };
         }
-        alert("Bạn chỉ được đặt tối đa " + el.quantity + " sản phẩm");
+        alert("Bạn chỉ được đặt tối đa " + el.max_color_quantity + " sản phẩm");
       }
       return el;
     });
@@ -151,7 +148,6 @@ export default function Cart() {
                         }
                         onChange={(e) => handleQuantityChange(e, item.id)}
                       />
-                      {console.log(item)}
                       <div
                         data-label="cart"
                         className="blk-qty-btn plus d-flex justify-content-center align-items-center"
