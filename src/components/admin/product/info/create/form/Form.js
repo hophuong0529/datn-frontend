@@ -110,6 +110,7 @@ export default function Form(props) {
                 .positive("* Vui lòng nhập số lớn hơn 0 vào ô này!")
                 .required("* Vui lòng nhập dữ liệu vào ô này!"),
               discount: Yup.number()
+                .max(100, "* Vui lòng nhập chữ số >= 100!")
                 .typeError("* Vui lòng nhập chữ số vào ô này!")
                 .moreThan(-1, "* Vui lòng nhập số lớn hơn -1 vào ô này!")
                 .required("* Vui lòng nhập dữ liệu vào ô này!"),
