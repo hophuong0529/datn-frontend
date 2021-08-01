@@ -14,7 +14,7 @@ export default function MiniCart(props) {
     const itemsPrice = cartItems.reduce(
       (itemsPrice, item) =>
         itemsPrice +
-        ((item.price * (100 - item.discount)) / 100) * item.quantity,
+        ((item.price * (100 - item.discount)) / 100) * item.cart_quantity,
       0
     );
     setTotalCart(itemsPrice);
@@ -57,7 +57,7 @@ export default function MiniCart(props) {
                   </span>
                 </div>
                 <div className="item-action">
-                  <span className="item-quantity">x{item.quantity}</span>
+                  <span className="item-quantity">x{item.cart_quantity}</span>
                   <div
                     className="js-remove-item"
                     data-psid="30184004"

@@ -104,7 +104,8 @@ export default function Form(props) {
               priceImport: Yup.number()
                 .typeError("* Vui lòng nhập chữ số vào ô này!")
                 .positive("* Vui lòng nhập số lớn hơn 0")
-                .required("* Vui lòng nhập dữ liệu vào ô này!"),
+                .required("* Vui lòng nhập dữ liệu vào ô này!")
+                .max(Yup.ref("price"), "* Vui lòng nhập số bé hơn giá bán"),
               price: Yup.number()
                 .typeError("* Vui lòng nhập chữ số vào ô này!")
                 .positive("* Vui lòng nhập số lớn hơn 0 vào ô này!")

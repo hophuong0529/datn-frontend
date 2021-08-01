@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import service1 from "../../../../assets/images/service-1.png";
-import service2 from "../../../../assets/images/service-2.png";
 import service3 from "../../../../assets/images/service-3.png";
 import service4 from "../../../../assets/images/service-4.png";
 import MessengerCustomerChat from "react-messenger-customer-chat";
@@ -13,7 +12,7 @@ export default function Footer() {
       <div className="wrapper-home-service service-section">
         <div className="container">
           <div className="row">
-            <div className="col-md-3 col-sm-3 col-xs-12">
+            <div className="col-md-4 col-sm-4 col-xs-12">
               <div className="service-box clearfix">
                 <div className="icon">
                   <img data-sizes="auto" src={service1} alt="" />
@@ -26,20 +25,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className="col-md-3 col-sm-3 col-xs-12">
-              <div className="service-box clearfix">
-                <div className="icon">
-                  <img data-sizes="auto" src={service2} alt="" />
-                </div>
-                <div className="detail-sv">
-                  <h3>3 ngày đổi sản phẩm</h3>
-                  <p className="desc tp_text_color"></p>
-                  <p>Đổi sản phẩm trong vòng 3 ngày</p>
-                  <p></p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-3 col-sm-3 col-xs-12">
+            <div className="col-md-4 col-sm-4 col-xs-12">
               <div className="service-box clearfix">
                 <div className="icon">
                   <img data-sizes="auto" src={service3} alt="" />
@@ -52,7 +38,7 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-            <div className="col-md-3 col-sm-3 col-xs-12">
+            <div className="col-md-4 col-sm-4 col-xs-12">
               <div className="service-box clearfix">
                 <div className="icon">
                   <img

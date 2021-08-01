@@ -119,7 +119,7 @@ export default function Table() {
                               {(item.total_bill - 35000).toLocaleString()} VNĐ
                             </p>
                             <p>
-                              <b>PHÍ VẬN CHUYỂN: </b>35,000 VNĐ
+                              <b>PHÍ VẬN CHUYỂN: </b>35.000 VNĐ
                             </p>
                             <p>
                               <b>TỔNG CỘNG: </b>

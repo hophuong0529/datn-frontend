@@ -28,14 +28,14 @@ export const CartProvider = (props) => {
       setCartItems(
         cartItems.map((x) =>
           x.id === product.id && x.color === color
-            ? { ...exist, quantity: exist.quantity + quantity }
+            ? { ...exist, cart_quantity: exist.cart_quantity + quantity }
             : x
         )
       );
     } else {
       setCartItems([
         ...cartItems,
-        { ...product, color: color, quantity: quantity },
+        { ...product, color: color, cart_quantity: quantity },
       ]);
     }
   };
@@ -58,6 +58,7 @@ export const CartProvider = (props) => {
       .catch((error) => console.log(error));
   };
 
+  console.log(cartItems);
   return (
     <CartContext.Provider
       value={{

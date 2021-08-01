@@ -1,6 +1,6 @@
 .blk-policy {
   border-top: 2px solid #b7b7b7;
-  padding-top: 15px;
+  padding-top: 20px;
   margin-top: 15px;
   display: inline-block;
 }
@@ -10,28 +10,21 @@
 
 .blk-policy .item[data-label="shipping"] {
   background: url(../../../../assets/images/icon_ship.png) left center no-repeat;
-  flex: 0 0 40%;
-  max-width: 40%;
+  flex: 0 0 50%;
+  max-width: 50%;
   padding-right: 15px;
 }
 
 .blk-policy .item[data-label="cod"] {
   background: url(../../../../assets/images/icon_cod.png) left center no-repeat;
-  flex: 0 0 30%;
-  max-width: 30%;
+  flex: 0 0 40%;
+  max-width: 40%;
   padding-right: 15px;
-}
-
-.blk-policy .item[data-label="24h"] {
-  background: url(../../../../assets/images/icon_doi\ tra.png) left center
-    no-repeat;
-  flex: 0 0 30%;
-  max-width: 30%;
 }
 
 .blk-policy .item {
   margin-top: 0;
-  padding: 0 0 0 35px;
+  padding: 0 0 0 40px;
   line-height: 1.3;
   font-size: 16px;
   font-weight: bold;

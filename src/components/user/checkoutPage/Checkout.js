@@ -98,7 +98,11 @@ export default function Checkout() {
                 touched={touched}
                 handleChange={handleChange}
               />
-              <Method values={values} handleChange={handleChange} />
+              <Method
+                totalCart={totalCart}
+                values={values}
+                handleChange={handleChange}
+              />
             </div>
           </form>
         )}

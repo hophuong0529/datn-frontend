@@ -16,7 +16,7 @@ export default function Cart() {
     const productId = product.id;
     const userId = user.id;
     const color = product.color;
-    const quantity = product.quantity;
+    const quantity = product.cart_quantity;
     axios.post(`http://127.0.0.1:8000/api/cart-item/edit`, {
       productId,
       color,
@@ -26,10 +26,15 @@ export default function Cart() {
   };
   const increase = (id, color) => {
     const _cartItems = cartItems.map((el) => {
-      if (el.quantity > 1 && el.id === id && el.color === color) {
+      if (
+        el.cart_quantity > 1 &&
+        el.cart_quantity + 1 <= el.quantity &&
+        el.id === id &&
+        el.color === color
+      ) {
         return {
           ...el,
-          quantity: el.quantity + 1,
+          cart_quantity: el.cart_quantity + 1,
         };
       }
       return el;
@@ -40,10 +45,10 @@ export default function Cart() {
 
   const decrease = (id, color) => {
     const _cartItems = cartItems.map((el) => {
-      if (el.quantity > 1 && el.id === id && el.color === color) {
+      if (el.cart_quantity > 1 && el.id === id && el.color === color) {
         return {
           ...el,
-          quantity: el.quantity - 1,
+          cart_quantity: el.cart_quantity - 1,
         };
       }
       return el;
@@ -55,10 +60,13 @@ export default function Cart() {
   function handleQuantityChange(e, id) {
     const _cartItems = cartItems.map((el) => {
       if (el.id === id && e.target.value !== "") {
-        return {
-          ...el,
-          quantity: parseInt(e.target.value),
-        };
+        if (e.target.value <= el.quantity) {
+          return {
+            ...el,
+            cart_quantity: parseInt(e.target.value),
+          };
+        }
+        alert("Bạn chỉ được đặt tối đa " + el.quantity + " sản phẩm");
       }
       return el;
     });
@@ -136,16 +144,14 @@ export default function Cart() {
                       <input
                         className="updateCart blk-qty-input d-flex justify-content-center align-items-center"
                         type="text"
-                        data-psid="30184004"
-                        max="63"
-                        min="1"
                         value={
                           cartItems.find(
                             (el) => el.id === item.id && el.color === item.color
-                          ).quantity
+                          ).cart_quantity
                         }
                         onChange={(e) => handleQuantityChange(e, item.id)}
                       />
+                      {console.log(item)}
                       <div
                         data-label="cart"
                         className="blk-qty-btn plus d-flex justify-content-center align-items-center"
@@ -159,7 +165,7 @@ export default function Cart() {
                     <strong>
                       {(
                         ((item.price * (100 - item.discount)) / 100) *
-                        item.quantity
+                        item.cart_quantity
                       )?.toLocaleString()}
                       đ
                     </strong>
@@ -171,7 +177,6 @@ export default function Cart() {
                           removeItem(item);
                       }}
                       className="remove-cart"
-                      data-psid="30184004"
                     >
                       Xóa
                     </button>
@@ -181,7 +186,6 @@ export default function Cart() {
             </tbody>
           </table>
           <div className="note">
-            <p>Hỗ trợ ship 20k cho đơn hàng trên 300k nội thành HN, HCM</p>
             <p>Hỗ trợ miễn phí cho đơn hàng trên 500k toàn quốc</p>
             <p>Đơn hàng trên website được xử lý trong giờ hành chính</p>
           </div>

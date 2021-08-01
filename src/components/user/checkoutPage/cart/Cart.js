@@ -45,11 +45,11 @@ const Cart = ({ cartItems, totalCart }) => {
                     <div className="d-block"></div>
                   </div>
                 </td>
-                <td className="text-center">{item.quantity}</td>
+                <td className="text-center">{item.cart_quantity}</td>
                 <td className="text-center">
                   <strong>
                     {(
-                      item.quantity *
+                      item.cart_quantity *
                       ((item.price * (100 - item.discount)) / 100)
                     ).toLocaleString()}
                     đ
@@ -70,7 +70,7 @@ const Cart = ({ cartItems, totalCart }) => {
             <tr>
               <td colSpan="2">Phí vận chuyển</td>
               <td id="shipFee" value="25000" codfee="0">
-                35.000 đ
+                {totalCart >= 500000 ? "0 đ" : "35.000 đ"}
               </td>
             </tr>
             <tr>
@@ -84,6 +84,19 @@ const Cart = ({ cartItems, totalCart }) => {
           </tfoot>
         </table>
       </div>
+      {totalCart < 100000 ? (
+        <div class="alert alert-warning text-justify">
+          <span style={{ fontSize: 14 }}>
+            <span>
+              <span style={{ textIndent: 10 }}>
+                Quý khách vui lòng đặt hàng với giá trị đơn từ 100k trở lên
+              </span>
+            </span>
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "./method.css";
 
-const Method = ({ values, handleChange }) => {
+const Method = ({ totalCart, values, handleChange }) => {
   const [methods, setMethods] = useState([]);
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/api/order-method`).then((response) => {
@@ -63,11 +63,15 @@ const Method = ({ values, handleChange }) => {
           của shop.
         </p>
       </div>
-      <div className="d-block text-right">
-        <button type="submit" id="js-btn-submit" className="btn btn-pink">
-          Thanh toán
-        </button>
-      </div>
+      {totalCart > 100000 ? (
+        <div className="d-block text-right">
+          <button type="submit" id="js-btn-submit" className="btn btn-pink">
+            Thanh toán
+          </button>
+        </div>
+      ) : (
+        <div style={{ height: 20 }} />
+      )}
     </div>
   );
 };
