@@ -57,13 +57,15 @@ export default function Cart() {
   function handleQuantityChange(e, id) {
     const _cartItems = cartItems.map((el) => {
       if (el.id === id && e.target.value !== "") {
-        if (e.target.value <= el.max_color_quantity) {
+        if (e.target.value <= el.max_color_quantity && e.target.value > 0) {
           return {
             ...el,
             cart_quantity: parseInt(e.target.value),
           };
         }
-        alert("Bạn chỉ được đặt tối đa " + el.max_color_quantity + " sản phẩm");
+        alert(
+          "Bạn vui lòng đặt từ 0 - " + el.max_color_quantity + " sản phẩm."
+        );
       }
       return el;
     });
