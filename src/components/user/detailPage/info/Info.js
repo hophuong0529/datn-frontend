@@ -129,7 +129,11 @@ export default function Info(props) {
           <label className="pull-left">Màu sắc</label>
           <div className="pull-left product-color">
             {colors?.map((el, index) => [
-              el.quantity > 0 ? (
+              el.quantity === 0 ? (
+                <div className="color" style={{ opacity: "0.4" }}>
+                  <span style={{ background: el.code }} />
+                </div>
+              ) : (
                 <div
                   className={`color ${
                     activeIndex === index || colors.length === 1 ? "active" : ""
@@ -137,10 +141,6 @@ export default function Info(props) {
                   key={index}
                   onClick={() => handleColorClick(index)}
                 >
-                  <span style={{ background: el.code }} />
-                </div>
-              ) : (
-                <div className="color" style={{ opacity: "0.4" }}>
                   <span style={{ background: el.code }} />
                 </div>
               ),
