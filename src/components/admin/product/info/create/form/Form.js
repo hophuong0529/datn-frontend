@@ -7,7 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 
 export default function Form(props) {
-  const { handleAddSubmit, handleEditSubmit, title, product } = props;
+  const { handleAddSubmit, handleEditSubmit, title, product, errorList } =
+    props;
   const [clickSubmit, setClickSubmit] = useState(false);
 
   const [colors, setColors] = useState([]);
@@ -102,11 +103,13 @@ export default function Form(props) {
               code: Yup.string().required("* Vui lòng nhập dữ liệu vào ô này!"),
               name: Yup.string().required("* Vui lòng nhập dữ liệu vào ô này!"),
               priceImport: Yup.number()
+                .integer("* Vui lòng nhập số nguyên vào ô này!")
                 .typeError("* Vui lòng nhập chữ số vào ô này!")
-                .positive("* Vui lòng nhập số lớn hơn 0")
+                .positive("* Vui lòng nhập số lớn hơn 0 vào ô này!")
                 .required("* Vui lòng nhập dữ liệu vào ô này!")
                 .max(Yup.ref("price"), "* Vui lòng nhập số bé hơn giá bán"),
               price: Yup.number()
+                .integer("* Vui lòng nhập số nguyên vào ô này!")
                 .typeError("* Vui lòng nhập chữ số vào ô này!")
                 .positive("* Vui lòng nhập số lớn hơn 0 vào ô này!")
                 .required("* Vui lòng nhập dữ liệu vào ô này!"),
@@ -194,6 +197,9 @@ export default function Form(props) {
                           <small id="helpBlock" className="form-text">
                             {touched.code && errors.code}
                           </small>
+                          <small id="helpBlock" className="form-text">
+                            {errorList.code}
+                          </small>
                         </label>
                       </td>
                     </tr>
@@ -211,6 +217,9 @@ export default function Form(props) {
                           />
                           <small id="helpBlock" className="form-text">
                             {touched.name && errors.name}
+                          </small>
+                          <small id="helpBlock" className="form-text">
+                            {errorList.name}
                           </small>
                         </label>
                       </td>
