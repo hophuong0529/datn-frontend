@@ -3,6 +3,7 @@ import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SeeButton from "../seeButton";
 import "./product.css";
+import no_image from "../../../assets/images/no-image.png";
 
 export default function Product(props) {
   const product = props.product;
@@ -16,11 +17,15 @@ export default function Product(props) {
             <Fragment />
           )}
           <Link to={"/" + product.id} className="link-detail">
-            <img
-              src={process.env.REACT_APP_URL_IMAGE + product.images[0].path}
-              alt=""
-              style={{ width: "100%" }}
-            />
+            {product.images[0] ? (
+              <img
+                src={process.env.REACT_APP_URL_IMAGE + product.images[0]?.path}
+                alt=""
+                style={{ width: "100%" }}
+              />
+            ) : (
+              <img src={no_image} alt="" style={{ width: "100%" }} />
+            )}
           </Link>
           <div className="product-action d-flex align-center justify-content-center">
             <div className="watch" data-psid="30184003" data-root="-2">

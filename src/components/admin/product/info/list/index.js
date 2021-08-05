@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./index.css";
 import Paginate from "../../../../pagination/Paginate";
+import no_image from "../../../../../assets/images/no-image.png";
 import { Modal } from "antd";
 
 const ProductList = () => {
@@ -150,15 +151,7 @@ const ProductList = () => {
                         alt=""
                       />
                     ) : (
-                      <div
-                        style={{
-                          width: "96.4px",
-                          height: "96.4px",
-                          margin: "auto",
-                        }}
-                      >
-                        <span>Không có hình ảnh</span>
-                      </div>
+                      <img src={no_image} alt="" style={{ width: "50%" }} />
                     )}
                   </td>
                   <td>{product.name}</td>
