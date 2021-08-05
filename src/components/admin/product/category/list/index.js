@@ -189,7 +189,7 @@ const CategoryList = () => {
                       />
                       <button
                         onClick={() => {
-                          if (window.confirm("Bạn muốn xóa sản phẩm này?"))
+                          if (window.confirm("Bạn muốn xóa danh mục này?"))
                             handleDelete(sub, sub);
                         }}
                         style={{

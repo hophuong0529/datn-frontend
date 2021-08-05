@@ -97,7 +97,7 @@ const ProductList = () => {
           <b>Nhà cung cấp: </b>
           {product.producer?.name} <br />
           <b>Ngày tạo:</b> {product.created_at} <br />
-          <b>Mô tả:</b>
+          <b>Mô tả:&nbsp;</b>
           <span
             className="descrip-pro"
             dangerouslySetInnerHTML={{
