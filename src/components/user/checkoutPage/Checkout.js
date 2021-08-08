@@ -13,6 +13,8 @@ import { notification } from "antd";
 
 export default function Checkout() {
   let history = useHistory();
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const [user] = useContext(UserContext);
   const { cartItems, setCartItems } = useContext(CartContext);
   const { totalCart, setTotalCart } = useContext(CartContext);
@@ -75,7 +77,9 @@ export default function Checkout() {
             .max(50, "* Tên người nhận chỉ được tối đa 50 ký tự!")
             .required("* Tên người nhận không được để trống!"),
           mobile: Yup.string()
-            .max(10, "* Số điện thoại chỉ được tối đa 10 số!")
+            .matches(phoneRegExp, "* Định dạng số điện thoại không hợp lệ!")
+            .min(10, "* Định dạng số điện thoại không hợp lệ!")
+            .max(10, "* Định dạng số điện thoại không hợp lệ!")
             .required("* Số điện thoại không được để trống!"),
           email: Yup.string()
             .email("Định dạng email không hợp lệ!")

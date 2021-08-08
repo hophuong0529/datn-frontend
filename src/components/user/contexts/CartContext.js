@@ -20,7 +20,7 @@ export const CartProvider = (props) => {
     }
   }, [user]);
 
-  const addToCart = (product, color, quantity) => {
+  const addToCart = (product, color, max_color_quantity, quantity) => {
     const exist = cartItems.find(
       (x) => x.id === product.id && x.color === color
     );
@@ -35,7 +35,12 @@ export const CartProvider = (props) => {
     } else {
       setCartItems([
         ...cartItems,
-        { ...product, color: color, cart_quantity: quantity },
+        {
+          ...product,
+          color: color,
+          max_color_quantity: max_color_quantity,
+          cart_quantity: quantity,
+        },
       ]);
     }
   };

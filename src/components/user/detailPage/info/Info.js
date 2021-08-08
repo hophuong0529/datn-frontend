@@ -4,7 +4,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { MinusOutlined } from "@ant-design/icons";
 import Policy from "../policy/Policy";
 import axios from "axios";
-import { notification } from "antd";
+import { Button, notification } from "antd";
 import { CartContext } from "../../contexts/CartContext";
 import { useHistory } from "react-router";
 import { UserContext } from "../../contexts/UserContext";
@@ -32,9 +32,19 @@ export default function Info(props) {
 
   const priceSale = (price * (100 - discount)) / 100;
   const openNotification = (message) => {
+    const btn = (
+      <Button
+        type="link"
+        style={{ color: "#ff9c75" }}
+        onClick={() => history.push("/cart")}
+      >
+        Xem ngay
+      </Button>
+    );
     notification.open({
       message: "Thông báo",
       description: message,
+      btn,
     });
   };
 
@@ -53,7 +63,7 @@ export default function Info(props) {
           alert("Bạn chỉ được đặt tối đa " + maxColorQuantity + " sản phẩm");
         } else {
           const selectColor = colors.find((x) => x.id === colorId).name;
-          addToCart(product, selectColor, quantity);
+          addToCart(product, selectColor, maxColorQuantity, quantity);
           axios
             .post(`http://127.0.0.1:8000/api/cart/${user.id}`, {
               quantity,
@@ -66,13 +76,10 @@ export default function Info(props) {
               if (isRedirect) history.push("/checkout");
               else {
                 if (handleCancel) handleCancel();
-                openNotification("Thêm sản phẩm vào giỏ hàng thành công.");
+                openNotification(
+                  `Thêm sản phẩm [${product.name} - ${selectColor}]x${quantity} vào giỏ hàng thành công.`
+                );
               }
-            })
-            .catch(() => {
-              openNotification(
-                "Vui lòng đăng nhập trước thêm sản phẩm vào giỏ hàng."
-              );
             });
         }
       }

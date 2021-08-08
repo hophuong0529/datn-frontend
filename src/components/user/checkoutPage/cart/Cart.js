@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./cart.css";
 
 const Cart = ({ cartItems, totalCart }) => {
+  const shippingFee = totalCart < 500000 ? 35000 : 0;
+
   return (
     <div className="col-checkout col-right col-xl-5 col-lg-12 col-12">
       <h2 className="col-title">
@@ -69,16 +71,14 @@ const Cart = ({ cartItems, totalCart }) => {
             </tr>
             <tr>
               <td colSpan="2">Phí vận chuyển</td>
-              <td id="shipFee" value="25000" codfee="0">
-                {totalCart >= 500000 ? "0 đ" : "35.000 đ"}
-              </td>
+              <td id="shipFee">{shippingFee.toLocaleString()}đ</td>
             </tr>
             <tr>
               <td colSpan="2">
                 <strong>Tổng cộng</strong>
               </td>
               <td id="showTotalMoney" className="totalPrice">
-                {(totalCart + 35000).toLocaleString()}đ
+                {(totalCart + shippingFee).toLocaleString()}đ
               </td>
             </tr>
           </tfoot>

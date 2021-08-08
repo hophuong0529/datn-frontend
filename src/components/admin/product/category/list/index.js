@@ -54,15 +54,25 @@ const CategoryList = () => {
     if (sub) {
       axios
         .post(`http://127.0.0.1:8000/api/sub-category/delete`, { categoryId })
-        .then(() =>
-          setSubCategories(subCategories.filter((x) => x.id !== item.id))
-        )
-        .catch((error) => console.log(error));
+        .then(() => {
+          alert("Xóa danh mục thành công.");
+          setSubCategories(subCategories.filter((x) => x.id !== item.id));
+        })
+        .catch((error) => {
+          alert("Rất tiếc, bạn không thể xóa danh mục này.");
+          console.log(error);
+        });
     } else {
       axios
         .post(`http://127.0.0.1:8000/api/category/delete`, { categoryId })
-        .then(() => setCategories(categories.filter((x) => x.id !== item.id)))
-        .catch((error) => console.log(error));
+        .then(() => {
+          alert("Xóa danh mục thành công.");
+          setCategories(categories.filter((x) => x.id !== item.id));
+        })
+        .catch((error) => {
+          alert("Rất tiếc, bạn không thể xóa danh mục này.");
+          console.log(error);
+        });
     }
   };
 

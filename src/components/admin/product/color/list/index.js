@@ -18,8 +18,14 @@ const ColorList = () => {
     const colorId = item.id;
     axios
       .post(`http://127.0.0.1:8000/api/color/delete`, { colorId })
-      .then(() => setColors(colors.filter((x) => x.id !== item.id)))
-      .catch((error) => console.log(error));
+      .then(() => {
+        alert("Xóa màu thành công.");
+        setColors(colors.filter((x) => x.id !== item.id));
+      })
+      .catch((error) => {
+        alert("Rất tiếc, bạn không thể xóa màu này.");
+        console.log(error);
+      });
   };
 
   return (

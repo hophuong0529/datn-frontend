@@ -8,9 +8,11 @@ export default function Table() {
   const [user] = useContext(UserContext);
   const [activeIndex, setActiveIndex] = useState([]);
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/orders/${user.id}`).then((response) => {
-      setOrders(response.data);
-    });
+    axios
+      .get(`http://127.0.0.1:8000/api/orders/${user.id}`)
+      .then((response) => {
+        setOrders(response.data);
+      });
   }, [user]);
 
   const handleOnClick = (index) => {
@@ -116,10 +118,14 @@ export default function Table() {
                           <td className="text-right" colSpan="2">
                             <p>
                               <b>TỔNG TIỀN: </b>
-                              {(item.total_bill - 35000).toLocaleString()} VNĐ
+                              {(
+                                item.total_bill - item.shipping_fee
+                              ).toLocaleString()}
+                              VNĐ
                             </p>
                             <p>
-                              <b>PHÍ VẬN CHUYỂN: </b>35.000 VNĐ
+                              <b>PHÍ VẬN CHUYỂN: </b>
+                              {item.shipping_fee.toLocaleString()} VNĐ
                             </p>
                             <p>
                               <b>TỔNG CỘNG: </b>

@@ -78,3 +78,20 @@
 .descrip-pro p {
   margin-bottom: 0;
 }
+
+.list-product .prd-name {
+  cursor: pointer;
+}
+
+.list-product .prd-name:hover {
+  color: #650404;
+}
+
+.list-product .prd-image img {
+  cursor: pointer;
+  width: 50%;
+}
+
+.list-product .prd-image img:hover {
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+}

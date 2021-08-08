@@ -1,4 +1,8 @@
-import { PencilFill, TrashFill } from "react-bootstrap-icons";
+import {
+  ExclamationTriangleFill,
+  PencilFill,
+  TrashFill,
+} from "react-bootstrap-icons";
 import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -49,8 +53,14 @@ const ProductList = () => {
     const productId = item.id;
     axios
       .post(`http://127.0.0.1:8000/api/product/delete`, { productId })
-      .then(() => setProducts(products.filter((x) => x.id !== item.id)))
-      .catch((error) => console.log(error));
+      .then(() => {
+        alert("Xóa sản phẩm thành công.");
+        setProducts(products.filter((x) => x.id !== item.id));
+      })
+      .catch((error) => {
+        alert("Rất tiếc, bạn không thể xóa sản phẩm này.");
+        console.log(error);
+      });
   };
 
   return (
@@ -124,26 +134,35 @@ const ProductList = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th style={{ width: "6%" }}>ID</th>
+              <th style={{ width: "7%" }}>ID</th>
               <th style={{ width: "10%" }}>Mã sản phẩm</th>
               <th style={{ width: "20%" }}>Hình ảnh</th>
               <th style={{ width: "23%" }}>Tên</th>
               <th style={{ width: "12%" }}>Giá bán</th>
-              <th style={{ width: "10%" }}>Số lượng</th>
+              <th style={{ width: "9%" }}>Số lượng</th>
               <th style={{ width: "9%" }}>Giảm giá</th>
               <th style={{ width: "10%" }}></th>
             </tr>
           </thead>
-          <tbody className="listProduct">
+          <tbody className="list-product">
             {products.map((product) => (
               <Fragment key={product.id}>
-                <tr onClick={() => showModal(product)}>
-                  <td>{product.id}</td>
-                  <td>{product.code}</td>
+                <tr>
                   <td>
+                    {product.quantity === 0 ? (
+                      <ExclamationTriangleFill
+                        style={{ color: "#e10000", marginTop: -4 }}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                    &nbsp;
+                    {product.id}
+                  </td>
+                  <td>{product.code}</td>
+                  <td className="prd-image" onClick={() => showModal(product)}>
                     {product.images[0] ? (
                       <img
-                        width="50%"
                         src={
                           process.env.REACT_APP_URL_IMAGE +
                           product.images[0].path
@@ -154,9 +173,17 @@ const ProductList = () => {
                       <img src={no_image} alt="" style={{ width: "50%" }} />
                     )}
                   </td>
-                  <td>{product.name}</td>
+                  <td className="prd-name" onClick={() => showModal(product)}>
+                    {product.name}
+                  </td>
                   <td>{product.price.toLocaleString()} VNĐ</td>
-                  <td>{product.quantity}</td>
+                  <td
+                    style={{
+                      color: product.quantity === 0 ? "#e10000" : "",
+                    }}
+                  >
+                    {product.quantity}
+                  </td>
                   <td>{product.discount}%</td>
                   <td style={{ textAlign: "right" }}>
                     <Link

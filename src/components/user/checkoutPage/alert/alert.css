@@ -56,3 +56,8 @@
   color: #ffa683;
   font-weight: 900;
 }
+
+.text-pink:hover,
+.text-pink:active {
+  color: #ff7540;
+}

@@ -24,8 +24,8 @@ export default function Alert() {
                 <strong>Lakey đã nhận được yêu cầu đặt hàng của bạn!</strong>
               </p>
               <p>
-                Mã đơn hàng của bạn là{" "}
-                <span className="text-pink">{slug.code}</span>
+                Mã đơn hàng của bạn là&nbsp;
+                <Link to="/order/index" className="text-pink">{slug.code}</Link>
               </p>
               <p>
                 Bộ phận CSKH sẽ gọi điện xác nhận đơn hàng và hướng dẫn thanh

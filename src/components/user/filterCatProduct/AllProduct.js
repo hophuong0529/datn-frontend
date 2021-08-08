@@ -13,7 +13,7 @@ export default function AllProduct() {
     axios.get("http://127.0.0.1:8000/api/categories").then((response) => {
       setCategories(response.data.data.slice(0, 6));
     });
-    axios.get("http://127.0.0.1:8000/api/products").then((response) => {
+    axios.get("http://127.0.0.1:8000/api/all-product").then((response) => {
       setProducts(response.data.data);
       setPerPage(response.data.per_page);
       setTotalItemsPage(response.data.total);
@@ -21,7 +21,7 @@ export default function AllProduct() {
   }, []);
   const handlePageChange = (pageNumber) => {
     axios
-      .get("http://127.0.0.1:8000/api/products?page=" + pageNumber)
+      .get("http://127.0.0.1:8000/api/all-product?page=" + pageNumber)
       .then((response) => {
         setProducts(response.data.data);
         setActivePage(pageNumber);

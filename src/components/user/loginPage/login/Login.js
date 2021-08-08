@@ -97,7 +97,7 @@ export default function Login() {
                   to="#"
                   rel="nofollow"
                   className="clearfix"
-                  style={{ color: "#000" }}
+                  style={{ color: "#333" }}
                 >
                   Quên mật khẩu?
                 </Link>
