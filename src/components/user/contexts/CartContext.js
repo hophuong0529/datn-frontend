@@ -28,7 +28,10 @@ export const CartProvider = (props) => {
       setCartItems(
         cartItems.map((x) =>
           x.id === product.id && x.color === color
-            ? { ...exist, cart_quantity: exist.cart_quantity + quantity }
+            ? {
+                ...exist,
+                cart_quantity: exist.cart_quantity + quantity,
+              }
             : x
         )
       );

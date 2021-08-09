@@ -11,7 +11,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 export default function Info(props) {
   const [clicked, setClicked] = useState(false);
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, cartItems } = useContext(CartContext);
   const [user] = useContext(UserContext);
   const history = useHistory();
   const {
@@ -67,8 +67,12 @@ export default function Info(props) {
         history.push("/login");
         openLoginNotification();
       } else {
-        const maxColorQuantity = colors.find((x) => x.id === colorId).quantity;
-        console.log(maxColorQuantity);
+        const colorName = colors.find((x) => x.id === colorId).name;
+        const cartQuantity =
+          cartItems.find((el) => el.id === product.id && el.color === colorName)
+            ?.cart_quantity ?? 0;
+        const maxColorQuantity =
+          colors.find((x) => x.id === colorId).quantity - cartQuantity;
         if (quantity > maxColorQuantity) {
           alert("Bạn chỉ được đặt tối đa " + maxColorQuantity + " sản phẩm");
         } else {
