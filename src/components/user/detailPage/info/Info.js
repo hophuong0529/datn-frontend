@@ -48,6 +48,13 @@ export default function Info(props) {
     });
   };
 
+  const openLoginNotification = () => {
+    notification.open({
+      message: "Thông báo",
+      description: "Vui lòng đăng nhập trước khi đặt hàng",
+    });
+  };
+
   const handleColorClick = (index) => {
     setActiveIndex(index);
     setColorId(colors[index].id);
@@ -56,9 +63,12 @@ export default function Info(props) {
   const handleAddToCart = (product, isRedirect) => {
     setClicked(true);
     if (colorId !== 0) {
-      if (user.length === 0) history.push("/login");
-      else {
+      if (user.length === 0) {
+        history.push("/login");
+        openLoginNotification();
+      } else {
         const maxColorQuantity = colors.find((x) => x.id === colorId).quantity;
+        console.log(maxColorQuantity);
         if (quantity > maxColorQuantity) {
           alert("Bạn chỉ được đặt tối đa " + maxColorQuantity + " sản phẩm");
         } else {

@@ -12,6 +12,8 @@ export default function Register() {
   let history = useHistory();
   let location = useLocation();
   const [, setUser] = useContext(UserContext);
+  const phoneRegExp =
+    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const openNotification = (message) => {
     notification.open({
       message: "Thông báo",
@@ -74,6 +76,15 @@ export default function Register() {
             password: Yup.string()
               .max(255)
               .required("* Mật khẩu không được để trống!"),
+            mobile: Yup.string()
+              .matches(phoneRegExp, "* Định dạng số điện thoại không hợp lệ!")
+              .min(10, "* Định dạng số điện thoại không hợp lệ!")
+              .max(10, "* Định dạng số điện thoại không hợp lệ!")
+              .required("* Số điện thoại không được để trống!"),
+            email: Yup.string()
+              .email("Định dạng email không hợp lệ!")
+              .required("* Email không được để trống!"),
+            address: Yup.string().required("* Địa chỉ không được để trống!"),
           })}
           onSubmit={(values) => handleRegister(values)}
         >
