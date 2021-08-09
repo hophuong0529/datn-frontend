@@ -78,6 +78,11 @@ export default function App() {
                             />
                             <PrivateAdminRoute
                               exact
+                              path="/admin/products/search"
+                              component={ProductList}
+                            />
+                            <PrivateAdminRoute
+                              exact
                               path="/admin/categories"
                               component={CategoryList}
                             />

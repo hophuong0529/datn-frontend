@@ -1,23 +1,28 @@
 import {
   ExclamationTriangleFill,
   PencilFill,
+  Search,
   TrashFill,
 } from "react-bootstrap-icons";
 import React, { Fragment, useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./index.css";
 import Paginate from "../../../../pagination/Paginate";
 import no_image from "../../../../../assets/images/no-image.png";
 import { Modal } from "antd";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const [products, setProducts] = useState([]);
   const [perPage, setPerPage] = useState(0);
   const [totalItemsPage, setTotalItemsPage] = useState(0);
   const [activePage, setActivePage] = useState(1);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [product, setProduct] = useState({});
+  const [key, setKey] = useState("");
+  const history = useHistory();
+  const keyword = props.location.search.substr(3);
+  const [title, setTilte] = useState("");
 
   const showModal = (selectProduct) => {
     setIsModalVisible(true);
@@ -33,20 +38,43 @@ const ProductList = () => {
   };
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/products").then((response) => {
-      setProducts(response.data.data);
-      setPerPage(response.data.per_page);
-      setTotalItemsPage(response.data.total);
-    });
-  }, []);
+    if (!keyword) {
+      axios.get("http://127.0.0.1:8000/api/products").then((response) => {
+        setProducts(response.data.data);
+        setPerPage(response.data.per_page);
+        setTotalItemsPage(response.data.total);
+      });
+    } else {
+      axios
+        .get(`http://127.0.0.1:8000/api/products/search/${keyword}`)
+        .then((response) => {
+          setProducts(response.data.products.data);
+          setPerPage(response.data.products.per_page);
+          setTotalItemsPage(response.data.products.total);
+          setTilte(response.data.keyword);
+        });
+    }
+  }, [keyword]);
 
   const handlePageChange = (pageNumber) => {
-    axios
-      .get("http://127.0.0.1:8000/api/products?page=" + pageNumber)
-      .then((response) => {
-        setProducts(response.data.data);
-        setActivePage(pageNumber);
-      });
+    if (!keyword) {
+      axios
+        .get("http://127.0.0.1:8000/api/products?page=" + pageNumber)
+        .then((response) => {
+          setProducts(response.data.data);
+          setActivePage(pageNumber);
+        });
+    } else {
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/products/search/${keyword}?page=` +
+            pageNumber
+        )
+        .then((response) => {
+          setProducts(response.data.products.data);
+          setActivePage(pageNumber);
+        });
+    }
   };
 
   const handleDelete = (item) => {
@@ -65,16 +93,60 @@ const ProductList = () => {
 
   return (
     <>
+      <div
+        className="button-add"
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginRight: 20,
+          marginBottom: 5,
+        }}
+      >
+        <Link className="btn btn-add" to="/admin/product/create">
+          Thêm sản phẩm mới
+        </Link>
+      </div>
       <div className="card-top">
         <div className="title">
           <h2>Danh sách các sản phẩm</h2>
         </div>
-        <div className="button-add">
-          <Link className="btn btn-add" to="/admin/product/create">
-            Thêm sản phẩm mới
-          </Link>
-        </div>
+        <form
+          className="form-search"
+          style={{ marginLeft: "auto", whiteSpace: "nowrap" }}
+        >
+          <div
+            className="input-group"
+            style={{ width: 320, border: "1px solid #d7d7d7" }}
+          >
+            <input
+              className="form-control"
+              type="text"
+              name="q"
+              placeholder={"Tìm kiếm sản phẩm"}
+              onChange={(e) => setKey(e.target.value)}
+              style={{ fontSize: 14 }}
+            />
+            <span className="input-group-btn">
+              <button
+                className="btn btn-pink"
+                onClick={(e) => {
+                  e.preventDefault();
+                  history.push("/admin/products/search?q=" + key);
+                }}
+              >
+                <Search />
+              </button>
+            </span>
+          </div>
+        </form>
       </div>
+      {title ? (
+        <span className="result-search-prd">
+          -- Kết quả tìm kiếm từ khóa "<b>{title}</b>" --
+        </span>
+      ) : (
+        <></>
+      )}
       <Modal
         style={{ left: 105 }}
         visible={isModalVisible}

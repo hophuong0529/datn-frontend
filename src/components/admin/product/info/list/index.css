@@ -37,6 +37,12 @@
   white-space: nowrap;
 }
 
+.result-search-prd {
+  margin-left: 23px;
+  color: #c40000;
+  font-size: 15px;
+}
+
 .button-add a,
 .button-add button {
   font-size: 14.5px;
