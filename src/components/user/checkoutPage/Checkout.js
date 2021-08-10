@@ -70,7 +70,7 @@ export default function Checkout() {
           address: user.address,
           userId: user.id,
           note: "",
-          methodId: 1,
+          methodId: 2,
         }}
         validationSchema={Yup.object().shape({
           name: Yup.string()
