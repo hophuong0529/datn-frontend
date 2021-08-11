@@ -1,15 +1,18 @@
 import axios from "axios";
 import { Modal } from "antd";
 import React, { useEffect, useState } from "react";
-import { Fragment } from "react";
 import EditButton from "../create/editButton";
 import "./index.css";
+import Paginate from "../../../pagination/Paginate";
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
   const [states, setStates] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [order, setOrder] = useState({});
+  const [perPage, setPerPage] = useState(0);
+  const [totalItemsPage, setTotalItemsPage] = useState(0);
+  const [activePage, setActivePage] = useState(1);
 
   const showModal = (selectProduct) => {
     setIsModalVisible(true);
@@ -26,12 +29,23 @@ const OrderList = () => {
 
   useEffect(() => {
     axios.get("http://127.0.0.1:8000/api/orders").then((response) => {
-      setOrders(response.data);
+      setOrders(response.data.data);
+      setPerPage(response.data.per_page);
+      setTotalItemsPage(response.data.total);
     });
     axios.get("http://127.0.0.1:8000/api/states").then((response) => {
       setStates(response.data);
     });
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    axios
+      .get("http://127.0.0.1:8000/api/orders?page=" + pageNumber)
+      .then((response) => {
+        setOrders(response.data.data);
+        setActivePage(pageNumber);
+      });
+  };
 
   return (
     <>
@@ -178,6 +192,12 @@ const OrderList = () => {
           </tbody>
         </table>
       </div>
+      <Paginate
+        activePage={activePage}
+        itemsCountPerPage={perPage}
+        totalItemsCount={totalItemsPage}
+        onChange={handlePageChange}
+      />
     </>
   );
 };
